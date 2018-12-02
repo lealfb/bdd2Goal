@@ -1,0 +1,290 @@
+body {
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji',
+  'Segoe UI Emoji','Segoe UI Symbol'; /* based on Bootstrap 4 font*/
+}
+
+#tool {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+#workspace {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height:100%;
+}
+
+#sidepanel {
+  background-color: whitesmoke;
+  width: 30vw;
+}
+
+#out {
+  background-color: lightgray;
+  flex-grow: 1;
+  /* height: 100%; */
+  overflow:scroll;
+  /* padding: 3px; */
+  width: 70vw
+}
+
+/*  Main Menu */
+
+.menu-bar {
+  align-items: stretch;
+  background-color: rgb(200,0,0);
+  color: rgb(252, 255, 239);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#logo {
+  align-self: center;
+  cursor: default;
+  font-weight: bolder;
+  font-size: 1.1em;
+  padding: 0 50px;
+}
+
+#star {
+  margin-left: -5px;
+  margin-top: -10px;
+  transition-duration: .6s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+nav a,
+nav a:active,
+nav a:hover,
+nav a:link,
+nav a:visited {
+  color: rgb(252, 255, 239);
+  text-decoration: none;
+}
+
+.menu-item {
+  border: solid 2px rgb(200,0,0);
+  color: rgb(252, 255, 239);
+  display: inline-block;
+  font-size: .97em;
+  padding: 2px 20px;
+}
+
+.menu-item:hover {
+  border-top: solid 2px white;
+}
+
+.menu-item.active {
+  background-color: rgb(21, 26, 30);
+  border-bottom: 2px solid rgb(21, 26, 30);
+}
+
+.menu-body {
+  align-items: stretch;
+  background-color: rgb(21, 26, 30);
+  color: rgb(252, 255, 239);
+  display: flex;
+  flex-direction: row;
+  font-size: .8em;
+  padding: 6px 3px;
+}
+
+.menu-group {
+  border-left: dashed 1px lightgrey;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2px;
+  padding: 0 0 0 3px;
+  text-align: center;
+}
+
+.menu-group:first-child {
+  border: none;
+}
+
+.menu-group .title {
+  padding: 0;
+  text-align: center;
+}
+
+.button-horizontal {
+  align-items: center;
+  display: inline-flex;
+  padding: 0 4px 0 0;
+}
+
+.button-horizontal .glyphicon {
+  font-size: 1.5em;
+  margin: 1px 3px 3px;
+}
+
+.button-horizontal:active:focus {
+  margin-bottom: -2px;
+  margin-right: -2px;
+}
+
+.button-vertical {
+  padding: 4px 4px 0px 4px;
+  font-size: 1.1em;
+}
+
+.button-vertical .glyphicon {
+  font-size: 1.8em;
+}
+
+input,
+button {
+  color: black;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-default.active,
+.btn-default.active.focus,
+.btn-default:active,
+.btn-default.active:hover,
+.btn-default.active.focus:hover,
+.btn-default:active:hover {
+  background-color: #b1b1b1;
+  box-shadow: none;
+  color: black;
+}
+
+.menu-line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2px;
+}
+
+.add-button.btn {
+  font-size: 1em;
+  margin: 0;
+  padding: 3px;
+}
+
+.add-button,
+.add-dropdown-button {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+#menu-add {
+  flex-wrap: wrap;
+}
+
+.line-break {
+  width: 100%;
+}
+
+#status {
+  font-size: 1.2em;
+  margin-left: 3em;
+}
+
+.jscolor {
+  border: 1px solid darkgrey;
+}
+
+#placeholder-save-model a {
+  color: black;
+  text-decoration: none;
+}
+
+kbd {
+  /* based on Bootstrap's style */
+  background-color: #333;
+  border-radius: 3px;
+  color: white;
+  font-size: 90%;
+  padding: 2px 4px;
+}
+
+.waiting {
+  cursor: wait !important;
+}
+
+/* Diagram */
+
+svg {
+  background-color: white;
+  /* border: solid lightgray 2px; */
+  margin: 0;
+}
+
+/* JointJS markup */
+
+.remove-element {
+  cursor: pointer;
+}
+
+.remove-element circle {
+  fill: grey;
+}
+
+.remove-element path {
+  fill: white;
+}
+
+.link-tools .tool-remove path {
+  /*display: none;*/
+}
+
+.link-tools .tool-remove circle {
+  /*display: none;*/
+  fill: grey;
+}
+
+.link-tools,
+.marker-arrowheads {
+  /*display: none;*/
+}
+
+.tool-options {
+  display: none;
+}
+
+/* Contextual options */
+
+#extra-options {
+  min-height: 200px;
+}
+
+.toolbar {
+  background-color: rgb(48, 48, 48);
+}
+
+#properties-panel {
+  background-color: white;
+  height: 200px;
+  margin: 7px;
+  overflow: auto;
+  padding: 10px;
+}
+
+table {
+  font-size: 12px;
+  margin: 0;
+  width: 100%;
+}
+
+.property-name {
+  width: 20%;
+}
