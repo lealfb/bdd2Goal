@@ -47,6 +47,13 @@ Caso tenha outra configuração no seu servidor HTTP, altere o destino conforme 
  
  O sistema deve apresentar a página de entrada.
  
+ (docs/images/pistar_complexidade.png)
+ 
+ Ao selecionar uma tarefa (objeto task), e adicionar um novo atributo, o sistema deve mostrar ao invés de um campo livre, um campo de seleção única contendo a lista carregada a partir do diretório __json__ na raiz do projeto, conforme a imagem abaixo.
+ 
+ (docs/images/pistar_complexidade_2.png)
+ 
+ 
 Ao adicionar uma nova propriedade num objeto do tipo "Tarefa (Task)", deverá aparecer um menu contendo as tarefas pre-definidas do diretório contendo os diversos arquivos JSON.
 
 ## Como funciona o plugin
