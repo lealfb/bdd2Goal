@@ -1,4 +1,4 @@
-# Passo a passo de instalação
+# Passo a passo de instalação e um pouco do funcionamento
 
 __Observação Importante:__ O procedimento abaixo leva em consideração que a ferramenta vai rodar num servidor GNU/linux, ou seja, os comandos abaixo listados são para distribuições Linux, usando a distribuição Ubuntu como exemplo.
 
@@ -33,7 +33,11 @@ Caso tenha outra configuração no seu servidor HTTP, altere o destino conforme 
  
  ## Notas Importantes
  
- Com base no projeto original, foi criado um arquivo chamado "js/pistar_plugin.js". Nele contém funções de sobreescrita que substituem o funcionamento original do piStar, o qual é responsável por carregar a lista de tarefas.
+ Com base no projeto original, foi desenvolvido um plugin, localizado no endereço do projeto abaixo:
+ 
+ > js/pistar_plugin.js
+  
+ Neste arquivo estão contidas novas funções as quais sobreescrevem o funcionamento original do piStar. o qual é responsável por carregar a lista de tarefas.
  
  Além do arquivo de plugin, também existe um novo diretório chamado "json", o qual contém diversos arquivos JSON que é a base para funcionamento do novo tipo de propriedade contendo as taferas. Um novo script de plugin sobre-escreve as propriedades do funcionamento original do piStar e carrega valores pré-definidos desse diretório contendo os arquivos JSON.
  
@@ -44,3 +48,80 @@ Caso tenha outra configuração no seu servidor HTTP, altere o destino conforme 
  O sistema deve apresentar a página de entrada.
  
 Ao adicionar uma nova propriedade num objeto do tipo "Tarefa (Task)", deverá aparecer um menu contendo as tarefas pre-definidas do diretório contendo os diversos arquivos JSON.
+
+## Como funciona o plugin
+
+Primeiramente, o plugin inicia uma requisição Ajax para listar o diretório JSON do pistar, com a função abaixo:
+
+```javascript
+$.ajax({
+    url: "json/",
+    success: function (data) {
+	$(data).find("a").each(function (a, b) {
+	    if (/.+\.json/.test(b.href)) {
+		var href = b.href;
+		var base = href.replace(/\/[a-f|A-F|0-9]+.json$/, '');
+		var href = href.replace(base, '');
+		fList.push('json' + href);
+	    }
+	});
+    }
+});
+
+function loadNames() {
+    fList.forEach(function (jsonFile) {
+	$.getJSON(jsonFile, function (data) {
+	    titulos.push(data.name);
+	});
+    });
+}
+
+```
+Uma das necessidades de utilizar o servidor HTTP em execução é para poder listar o diretório com os arquivos de forma remota, sem violar as restrições do protocolo SOAP. Após ser feita a requisição, cada arquivo JSON do diretório é aberto e lido para armazenar o atributo __"name"__ do mesmo, o qual é a lista de tarefas predifinida no projeto.
+
+
+## Sobreescrevendo o código original do piStar
+
+No trecho javascript abaixo, começamos a sobreescrever o código original do piStar com o funcionamento necessário. Foi utilizada essa abordagem para não alterar a estrutura original do projeto e flexibilizar a possibilidade de atualização de código sem alterar o código fonte original do projeto base. Como podemos ver, é um atributo do objeto do piStar recebendo uma nova função como atributo, realizando assim a sobre-escrita.
+
+```javascript
+uiC.PropertiesTableView.prototype.renderCustomProperty = function (propertyName) {
+
+    if (this.model.attributes.type == 'istar.Task') {
+
+	//console.log(this.model);
+
+	var customProperties = this.model.attributes.customProperties;
+
+	var keys = Object.keys(customProperties);
+	
+	var customTemplate = null;
+
+	switch (keys.indexOf(propertyName)) {
+	    case 0:
+		customTemplate = renderCustomPropertyTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+		break;
+	    case 1:
+		customTemplate = renderComplexityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+		break;
+	    default:
+		customTemplate = this.template({
+		    'propertyName': propertyName,
+		    'propertyValue': this.model.prop('customProperties/' + propertyName)
+		});
+	}
+
+
+    } else {
+	customTemplate = this.template({
+	    'propertyName': propertyName,
+	    'propertyValue': this.model.prop('customProperties/' + propertyName)
+	});
+    }
+
+    this.$table.find('tbody').append(customTemplate);
+};
+```
+
+
+
