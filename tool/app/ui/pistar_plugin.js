@@ -1,7 +1,3 @@
-/* 
- * L.L
- */
-
 var fList = new Array();
 var titulos = new Array();
 
@@ -87,14 +83,9 @@ function customChangeValue(source) {
     ui.changeCustomPropertyValue(selectedElement, $(source).prop('name'), $(source).val());
 }
 
-//uiC.PropertiesTableView.prototype.renderCustomProperty = function (propertyName) {
 ui.components.PropertiesTableView.prototype.renderCustomProperty = function (propertyName) {
-
-    console.log(this.model.attributes.type);
     
     if (this.model.attributes.type == 'Task') {
-
-	//console.log(this.model);
 
 	var customProperties = this.model.attributes.customProperties;
 
@@ -116,20 +107,13 @@ ui.components.PropertiesTableView.prototype.renderCustomProperty = function (pro
                     dataType: 'textarea'
 		});
 	}
-
-
-    } else {
         
+    } else {
         this.$table.find('tbody').append(this.template({
             propertyName: propertyName,
             propertyValue: this.model.prop('customProperties/' + propertyName),
             dataType: 'textarea'
         }));
-        
-	//customTemplate = this.template({
-	//    'propertyName': propertyName,
-	//    'propertyValue': this.model.prop('customProperties/' + propertyName)
-	//});
     }
 
     this.$table.find('tbody').append(customTemplate);
