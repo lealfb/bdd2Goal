@@ -35,7 +35,7 @@ Caso tenha outra configuração no seu servidor HTTP, altere o destino conforme 
  
  Com base no projeto original, foi desenvolvido um plugin, localizado no endereço do projeto abaixo:
  
- > js/pistar_plugin.js
+ > app/ui/pistar_plugin.js
   
  Neste arquivo estão contidas novas funções as quais sobreescrevem o funcionamento original do piStar. o qual é responsável por carregar a lista de tarefas.
  
@@ -47,15 +47,21 @@ Caso tenha outra configuração no seu servidor HTTP, altere o destino conforme 
  
  O sistema deve apresentar a página de entrada.
  
- ![Adicionando novo atributo](docs/images/pistar_complexidade.png)
+ ![Adicionando novo atributo](docs/images/pistar_2.png)
  
  
  Ao selecionar uma tarefa (objeto task), e adicionar um novo atributo, o sistema deve mostrar ao invés de um campo livre, um campo de seleção única contendo a lista carregada a partir do diretório __json__ na raiz do projeto, conforme a imagem abaixo.
  
- ![Lista de tarefas](docs/images/pistar_complexidade_2.png)
+ ![Lista de tarefas](docs/images/pistar_plugin_0.png)
  
  
 Ao adicionar uma nova propriedade num objeto do tipo "Tarefa (Task)", deverá aparecer um menu contendo as tarefas pre-definidas do diretório contendo os diversos arquivos JSON.
+
+![Lista de tarefas](docs/images/pistar_plugin_1.png)
+
+Adicionando mais um novo atributo, o sistema irá adicionar um novo combobox contendo uma lista de nível de complexidade.
+
+![Lista de tarefas](docs/images/pistar_plugin_2.png)
 
 ## Como funciona o plugin
 
@@ -93,11 +99,11 @@ Uma das necessidades de utilizar o servidor HTTP em execução é para poder lis
 No trecho javascript abaixo, começamos a sobreescrever o código original do piStar com o funcionamento necessário. Foi utilizada essa abordagem para não alterar a estrutura original do projeto e flexibilizar a possibilidade de atualização de código sem alterar o código fonte original do projeto base. Como podemos ver, é um atributo do objeto do piStar recebendo uma nova função como atributo, realizando assim a sobre-escrita.
 
 ```javascript
-uiC.PropertiesTableView.prototype.renderCustomProperty = function (propertyName) {
+ui.components.PropertiesTableView.prototype.renderCustomProperty = function (propertyName) {
 
-    if (this.model.attributes.type == 'istar.Task') {
-
-	//console.log(this.model);
+    console.log(this.model.attributes.type);
+    
+    if (this.model.attributes.type == 'Task') {
 
 	var customProperties = this.model.attributes.customProperties;
 
@@ -106,25 +112,28 @@ uiC.PropertiesTableView.prototype.renderCustomProperty = function (propertyName)
 	var customTemplate = null;
 
 	switch (keys.indexOf(propertyName)) {
-	    case 0:
+	    case 1:
 		customTemplate = renderCustomPropertyTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
 		break;
-	    case 1:
+	    case 2:
 		customTemplate = renderComplexityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
 		break;
 	    default:
 		customTemplate = this.template({
-		    'propertyName': propertyName,
-		    'propertyValue': this.model.prop('customProperties/' + propertyName)
+		    propertyName: propertyName,
+		    propertyValue: this.model.prop('customProperties/' + propertyName),
+                    dataType: 'textarea'
 		});
 	}
 
 
     } else {
-	customTemplate = this.template({
-	    'propertyName': propertyName,
-	    'propertyValue': this.model.prop('customProperties/' + propertyName)
-	});
+        
+        this.$table.find('tbody').append(this.template({
+            propertyName: propertyName,
+            propertyValue: this.model.prop('customProperties/' + propertyName),
+            dataType: 'textarea'
+        }));
     }
 
     this.$table.find('tbody').append(customTemplate);
