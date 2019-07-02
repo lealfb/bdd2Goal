@@ -11,6 +11,7 @@ var colours = [
 $.ajax({
     url: "json/",
     success: function (data) {
+		return false;
         $(data).find("a").each(function (a, b) {
             if (/.+\.json/.test(b.href)) {
                 var href = b.href;
@@ -28,6 +29,23 @@ function loadNames() {
             titulos.push({name: data.name.replace("'", ' '), result: data.result});
         });
     });
+	
+	var loadJsonButton = 
+		'<a onclick="showJsonUploadModal();" class="btn btn-default button-vertical" id="menu-button-new-model" title="Create a new model in the same window">'
+        + '<span class="glyphicon glyphicon glyphicon-upload" aria-hidden="true"></span><br>'
+        + 'Load JSON Files'
+        + '</a>';
+	
+	$('#menu-file').find('.menu-line').last().append(loadJsonButton);
+	
+	if (fList.length < 1) {
+		var upload = confirm('Lista de arquivos JSON não encontrada. Deseja enviar os arquivos manualmente para esta sessão?');
+		if ( upload ) {
+			showJsonUploadModal();
+		} else {
+			alert('Você ainda pode enviar os arquivos utilizando a aba "FILE" e o botão "Load JSON Files".');
+		}
+	}
 }
 
 function renderComplexityTemplate(propertyName, propertyValue) {
@@ -142,6 +160,32 @@ ui.components.PropertiesTableView.prototype.renderCustomProperty = function (pro
 
     this.$table.find('tbody').append(customTemplate);
 };
+
+function showJsonUploadModal() {
+	$('.modal-json').modal('show');
+}
+
+function loadJsonData(source) {
+	var list = source.files;
+	
+	titulos = new Array();
+	
+	$.each(list, function(i, j) {
+		var reader = new FileReader();
+	
+		reader.onload = function(fileLoadedEvent){
+			var content = fileLoadedEvent.target.result;
+			
+			var data = JSON.parse(content);
+			
+			titulos.push({name: data.name.replace("'", ' '), result: data.result});
+		};
+		
+		reader.readAsText(list[i]);
+	});
+	
+	$('.modal-json').modal('hide');
+}
 
 $(document).ready(function () {
     setTimeout('loadNames()', 1000);

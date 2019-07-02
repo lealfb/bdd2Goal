@@ -569,7 +569,35 @@ https://github.com/jhcp/pistar
 
 <script src="app/ui/main.js"></script>
 
+<!-- Inicio do pistar-plugin -->
+
+<!-- scripts do plugin -->
 <script src="app/ui/pistar_plugin.js"></script>
+
+<!-- modal para upload dos arquivos JSON caso necessite -->
+<div class="modal modal-json" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">JSON Database Upload</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		Utilize o campo abaixo para subir os arquivos JSON manualmente para a aplicação.
+        <form id="form-upload">
+			<input type="file" accept=".json" name="upload-json" id="upload-json" multiple onchange="loadJsonData(this)">
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fim do pistar-plugin -->
 
 </body>
 </html>
