@@ -89,6 +89,8 @@ function renderCustomPropertyTemplate(propertyName, propertyValue) {
     titulos.forEach(function (listValue) {
         //var label = listValue.result + ':' + listValue.name;
         var label = listValue.name;
+        label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
+        
         var value = listValue.name;
         var selected = (listValue.name == propertyValue) ? 'selected' : '';
         selectbox += "<option " + selected + " value='" + value + "'>" + label + "</option>";
