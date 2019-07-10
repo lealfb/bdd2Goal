@@ -48,6 +48,10 @@ function loadNames() {
     }
 }
 
+function sortByName(x,y) {
+    return ((x.name == y.name) ? 0 : ((x.name > y.name) ? 1 : -1 ));
+}
+
 function renderComplexityTemplate(propertyName, propertyValue) {
     var selectbox = "<select class='form-control' name='" + propertyName + "' onchange='customChangeValue(this);'>";
 
@@ -76,7 +80,7 @@ function renderComplexityTemplate(propertyName, propertyValue) {
 
 function renderCustomPropertyTemplate(propertyName, propertyValue) {
 
-    titulos.sort();
+    titulos = titulos.sort(sortByName);
 
     var selectbox = "<select class='form-control' name='" + propertyName + "' onchange='customChangeValue(this);'>";
 
