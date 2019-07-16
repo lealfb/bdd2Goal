@@ -1,0 +1,81 @@
+{
+   "name":"Atualizar OM",
+   "id":"criar-organizacao-militar:Criar Organizacao Militar caminho feliz",
+   "testSteps":[
+      {
+         "number":1,
+         "description":"Dado que eu precise criar uma Organizacao Militar com os campos",
+         "duration":6,
+         "startTime":1520261448811,
+         "result":"SUCCESS",
+         "precondition":false
+      },
+      {
+         "number":2,
+         "description":"Quando eu requisitar que esta Organizacao Militar seja criada",
+         "duration":1029,
+         "startTime":1520261448817,
+         "result":"SUCCESS",
+         "precondition":false,
+         "children":[
+            {
+               "number":3,
+               "description":"POST http://localhost:8080/sisbol-web/rest/organizacaoMilitar",
+               "duration":1,
+               "startTime":1520261449844,
+               "result":"SUCCESS",
+               "restQuery":{
+                  "method":"POST",
+                  "path":"http://localhost:8080/sisbol-web/rest/organizacaoMilitar",
+                  "content":"{\n    \"id\": null,\n    \"sigla\": \"sigla\",\n    \"ano\": 2000,\n    \"nome\": \"organizacao\",\n    \"localizacao\": \"brasilia\",\n    \"subordinacao1\": \"subordinacao\",\n    \"subordinacao2\": \"subordinacao2\",\n    \"subordinacao3\": \"subordinacao3\",\n    \"numeracaoHistorica\": \"numeracao\",\n    \"denominacaoHistorica\": \"denominacao\",\n    \"guarnicao\": \"guarnicao\"\n}",
+                  "contentType":"application/json",
+                  "requestHeaders":"Accept\u003d*/*\n\t\t\t\tContent-Type\u003dapplication/json; charset\u003dUTF-8",
+                  "requestCookies":"",
+                  "responseHeaders":"Connection: keep-alive\nX-Powered-By: Undertow/1\nServer: WildFly/10\nContent-Type: application/json\nContent-Length: 271\nDate: Mon, 05 Mar 2018 14:50:49 GMT",
+                  "responseCookies":"",
+                  "responseBody":"{\n    \"id\": 50,\n    \"sigla\": \"sigla\",\n    \"ano\": 2000,\n    \"nome\": \"organizacao\",\n    \"localizacao\": \"brasilia\",\n    \"subordinacao1\": \"subordinacao\",\n    \"subordinacao2\": \"subordinacao2\",\n    \"subordinacao3\": \"subordinacao3\",\n    \"numeracaoHistorica\": \"numeracao\",\n    \"denominacaoHistorica\": \"denominacao\",\n    \"guarnicao\": \"guarnicao\"\n}",
+                  "statusCode":200
+               },
+               "precondition":false
+            }
+         ]
+      },
+      {
+         "number":4,
+         "description":"Entao devo receber uma confirmação de \"sucesso\" no cadastro",
+         "duration":1,
+         "startTime":1520261449847,
+         "result":"SUCCESS",
+         "precondition":false
+      }
+   ],
+   "userStory":{
+      "id":"criar-organizacao-militar",
+      "storyName":"Criar Organizacao Militar",
+      "path":"organizacaoMilitar/cadastro/cadastrar_organizacao_militar.feature",
+      "narrative":"\nComo administrador do sistema\nEu gostaria de adicionar Organizacao Militar",
+      "type":"feature"
+   },
+   "featureTag":{
+      "name":"Cadastro/Criar Organizacao Militar",
+      "type":"feature"
+   },
+   "title":"Criar Organizacao Militar caminho feliz",
+   "description":"",
+   "tags":[
+      {
+         "name":"Manter_Organizacao_Militar",
+         "type":"tag"
+      },
+      {
+         "name":"Cadastrar",
+         "type":"tag"
+      }
+   ],
+   "startTime":1520261448800,
+   "duration":1048,
+   "projectKey":"",
+   "manual":false,
+   "testSource":"Cucumber",
+   "result":"SUCCESS"
+}
