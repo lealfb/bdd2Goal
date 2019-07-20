@@ -1,0 +1,66 @@
+1,criar assunto especifico,1,0,1,1,2
+1,criar assunto geral,1,0,3,2,5
+1,criar posto/graduação,1,0,1,2,3
+1,criar tipo de documento,1,1,1,0,2
+1,criar qualificacao militar,1,3,2,1,6
+2,visualizar assunto especifico,1,0,1,1,1
+2,visualizar assunto geral,1,0,1,0,1
+2,visualizar postos/graduações,1,0,1,0,1
+2,visualizar tipos de documento,1,1,0,0,1
+2,visualizar qualificações militar,1,0,0,1,1
+3,excluir assunto especifico,1,1,1,0,2
+3,atualizar assunto especifico,1,1,1,0,2
+3,excluir assunto geral,1,0,1,1,2
+3,atualizar assunto geral,1,2,3,1,6
+3,excluir posto/graduação,1,0,1,0,1
+3,atualizar posto/graduação,1,0,1,1,2
+4,excluir tipo de documento,1,0,0,1,1
+4,atualizar tipo de documento,1,0,0,1,1
+4,excluir qualificação militar,1,0,0,1,1
+4,atualizar qualificacao militar,1,0,0,1,1
+4,visualizar tipos de boletim,1,0,0,1,1
+4,excluir tipo de boletim,1,0,0,1,1
+5,atualizar tipo de boletim,1,0,0,2,2
+5,criar tipo de boletim,1,0,0,9,9
+5,visualizar categoria,1,0,0,2,2
+5,excluir categoria,1,0,0,2,2
+6,atualizar categoria,1,0,0,1,1
+6,criar categoria,1,0,0,4,4
+6,Visualizar Militar,1,0,0,2,2
+6,Excluir Militar,1,0,0,2,2
+7,Atualizar Militar,1,0,0,11,11
+7,Cadastrar Militar,1,0,0,14,14
+7,visualizar parte boletim,1,0,0,2,2
+8,excluir parte boletim,1,0,0,2,2
+8,atualizar parte boletim,1,0,0,2,2
+8,criar parte boletim,1,0,0,5,5
+8,visualizar secao,1,0,0,2,2
+9,atualizar secao,1,0,0,3,3
+9,excluir secao,1,0,0,2,2
+9,cadastrar secao,1,0,0,3,3
+10,visualizar organizacao militar,1,0,0,2,2
+10,excluir organizacao militar,1,0,0,2,2
+10,atualizar organizacao militar,1,0,0,6,6
+10,criar organizacao militar,1,0,0,6,6
+11,visualizar secao boletim,1,0,0,2,2
+11,excluir secao boletim,1,0,0,2,2
+11,atualizar secao boletim,1,0,0,2,2
+11,criar secao boletim,1,0,0,5,5
+12,visualizar notas,2,0,0,6,6
+12,criar notas para boletim,2,0,0,3,3
+13,criar boletins,2,0,0,2,2
+13,excluir nota,1,0,0,2,2
+13,alterar notas,1,0,0,2,2
+14,gerar pdf de nota,3,0,0,2,2
+14,visualizar funcao,1,0,0,2,2
+14,excluir funcao,1,0,0,2,2
+14,atualizar funcao,1,0,0,6,6
+14,cadastrar funcao,1,0,0,7,7
+15,enviar notas para aprovação,3,0,0,1,1
+15,Enviar Notas para publicação,2,0,0,2,2
+15,Excluir Nota do Boletim,1,0,0,2,2
+15,Enviar Notas para o Boletim,2,0,0,2,2
+16,excluir boletim,1,0,0,2,2
+16,alterar boletins,2,0,0,2,2
+16,associar notas publicadas boletim,5,0,0,4,4
+16,visualizar boletim,3,0,0,1,1
