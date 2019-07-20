@@ -11,8 +11,8 @@ rm(list=ls())
 # setwd("/home/z/Devel/zero/lealfb/bdd2Goal/R")
 
 #matriz <- read.csv(file="matriz_1.csv", header=FALSE, sep=",")
-#matriz <- read.csv(file="matriz_2.csv", header=FALSE, sep=",")
-matriz <- read.csv(file="matriz_3.csv", header=FALSE, sep=",")
+matriz <- read.csv(file="matriz_2.csv", header=FALSE, sep=",")
+#matriz <- read.csv(file="matriz_3.csv", header=FALSE, sep=",")
 
 #print(matriz)
 
@@ -91,18 +91,16 @@ colnames(evolucao_dt) <- c('Sprint', 'Atual', 'Ideal', 'Satisfação', 'DT Globa
 
 #svg(filename="grafico_1.svg", width=5, height=4, pointsize=12)
 
-plot(evolucao_dt[,1], evolucao_dt[,4], type = "b", 
-      pch = 15, col = "blue", xlab = "Sprints", ylab = "", xaxt="n")
-lines(evolucao_dt[,1], evolucao_dt[,5], type = "b", 
-      pch = 19, col = "red", xlab = "Sprints", ylab = "", xaxt="n")
+gato <- c(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+plot(evolucao_dt[,1], gato, type = "b", pch = 15, col = "white", xlab = "Sprints", ylab = "", xaxt="n")
+
+lines(evolucao_dt[,1], evolucao_dt[,5], type = "b", pch = 19, col = "red", xlab = "Sprints", ylab = "", xaxt="n")
+lines(evolucao_dt[,1], evolucao_dt[,4], type = "b", pch = 19, col = "blue", xlab = "Sprints", ylab = "", xaxt="n")
+
 legend("top", legend=c("Satisfação", "DT Global"), 
        col=c("blue", "red"), lty = 1:1, cex=0.8)
 axis(side=1, at=0:maximo_sprints, labels=0:maximo_sprints)
-
-left.axis.pos<-seq(0,9e6,by=1e6)
-axis(side=2, cex.axis=0.7, at = 10^(-1:5),label=c(format(10^(-1:5),scientific=F) ))
-axis(side=2, cex.axis=0.6, at = 10^(-1:5),label=c(format(10^(-1:5),scientific=F) ))
-
 
 save.image()
 
