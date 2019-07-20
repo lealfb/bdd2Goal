@@ -10,7 +10,9 @@ rm(list=ls())
 # Set working directory 
 # setwd("/home/z/Devel/zero/lealfb/bdd2Goal/R")
 
-matriz <- read.csv(file="matriz.csv", header=FALSE, sep=",")
+#matriz <- read.csv(file="matriz_1.csv", header=FALSE, sep=",")
+#matriz <- read.csv(file="matriz_2.csv", header=FALSE, sep=",")
+matriz <- read.csv(file="matriz_3.csv", header=FALSE, sep=",")
 
 #print(matriz)
 
@@ -96,6 +98,11 @@ lines(evolucao_dt[,1], evolucao_dt[,5], type = "b",
 legend("top", legend=c("Satisfação", "DT Global"), 
        col=c("blue", "red"), lty = 1:1, cex=0.8)
 axis(side=1, at=0:maximo_sprints, labels=0:maximo_sprints)
+
+left.axis.pos<-seq(0,9e6,by=1e6)
+axis(side=2, cex.axis=0.7, at = 10^(-1:5),label=c(format(10^(-1:5),scientific=F) ))
+axis(side=2, cex.axis=0.6, at = 10^(-1:5),label=c(format(10^(-1:5),scientific=F) ))
+
 
 save.image()
 
