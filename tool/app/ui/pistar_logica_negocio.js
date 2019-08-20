@@ -34,27 +34,35 @@ function readTree() {
     let lastSize = goals.length;
     let allGoals = JSON.parse(JSON.stringify(goals));
     
-    let popList = [];
-    
     for ( let i = 0; i < goals.length; i++ ) {
         
         let children = goals[i].children;
     
         for ( let j = 0; j < children.length; j++ ) {
             if (children[j].type == 'Goal') {
-                popList.push(children[j].id);
                 goals[i].children[j] = getGoal(children[j].id);
             }
         }
     }
     
-    for ( let i = 0; i < popList.length; i++ ) {
-        for( let j = 0; j < allGoals.length; j++) {
-            if (allGoals[j].id == popList) {
-                goals = goals.splice(j,1);
+    let orphanGoals = [];
+    
+    for ( let i = 0; i < goals.length; i++ ) {
+        let orphan = true;
+        links.forEach(function(l){
+            if (l.source==goals[i].id) {
+                orphan = false;
             }
+        });
+        
+        if (orphan) {
+            orphanGoals.push(goals[i]);
         }
     }
+    
+    goals = orphanGoals;
+    
+    return orphanGoals;
 }
 
 function getGoalChildren(goal) {
