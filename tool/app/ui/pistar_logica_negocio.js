@@ -93,13 +93,27 @@ function getChild(id) {
                 id: node.attributes.id,
                 name: node.attributes.name,
                 type: node.attributes.type,
+                result: null
             }
         }
     });
     
-    if (child.type == 'Goal') {
-        //return getGoalChildren(child);
+    if (child.type == 'Task') {
+        titulos.forEach(function(t){
+            if ( compareNames(t.name, child.name) ) {
+                child.result = t.result;
+                return;
+            }
+        });
     }
     
     return child;
+}
+
+function compareNames(name1, name2) {
+    
+    name1 = name1.toLocaleString().replace(/\s+/g, '').trim();
+    name2 = name2.toLocaleString().replace(/\s+/g, '').trim();
+    
+    return name1 == name2;
 }
