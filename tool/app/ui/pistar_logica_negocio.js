@@ -118,7 +118,11 @@ function compareNames(name1, name2) {
     name1 = name1.toLocaleString().replace(/\s+/g, '').trim();
     name2 = name2.toLocaleString().replace(/\s+/g, '').trim();
     
-    return name1 == name2;
+    name1 = name1.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    name2 = name2.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    
+    return name1.toLocaleLowerCase() == name2.toLocaleLowerCase();
 }
 
 // DEBUG ABAIXO
@@ -147,6 +151,8 @@ function diffTasks() {
             if (miss) missing.push(node.attributes.name);
         }
     });
+    
+    missing = missing.sort();
     
     return missing;
 }
