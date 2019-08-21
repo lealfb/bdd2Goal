@@ -1,9 +1,19 @@
-var tree = null;
-
 var model = null;
 var links = null;
 
 var goals = [];
+
+function calcGoal(goal) {
+    
+    goal.result = [];
+    
+    goal.children.forEach(function(c){
+        if (c.type == 'Goal') {
+            calcGoal(c);
+        }
+        goal.result.push(c.result);
+    });
+}
 
 function readTree() {
     model = JSON.parse(istar.fileManager.saveModel());
@@ -86,7 +96,7 @@ function getChild(id) {
                 id: node.attributes.id,
                 name: node.attributes.name,
                 type: node.attributes.type,
-                result: null
+                result: 'N/A'
             }
         }
     });
@@ -110,3 +120,34 @@ function compareNames(name1, name2) {
     
     return name1 == name2;
 }
+
+// DEBUG ABAIXO
+
+var missing = [];
+var tasks = [];
+
+function diffTasks() {
+    
+    missing = [];
+    
+    _.map(istar.getElements(), function(node) { 
+        if (node.attributes.type == 'Task') {
+            
+            tasks.push(node.attributes.name);
+            
+            var miss = true;
+            
+            titulos.forEach(function(t){
+                if ( compareNames(t.name,node.attributes.name) ) {
+                    miss = false;
+                    return;
+                }
+            });
+            
+            if (miss) missing.push(node.attributes.name);
+        }
+    });
+    
+    return missing;
+}
+

@@ -28,7 +28,8 @@ function loadNames() {
     fList.forEach(function (jsonFile) {
         $.getJSON(jsonFile, function (data) {
             
-            let name = data.userStory.storyName.replace("'", ' ');
+            //let name = data.userStory.storyName.replace("'", ' ');
+            let name =  data.name.replace("'", ' ');
             let skips = false;
             
             for (let i = 0; i < loaded.length; i++) {
