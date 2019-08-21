@@ -115,8 +115,8 @@ function renderCustomPropertyTemplate(propertyName, propertyValue) {
         var label = listValue.name;
         label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
         
-        var value = listValue.name;
-        var selected = (listValue.name == propertyValue) ? 'selected' : '';
+        var value = normalize(listValue.name);
+        var selected = (normalize(listValue.name) == normalize(propertyValue)) ? 'selected' : '';
         selectbox += "<option " + selected + " value='" + value + "'>" + label + "</option>";
     });
 
@@ -140,7 +140,7 @@ function getColour(result) {
 
 function getResultColour(val) {
     for (var i = 0; i < titulos.length; i++) {
-        if (titulos[i].name == val) {
+        if (normalize(titulos[i].name) == normalize(val)) {
             return getColour(titulos[i].result);
         }
     }

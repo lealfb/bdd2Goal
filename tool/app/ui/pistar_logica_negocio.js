@@ -3,6 +3,20 @@ var links = null;
 
 var goals = [];
 
+istar.getCellById = function(id) {
+    
+    var cell = null;
+    
+    istar.getCells().forEach(function(c){
+        if (c.id == id) {
+            cell = c;
+            return;
+        }
+    });
+    
+    return cell;
+}
+
 function calcGoal(goal) {
     
     goal.result = [];
@@ -141,6 +155,9 @@ function diffTasks() {
             
             titulos.forEach(function(t){
                 if ( compareNames(t.name,node.attributes.name) ) {
+                    
+                    ui.changeCustomPropertyValue(node, 'Tarefa', t.name);
+                    
                     miss = false;
                     return;
                 }
@@ -167,6 +184,9 @@ function diffTasks() {
                         similar: bestSimilarity,
                         calc: lastSimilarity,
                     });
+                    
+                    ui.changeCustomPropertyValue(node, 'Tarefa', bestSimilarity);
+                    
                 } else {
                     missing.push(node.attributes.name);
                 }
