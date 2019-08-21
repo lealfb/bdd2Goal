@@ -113,16 +113,12 @@ function getChild(id) {
     return child;
 }
 
-function compareNames(name1, name2) {
-    
-    name1 = name1.toLocaleString().replace(/\s+/g, '').trim();
-    name2 = name2.toLocaleString().replace(/\s+/g, '').trim();
-    
-    name1 = name1.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    name2 = name2.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function normalize(string) {
+    return string.toLocaleString().replace(/\s+/g, '').trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
 
-    
-    return name1.toLocaleLowerCase() == name2.toLocaleLowerCase();
+function compareNames(name1, name2) {
+    return normalize(name1) == normalize(name2);
 }
 
 // DEBUG ABAIXO
@@ -133,6 +129,8 @@ var tasks = [];
 function diffTasks() {
     
     missing = [];
+    similar = [];
+    
     
     _.map(istar.getElements(), function(node) { 
         if (node.attributes.type == 'Task') {
@@ -148,12 +146,81 @@ function diffTasks() {
                 }
             });
             
-            if (miss) missing.push(node.attributes.name);
+            if (miss) {
+                
+                var bestSimilarity = null;
+                var lastSimilarity = 0.00;
+                
+                titulos.forEach(function(t) {
+                    
+                    let newSimilarity = similarity(t.name,node.attributes.name);
+                    
+                    if (lastSimilarity < newSimilarity) {
+                        lastSimilarity = newSimilarity;
+                        bestSimilarity = t.name;
+                    }
+                });
+                
+                if (lastSimilarity > 0.7) {
+                    similar.push({
+                        task: node.attributes.name, 
+                        similar: bestSimilarity,
+                        calc: lastSimilarity,
+                    });
+                } else {
+                    missing.push(node.attributes.name);
+                }
+            }
         }
     });
     
     missing = missing.sort();
     
     return missing;
+}
+
+function similarity(s1, s2) {
+    
+    s1 = normalize(s1);
+    s2 = normalize(s2);
+    
+    var longer = s1;
+    var shorter = s2;
+    if (s1.length < s2.length) {
+        longer = s2;
+        shorter = s1;
+    }
+    var longerLength = longer.length;
+    if (longerLength == 0) {
+        return 1.0;
+    }
+    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+}
+
+function editDistance(s1, s2) {
+    s1 = s1.toLowerCase();
+    s2 = s2.toLowerCase();
+
+    var costs = new Array();
+    for (var i = 0; i <= s1.length; i++) {
+        var lastValue = i;
+        for (var j = 0; j <= s2.length; j++) {
+            if (i == 0)
+                costs[j] = j;
+            else {
+                if (j > 0) {
+                    var newValue = costs[j - 1];
+                    if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                        newValue = Math.min(Math.min(newValue, lastValue),
+                                costs[j]) + 1;
+                    costs[j - 1] = lastValue;
+                    lastValue = newValue;
+                }
+            }
+        }
+        if (i > 0)
+            costs[s2.length] = lastValue;
+    }
+    return costs[s2.length];
 }
 
