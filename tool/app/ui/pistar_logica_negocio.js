@@ -3,29 +3,49 @@ var links = null;
 
 var goals = [];
 
-istar.getCellById = function(id) {
-    
-    var cell = null;
-    
-    istar.getCells().forEach(function(c){
-        if (c.id == id) {
-            cell = c;
-            return;
-        }
-    });
-    
-    return cell;
+function analyze() {
+    readTree();
+    calcGoal(goals[0]);   
 }
 
 function calcGoal(goal) {
     
-    goal.result = [];
+    goal.result = true;
     
     goal.children.forEach(function(c){
         if (c.type == 'Goal') {
             calcGoal(c);
         }
-        goal.result.push(c.result);
+        
+        var resultTask = false;
+        
+        titulos.forEach(function(t){
+            if (normalize(t.name) == normalize(c.name)) {
+                resultTask = t.result;
+            }
+        });
+        
+        switch(resultTask) {
+            case 'SUCCESS':
+                resultTask = true;
+                break;
+            case 'FAILURE':
+                resultTask = false;
+                break;
+            case 'SKIPPED':
+                resultTask = false;
+                break;
+            case 'PENDING':
+                resultTask = false;
+                break;
+            default:
+                resultTask = false;
+                break;
+        }
+                
+        goal.result = goal.result && resultTask;
+        
+        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', 'R: '+goal.result);
     });
 }
 
@@ -127,17 +147,31 @@ function getChild(id) {
     return child;
 }
 
+istar.getCellById = function(id) {
+    
+    var cell = null;
+    
+    istar.getCells().forEach(function(c){
+        if (c.id == id) {
+            cell = c;
+            return;
+        }
+    });
+    
+    return cell;
+}
+
 // DEBUG ABAIXO
 
 var missing = [];
 var tasks = [];
+var similar = [];
 
 function diffTasks() {
     
     missing = [];
     similar = [];
-    
-    
+        
     _.map(istar.getElements(), function(node) { 
         if (node.attributes.type == 'Task') {
             
