@@ -5,7 +5,7 @@ var colours = [
     {colour: 'SUCCESS', hex: '#6CFA4B'},
     {colour: 'FAILURE', hex: '#FA7267'},
     {colour: 'PENDING', hex: '#B4B8FA'},
-    {colour: 'SKIPPED', hex: '#FFFFFF'},
+    {colour: 'SKIPPED', hex: '#B4B8FA'},
 ];
 
 $.ajax({

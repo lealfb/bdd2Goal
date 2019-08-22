@@ -3,11 +3,6 @@ var links = null;
 
 var goals = [];
 
-function analyze() {
-    readTree();
-    calcGoal(goals[0]);   
-}
-
 function calcGoal(goal) {
     
     goal.result = true;
@@ -17,13 +12,24 @@ function calcGoal(goal) {
             calcGoal(c);
         }
         
-        var resultTask = false;
+        var resultTask = 'PENDING';
+        var value = c.name;
         
-        titulos.forEach(function(t){
-            if (normalize(t.name) == normalize(c.name)) {
-                resultTask = t.result;
-            }
-        });
+        if (c.type == 'Task') {
+            
+            value = getNodeValue(c.id);
+            
+            titulos.forEach(function(t){
+                if (normalize(t.name) == normalize(value)) {
+                    resultTask = t.result;
+                    return;
+                }
+            });
+        }
+                
+        if (c.type == 'Task') {
+            ui.changeColorElement(getColour(resultTask), istar.getCellById(c.id));
+        }
         
         switch(resultTask) {
             case 'SUCCESS':
@@ -45,9 +51,34 @@ function calcGoal(goal) {
                 
         goal.result = goal.result && resultTask;
         
-        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', 'R: '+goal.result);
+        if (c.type == 'Goal') {
+            let colour = goal.result ? '#6CFA4B' : '#FA7267';
+            //ui.changeColorElement(colour, istar.getCellById(goal.id));
+        }
+        
+        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     });
 }
+
+function getNodeValue(nodeId) {
+    var node = istar.getCellById(nodeId);
+    var keys = Object.keys(node.attributes.customProperties);
+
+    var value = '';
+
+    if (keys > 1) {
+        try {
+            value = node.attributes.customProperties[keys[1]];
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
+    console.log('key: ' + keys[1]);
+    console.log('value: ' + value);
+        
+    return value;
+} 
 
 function readTree() {
     model = JSON.parse(istar.fileManager.saveModel());
@@ -98,6 +129,8 @@ function readTree() {
     }
     
     goals = orphanGoals;
+    
+    calcGoal(goals[0]);
     
     return orphanGoals;
 }
@@ -174,7 +207,7 @@ function diffTasks() {
         
     _.map(istar.getElements(), function(node) { 
         if (node.attributes.type == 'Task') {
-            
+                        
             tasks.push(node.attributes.name);
             
             var miss = true;
@@ -224,3 +257,13 @@ function diffTasks() {
     
     return missing;
 }
+
+function proccessTree() {
+    //loadNames();
+    readTree();
+    calcGoal(goals[0]);
+}
+
+$(document).ready(function () {
+    $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Analisar e Processar</a>');
+});
