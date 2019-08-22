@@ -23,17 +23,14 @@ function calcGoal(goal) {
 	    var result = 'PENDING';
 	    var value = c.name;
 
-	    if (c.type == 'Task') {
+	    value = getNodeValue(c.id);
 
-		value = getNodeValue(c.id);
-
-		titulos.forEach(function(t){
-		    if (normalize(t.name) == normalize(value)) {
-			result = t.result;
-			return;
-		    }
-		});
-	    }
+	    titulos.forEach(function(t){
+		if (normalize(t.name) == normalize(value)) {
+		    result = t.result;
+		    return;
+		}
+	    });
 
 	    ui.changeColorElement(getColour(result), istar.getCellById(c.id));
 
