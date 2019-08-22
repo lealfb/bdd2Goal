@@ -5,82 +5,94 @@ var goals = [];
 
 function calcGoal(goal) {
     
+    // "8454e6a5-43bb-474f-aa4c-885c5b6d5c5c"
+    // goals[0].children[2].children[1].children[4]
+    
+    var result = false;
+    
     goal.result = true;
     
-    goal.children.forEach(function(c){
+    for (let i = 0; i < goal.children.length; i++) {
+	
+	let c = goal.children[i];
+	
         if (c.type == 'Goal') {
-            calcGoal(c);
-        }
+            result = calcGoal(c);
+        } else {
         
-        var resultTask = 'PENDING';
-        var value = c.name;
-        
-        if (c.type == 'Task') {
-            
-            value = getNodeValue(c.id);
-            
-            titulos.forEach(function(t){
-                if (normalize(t.name) == normalize(value)) {
-                    resultTask = t.result;
-                    return;
-                }
-            });
-        }
+	    var result = 'PENDING';
+	    var value = c.name;
+
+	    if (c.type == 'Task') {
+
+		value = getNodeValue(c.id);
+
+		titulos.forEach(function(t){
+		    if (normalize(t.name) == normalize(value)) {
+			result = t.result;
+			return;
+		    }
+		});
+	    }
+
+	    ui.changeColorElement(getColour(result), istar.getCellById(c.id));
+
+	    switch(result) {
+		case 'SUCCESS':
+		    result = true;
+		    break;
+		case 'FAILURE':
+		    result = false;
+		    break;
+		case 'SKIPPED':
+		    result = false;
+		    break;
+		case 'PENDING':
+		    result = false;
+		    break;
+		default:
+		    result = false;
+		    break;
+	    }
+	}
                 
-        if (c.type == 'Task') {
-            ui.changeColorElement(getColour(resultTask), istar.getCellById(c.id));
-        }
-        
-        switch(resultTask) {
-            case 'SUCCESS':
-                resultTask = true;
-                break;
-            case 'FAILURE':
-                resultTask = false;
-                break;
-            case 'SKIPPED':
-                resultTask = false;
-                break;
-            case 'PENDING':
-                resultTask = false;
-                break;
-            default:
-                resultTask = false;
-                break;
-        }
-                
-        goal.result = goal.result && resultTask;
-        
-        if (c.type == 'Goal') {
-            let colour = goal.result ? '#6CFA4B' : '#FA7267';
-            //ui.changeColorElement(colour, istar.getCellById(goal.id));
-        }
+        goal.result = goal.result && result;
         
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
-    });
+    }
+    
+    //result = goal.result;
+    //console.log(goal.id + ': ' + result);
+    	
+    ui.changeColorElement(goal.result ? '#6CFA4B' : '#FA7267', istar.getCellById(goal.id));
+    
+    return goal.result;
 }
 
 function getNodeValue(nodeId) {
+    
+    //"121a9626-5a8f-4ecf-85a4-41aec411cc94"
+    
     var node = istar.getCellById(nodeId);
     var keys = Object.keys(node.attributes.customProperties);
 
     var value = '';
 
-    if (keys > 1) {
+    if (keys.length > 1) {
         try {
-            value = node.attributes.customProperties[keys[1]];
+            value = normalize(node.attributes.customProperties[keys[1]]);
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
-    
-    console.log('key: ' + keys[1]);
-    console.log('value: ' + value);
         
     return value;
 } 
 
 function readTree() {
+    
+    goals = [];
+    
     model = JSON.parse(istar.fileManager.saveModel());
     
     links = model.links;
@@ -129,10 +141,7 @@ function readTree() {
     }
     
     goals = orphanGoals;
-    
-    calcGoal(goals[0]);
-    
-    return orphanGoals;
+    //return orphanGoals;
 }
 
 function getGoalChildren(goal) {
