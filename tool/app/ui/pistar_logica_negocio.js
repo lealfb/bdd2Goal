@@ -43,7 +43,7 @@ function isExequivel(goal) {
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     }
     	
-    ui.changeColorElement(goalColours[result], istar.getCellById(goal.id));
+    //ui.changeColorElement(goalColours[result], istar.getCellById(goal.id));
     
     return goal.result;
 }
@@ -287,6 +287,7 @@ function resetGoals() {
     _.map(istar.getElements(), function(node) { 
         if (node.attributes.type == 'Goal') {
             ui.changeColorElement('#FFFF00', node);
+            ui.changeCustomPropertyValue(node, 'RESULT', null);
         }
     });
 }
