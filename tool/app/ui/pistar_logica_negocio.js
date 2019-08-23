@@ -3,10 +3,18 @@ var links = null;
 
 var goals = [];
 
-function calcGoal(goal) {
-    
-    // "8454e6a5-43bb-474f-aa4c-885c5b6d5c5c"
-    // goals[0].children[2].children[1].children[4]
+var goalColours = {
+    'true' : '#6CFA4B',
+    'false': '#FA7267'
+};
+
+function proccessTree() {
+    //loadNames();
+    readTree();
+    isExequivel(goals[0]);
+}
+
+function isExequivel(goal) {
     
     var result = false;
     
@@ -17,13 +25,13 @@ function calcGoal(goal) {
 	let c = goal.children[i];
 	
         if (c.type == 'Goal') {
-            result = calcGoal(c);
+            result = isExequivel(c);
         } else {
         
 	    var result = 'PENDING';
 	    var value = c.name;
 
-	    value = getNodeValue(c.id);
+	    value = getTaskValue(c.id);
 
 	    titulos.forEach(function(t){
 		if (normalize(t.name) == normalize(value)) {
@@ -31,42 +39,46 @@ function calcGoal(goal) {
 		    return;
 		}
 	    });
-
+	    
+	    result = getResult(result);
+	    
 	    ui.changeColorElement(getColour(result), istar.getCellById(c.id));
-
-	    switch(result) {
-		case 'SUCCESS':
-		    result = true;
-		    break;
-		case 'FAILURE':
-		    result = false;
-		    break;
-		case 'SKIPPED':
-		    result = false;
-		    break;
-		case 'PENDING':
-		    result = false;
-		    break;
-		default:
-		    result = false;
-		    break;
-	    }
+	    
 	}
                 
         goal.result = goal.result && result;
         
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     }
-    
-    //result = goal.result;
-    //console.log(goal.id + ': ' + result);
     	
-    ui.changeColorElement(goal.result ? '#6CFA4B' : '#FA7267', istar.getCellById(goal.id));
+    ui.changeColorElement(goalColours[result], istar.getCellById(goal.id));
     
     return goal.result;
 }
 
-function getNodeValue(nodeId) {
+function getResult(result) {
+    switch(result) {
+	case 'SUCCESS':
+	    result = true;
+	    break;
+	case 'FAILURE':
+	    result = false;
+	    break;
+	case 'SKIPPED':
+	    result = false;
+	    break;
+	case 'PENDING':
+	    result = false;
+	    break;
+	default:
+	    result = false;
+	    break;
+    }
+    
+    return result;
+}
+
+function getTaskValue(nodeId) {
     
     //"121a9626-5a8f-4ecf-85a4-41aec411cc94"
     
@@ -262,12 +274,6 @@ function diffTasks() {
     missing = missing.sort();
     
     return missing;
-}
-
-function proccessTree() {
-    //loadNames();
-    readTree();
-    calcGoal(goals[0]);
 }
 
 $(document).ready(function () {
