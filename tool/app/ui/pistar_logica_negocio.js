@@ -31,19 +31,11 @@ function isExequivel(goal) {
 	    var result = 'PENDING';
 	    var value = c.name;
 
-	    value = getTaskValue(c.id);
-
-	    titulos.forEach(function(t){
-		if (normalize(t.name) == normalize(value)) {
-		    result = t.result;
-		    return;
-		}
-	    });
-	    
+	    result = getTaskResult(c.id);
+            
+            ui.changeColorElement(getColour(result), istar.getCellById(c.id));
+            
 	    result = getResult(result);
-	    
-	    ui.changeColorElement(getColour(result), istar.getCellById(c.id));
-	    
 	}
                 
         goal.result = goal.result && result;
@@ -74,6 +66,21 @@ function getResult(result) {
 	    result = false;
 	    break;
     }
+    
+    return result;
+}
+
+function getTaskResult(nodeId) {
+    
+    var value = getTaskValue(nodeId);
+    var result = 'PENDING';
+    
+    titulos.forEach(function(t){
+        if (normalize(t.name) == normalize(value)) {
+            result = t.result;
+            return result;
+        }
+    });
     
     return result;
 }
@@ -276,6 +283,14 @@ function diffTasks() {
     return missing;
 }
 
+function resetGoals() {
+    _.map(istar.getElements(), function(node) { 
+        if (node.attributes.type == 'Goal') {
+            ui.changeColorElement('#FFFF00', node);
+        }
+    });
+}
+
 $(document).ready(function () {
-    $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Analisar e Processar</a>');
+    $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Verificar Alcançabilidade</a>');
 });
