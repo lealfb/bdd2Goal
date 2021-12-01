@@ -1,0 +1,75 @@
+[Info  - 15:38:24] ESLint server stopped.
+[Info  - 15:38:27] ESLint server running in node v10.11.0
+[Info  - 15:38:27] ESLint server is running.
+[Info  - 15:39:51] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:05:14] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:07:48] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/ui/pistar_plugin_anexo.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:08:08] 
+Failed to load the ESLint library for the document /var/www/html/pistar/language/constraints.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:08:28] 
+Failed to load the ESLint library for the document /var/www/html/pistar/language/shapes.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:08:39] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/istarcore/test/test.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:13:18] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/istarcore/istarFunctions.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:22:35] 
+Failed to load the ESLint library for the document /var/www/html/pistar/tool/app/ui/views/propertiesTable.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 16:24:26] 
+Failed to load the ESLint library for the document /var/www/html/pistar/tool/app/istarcore/lib/joint.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.

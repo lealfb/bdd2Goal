@@ -1,0 +1,186 @@
+[2021-12-01 14:38:18.074] [exthost] [info] extension host started
+[2021-12-01 14:38:18.106] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-12-01 14:38:18.106] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/typescript-language-features/dist/extension
+[2021-12-01 14:38:18.563] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.npm-intellisense {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-12-01 14:38:18.563] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/christian-kohler.npm-intellisense-1.4.0/out/src/extension
+[2021-12-01 14:38:19.140] [exthost] [info] ExtensionService#_doActivateExtension VisualStudioExptTeam.vscodeintellicode {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-12-01 14:38:19.140] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/visualstudioexptteam.vscodeintellicode-1.2.14/dist/intellicode
+[2021-12-01 14:38:19.470] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:19.470] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2021-12-01 14:38:19.703] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:19.703] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2021-12-01 14:38:19.816] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:19.816] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2021-12-01 14:38:20.179] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:20.179] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2021-12-01 14:38:20.694] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:20.694] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/christian-kohler.path-intellisense-1.4.2/out/src/extension
+[2021-12-01 14:38:21.877] [exthost] [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:21.877] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/dbaeumer.vscode-eslint-1.9.1/client/out/extension
+[2021-12-01 14:38:22.087] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:22.087] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/formulahendry.auto-close-tag-0.5.10/out/src/extension
+[2021-12-01 14:38:22.130] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-rename-tag {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:22.130] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/formulahendry.auto-rename-tag-0.1.1/out/src/extension
+[2021-12-01 14:38:22.360] [exthost] [info] ExtensionService#_doActivateExtension ionutvmi.path-autocomplete {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:22.360] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ionutvmi.path-autocomplete-1.17.1/out/src/extension
+[2021-12-01 14:38:22.540] [exthost] [info] ExtensionService#_doActivateExtension kamikillerto.vscode-colorize {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:22.540] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/kamikillerto.vscode-colorize-0.8.13/out/src/extension
+[2021-12-01 14:38:23.344] [exthost] [info] ExtensionService#_doActivateExtension ms-vsliveshare.vsliveshare {"startup":true,"activationEvent":"*"}
+[2021-12-01 14:38:23.344] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ms-vsliveshare.vsliveshare-1.0.1891/out/prod/extension-prod
+[2021-12-01 14:38:31.305] [exthost] [info] ExtensionService#_doActivateExtension bung87.vscode-gemfile {"startup":true,"activationEvent":"workspaceContainsTimeout:**/Gemfile"}
+[2021-12-01 14:38:31.305] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/bung87.vscode-gemfile-0.0.2/out/src/extension
+[2021-12-01 14:38:32.462] [exthost] [info] ExtensionService#_doActivateExtension castwide.solargraph {"startup":true,"activationEvent":"workspaceContainsTimeout:**/Gemfile"}
+[2021-12-01 14:38:32.462] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/castwide.solargraph-0.21.1/out/src/extension
+[2021-12-01 14:39:07.182] [exthost] [info] ExtensionService#_doActivateExtension Dart-Code.dart-code {"startup":true,"activationEvent":"workspaceContainsTimeout:**/pubspec.yaml,**/*.dart"}
+[2021-12-01 14:39:07.182] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/dart-code.dart-code-3.4.1/out/dist/extension
+[2021-12-01 14:39:07.891] [exthost] [info] ExtensionService#_doActivateExtension Ikuyadeu.r {"startup":true,"activationEvent":"workspaceContainsTimeout:*.r|.rd|.rmd"}
+[2021-12-01 14:39:07.891] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ikuyadeu.r-1.1.7/dist/extension
+[2021-12-01 14:39:16.843] [exthost] [info] eager extensions activated
+[2021-12-01 14:39:17.926] [exthost] [info] ExtensionService#_doActivateExtension bung87.rails {"startup":true,"activationEvent":"workspaceContainsTimeout:**/Gemfile"}
+[2021-12-01 14:39:17.926] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/extension
+[2021-12-01 14:40:36.508] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"activationEvent":"onLanguage:typescript"}
+[2021-12-01 14:40:36.508] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/extension-editing/dist/extension
+[2021-12-01 14:41:04.916] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 14:41:04.916] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 14:43:16.795] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 14:43:16.795] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 14:53:09.984] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 14:53:09.984] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:10.493] [exthost] [info] ExtensionService#_doActivateExtension vscode.markdown-language-features {"startup":false,"activationEvent":"onLanguage:markdown"}
+[2021-12-01 15:05:10.493] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/markdown-language-features/dist/extension
+[2021-12-01 15:05:10.837] [exthost] [info] ExtensionService#_doActivateExtension Mikhail-Arkhipov.r {"startup":false,"activationEvent":"onLanguage:markdown"}
+[2021-12-01 15:05:10.837] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/mikhail-arkhipov.r-0.0.8/out/src/extension
+[2021-12-01 15:05:11.926] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing {"startup":false,"activationEvent":"onLanguage:jsonc"}
+[2021-12-01 15:05:11.926] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/configuration-editing/dist/extension
+[2021-12-01 15:05:12.185] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features {"startup":false,"activationEvent":"onLanguage:jsonc"}
+[2021-12-01 15:05:12.185] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/json-language-features/client/dist/jsonMain
+[2021-12-01 15:05:38.723] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:05:38.723] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:42.152] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:05:42.152] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:44.987] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:05:44.987] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:57.251] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:05:57.251] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:07:59.079] [exthost] [info] ExtensionService#_doActivateExtension pflannery.vscode-versionlens {"startup":false,"activationEvent":"onLanguage:xml"}
+[2021-12-01 15:07:59.079] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/pflannery.vscode-versionlens-0.26.2/out/extension-bundle.js
+[2021-12-01 15:10:06.259] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:10:06.259] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:18:11.664] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:18:11.664] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:20:13.740] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:20:13.740] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:26:06.227] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:26:06.228] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:26:07.553] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:26:07.553] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:28:28.578] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:28:28.578] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:28:40.403] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:28:40.403] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:20.841] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:35:20.841] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:23.550] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:35:23.551] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:48.410] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:35:48.410] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:49.430] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-12-01 15:35:49.430] [exthost] [error] Error: DisposableStore is missing...
+	at R._convertCompletionItem (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:554:618)
+	at define.resolveCompletionItem.o.asPromise.then.e (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:554:248)
+[2021-12-01 15:37:31.148] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:37:31.148] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:37:36.625] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:37:36.625] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:56:54.715] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:56:54.715] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:57:08.412] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:57:08.412] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:57:19.045] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:57:19.045] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:57:20.978] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 15:57:20.979] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 16:00:15.777] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 16:00:15.777] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 16:00:50.160] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 16:00:50.160] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 16:04:14.556] [exthost] [error] [bung87.rails] provider FAILED
+[2021-12-01 16:04:14.556] [exthost] [error] TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)

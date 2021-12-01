@@ -1,0 +1,32 @@
+[2021-11-28 15:13:30.859] [exthost] [info] extension host started
+[2021-11-28 15:13:30.871] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:30.871] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2021-11-28 15:13:31.013] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.013] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2021-11-28 15:13:31.119] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.119] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2021-11-28 15:13:31.397] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.397] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2021-11-28 15:13:31.417] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.417] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/christian-kohler.path-intellisense-1.4.2/out/src/extension
+[2021-11-28 15:13:31.749] [exthost] [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.749] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/dbaeumer.vscode-eslint-1.9.1/client/out/extension
+[2021-11-28 15:13:31.848] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.848] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/formulahendry.auto-close-tag-0.5.10/out/src/extension
+[2021-11-28 15:13:31.879] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-rename-tag {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.879] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/formulahendry.auto-rename-tag-0.1.1/out/src/extension
+[2021-11-28 15:13:31.910] [exthost] [info] ExtensionService#_doActivateExtension ionutvmi.path-autocomplete {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:31.910] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ionutvmi.path-autocomplete-1.17.1/out/src/extension
+[2021-11-28 15:13:32.366] [exthost] [info] ExtensionService#_doActivateExtension kamikillerto.vscode-colorize {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:32.366] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/kamikillerto.vscode-colorize-0.8.13/out/src/extension
+[2021-11-28 15:13:32.727] [exthost] [info] ExtensionService#_doActivateExtension ms-vsliveshare.vsliveshare {"startup":true,"activationEvent":"*"}
+[2021-11-28 15:13:32.728] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ms-vsliveshare.vsliveshare-1.0.1891/out/prod/extension-prod
+[2021-11-28 15:13:36.575] [exthost] [info] eager extensions activated
+[2021-11-28 15:31:13.248] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-11-28 15:31:13.248] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/typescript-language-features/dist/extension
+[2021-11-28 15:31:13.507] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.npm-intellisense {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-11-28 15:31:13.507] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/christian-kohler.npm-intellisense-1.4.0/out/src/extension
+[2021-11-28 15:31:13.784] [exthost] [info] ExtensionService#_doActivateExtension VisualStudioExptTeam.vscodeintellicode {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-11-28 15:31:13.784] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/visualstudioexptteam.vscodeintellicode-1.2.14/dist/intellicode
+[2021-11-28 15:33:25.969] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"activationEvent":"onLanguage:typescript"}
+[2021-11-28 15:33:25.969] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/extension-editing/dist/extension

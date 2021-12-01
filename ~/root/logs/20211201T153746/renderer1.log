@@ -1,0 +1,111 @@
+[2021-12-01 14:38:12.907] [renderer1] [error] Error: [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2021-12-01 14:38:12.908] [renderer1] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2021-12-01 14:38:47.424] [renderer1] [warning] UNRESPONSIVE extension host, 'castwide.solargraph' took 100% of 5408.81ms, saved PROFILE here: '/tmp/exthost-161a61.cpuprofile' [{"id":"castwide.solargraph","total":5401637,"percentage":100},{"id":"gc","total":6807,"percentage":0}]
+[2021-12-01 14:39:37.496] [renderer1] [warning] UNRESPONSIVE extension host, 'bung87.rails' took 100% of 5353.55ms, saved PROFILE here: '/tmp/exthost-0df780.cpuprofile' [{"id":"bung87.rails","total":5352879,"percentage":100},{"id":"gc","total":227,"percentage":0}]
+[2021-12-01 14:39:52.968] [renderer1] [error] /bin/bash: solargraph: comando não encontrado
+
+[2021-12-01 14:39:58.037] [renderer1] [error] ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json': Error: ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json'
+[2021-12-01 14:41:04.919] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 14:43:16.800] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 14:53:09.986] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:38.726] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:42.155] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:44.989] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:05:57.253] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:10:06.261] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:18:11.667] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:20:13.743] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:26:06.230] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:26:07.557] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:28:28.580] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:28:40.405] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:20.850] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:23.552] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:35:48.412] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:37:31.151] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:37:36.627] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:56:54.717] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:57:08.425] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:57:19.048] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 15:57:20.983] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 16:00:15.779] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 16:00:50.162] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)
+[2021-12-01 16:04:14.558] [renderer1] [error] Cannot read property 'file' of null: TypeError: Cannot read property 'file' of null
+	at RailsCompletionItemProvider.<anonymous> (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:169:58)
+	at Generator.next (<anonymous>)
+	at fulfilled (/home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/rails_completion.js:4:58)

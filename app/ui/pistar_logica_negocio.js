@@ -15,18 +15,63 @@ function proccessTree() {
     let a;
     a = isExequivel(goals[0]);
     console.log("termina ae ");
-    console.log(a);
-    let totalPriorities =  sumPriorities(goals[0]);
-    console.log(totalPriorities+"\n");
+   // let totalPriorities =  sumPriorities(goals[0]);
+    let pending=[];
+    let failed=[];
+    //getPendingFailed(goals[0], pending, failed)
+    //console.log(pending);
+    //console.log(failed)
 
 
 }
 
+function changeColorByPriority(pending, failed){
+    
+
+}
+
+function getPendingFailed(goal, pending, failed){
+
+    for (let i = 0; i < goal.children.length; i++) {
+	
+        let c = goal.children[i];
+        if(c.type == 'Goal'){
+            //so fazer isso se o goal for failed
+            //atribuir depois uma cor diferente pros goals que passaram mas cujas tasks estao failed
+            // var keys = Object.keys(c.attributes.customProperties);
+            console.log("gOAL");
+
+            console.log(c);
+            if(c.result== false){
+                getPendingFailed(c, pending, failed);
+
+            }
+            
+
+        }else{
+            console.log("task\n");
+            console.log(c);
+
+
+            var result = 'PENDING';
+
+	        result = getTaskResult(c.id);
+            console.log("aqui ", result);
+            if(result==="PENDING") pending.push(c);
+            if(result=="FAILURE") failed.push(c);
+            // debugger;
+          
+        }
+        
+    }
+
+    return;
+
+}
 function sumPriorities(goal){
     let sumarray = [];
     const sum =(prevValue=0, currentVal)=> prevValue+currentVal;
     getPriorities(goal, sumarray);
-    console.log(sumarray);
     let result = sumarray.reduce(sum);
     return result;
 
@@ -37,8 +82,19 @@ function sumPriorities(goal){
 
 }
 
+function isOrRefinement(goal, linkarray){
+    var currentLinksFromSource = istar.graph.getConnectedLinks(goal);
+    _.forEach(currentLinksFromSource, function (link) {
+        if(link.attributes.type =="OrRefinementLink"){
+            linkarray.push(link);
+        }
+
+
+    });
+
+}
+
 function isExequivel(goal) {
-    
     var result = false;
     goal.teste = "Ola";
     goal.result = true;
@@ -50,9 +106,9 @@ function isExequivel(goal) {
         if (c.type == 'Goal') {
             result = isExequivel(c);
         } else {
-        console.log(c);
 	    var result = 'PENDING';
-	    var value = c.name;
+        var value = c.name;
+
 
 	    result = getTaskResult(c.id);
             
@@ -60,9 +116,15 @@ function isExequivel(goal) {
             
 	    result = getResult(result);
     }
-    console.log("apos else")
-    
-    goal.result = goal.result && result;
+    let linkarray=[]
+    isOrRefinement(goal, linkarray);
+    if(linkarray.length>0){
+        goal.result = goal.result || result;
+    }
+    else{
+        goal.result = goal.result && result;
+
+    }
     
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     }

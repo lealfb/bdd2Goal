@@ -1,0 +1,40 @@
+[2021-11-28 18:52:11.439] [exthost] [info] extension host started
+[2021-11-28 18:52:11.470] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-11-28 18:52:11.470] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/typescript-language-features/dist/extension
+[2021-11-28 18:52:11.661] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.npm-intellisense {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-11-28 18:52:11.662] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/christian-kohler.npm-intellisense-1.4.0/out/src/extension
+[2021-11-28 18:52:11.951] [exthost] [info] ExtensionService#_doActivateExtension VisualStudioExptTeam.vscodeintellicode {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2021-11-28 18:52:11.951] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/visualstudioexptteam.vscodeintellicode-1.2.14/dist/intellicode
+[2021-11-28 18:52:12.204] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:12.204] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2021-11-28 18:52:12.223] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:12.223] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2021-11-28 18:52:12.306] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:12.306] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2021-11-28 18:52:12.482] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:12.482] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2021-11-28 18:52:12.562] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:12.562] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/christian-kohler.path-intellisense-1.4.2/out/src/extension
+[2021-11-28 18:52:13.270] [exthost] [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:13.270] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/dbaeumer.vscode-eslint-1.9.1/client/out/extension
+[2021-11-28 18:52:13.416] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:13.416] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/formulahendry.auto-close-tag-0.5.10/out/src/extension
+[2021-11-28 18:52:13.475] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-rename-tag {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:13.475] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/formulahendry.auto-rename-tag-0.1.1/out/src/extension
+[2021-11-28 18:52:13.540] [exthost] [info] ExtensionService#_doActivateExtension ionutvmi.path-autocomplete {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:13.540] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ionutvmi.path-autocomplete-1.17.1/out/src/extension
+[2021-11-28 18:52:13.819] [exthost] [info] ExtensionService#_doActivateExtension kamikillerto.vscode-colorize {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:13.819] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/kamikillerto.vscode-colorize-0.8.13/out/src/extension
+[2021-11-28 18:52:14.126] [exthost] [info] ExtensionService#_doActivateExtension ms-vsliveshare.vsliveshare {"startup":true,"activationEvent":"*"}
+[2021-11-28 18:52:14.126] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ms-vsliveshare.vsliveshare-1.0.1891/out/prod/extension-prod
+[2021-11-28 18:52:22.073] [exthost] [info] ExtensionService#_doActivateExtension bung87.vscode-gemfile {"startup":true,"activationEvent":"workspaceContainsTimeout:**/Gemfile"}
+[2021-11-28 18:52:22.073] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/bung87.vscode-gemfile-0.0.2/out/src/extension
+[2021-11-28 18:52:22.964] [exthost] [info] ExtensionService#_doActivateExtension castwide.solargraph {"startup":true,"activationEvent":"workspaceContainsTimeout:**/Gemfile"}
+[2021-11-28 18:52:22.964] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/castwide.solargraph-0.21.1/out/src/extension
+[2021-11-28 18:52:37.778] [exthost] [info] ExtensionService#_doActivateExtension Dart-Code.dart-code {"startup":true,"activationEvent":"workspaceContainsTimeout:**/pubspec.yaml,**/*.dart"}
+[2021-11-28 18:52:37.778] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/dart-code.dart-code-3.4.1/out/dist/extension
+[2021-11-28 18:52:37.987] [exthost] [info] ExtensionService#_doActivateExtension Ikuyadeu.r {"startup":true,"activationEvent":"workspaceContainsTimeout:*.r|.rd|.rmd"}
+[2021-11-28 18:52:37.987] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/ikuyadeu.r-1.1.7/dist/extension
+[2021-11-28 18:52:40.731] [exthost] [info] eager extensions activated
+[2021-11-28 18:52:41.908] [exthost] [info] ExtensionService#_doActivateExtension bung87.rails {"startup":true,"activationEvent":"workspaceContainsTimeout:**/Gemfile"}
+[2021-11-28 18:52:41.908] [exthost] [info] ExtensionService#loadCommonJSModule /home/nayara/.vscode/extensions/bung87.rails-0.13.2/out/src/extension

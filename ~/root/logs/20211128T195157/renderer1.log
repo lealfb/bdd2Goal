@@ -1,0 +1,7 @@
+[2021-11-28 18:52:10.284] [renderer1] [error] Error: [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2021-11-28 18:52:10.284] [renderer1] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2021-11-28 18:52:31.899] [renderer1] [warning] UNRESPONSIVE extension host, 'castwide.solargraph' took 100% of 5578.099ms, saved PROFILE here: '/tmp/exthost-f31fd2.cpuprofile' [{"id":"castwide.solargraph","total":5577577,"percentage":100},{"id":"gc","total":129,"percentage":0}]
+[2021-11-28 18:52:49.768] [renderer1] [warning] UNRESPONSIVE extension host, 'bung87.rails' took 100% of 5365.282ms, saved PROFILE here: '/tmp/exthost-baea23.cpuprofile' [{"id":"bung87.rails","total":5353858,"percentage":100},{"id":"gc","total":10943,"percentage":0}]
+[2021-11-28 18:52:52.177] [renderer1] [error] /bin/bash: solargraph: comando não encontrado
+
+[2021-11-28 18:52:55.188] [renderer1] [error] ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json': Error: ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json'
