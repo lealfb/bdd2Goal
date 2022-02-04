@@ -128,8 +128,7 @@ function isExequivel(goal) {
     
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     }
-    	
-    //ui.changeColorElement(goalColours[result], istar.getCellById(goal.id));
+    ui.changeColorElement(goalColours[goal.result], istar.getCellById(goal.id));
     
     return goal.result;
 }
