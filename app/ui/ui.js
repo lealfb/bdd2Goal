@@ -661,6 +661,19 @@ ui.addElementOnContainer = function (cellView, options) {
                 element.prop('customProperties', istar.metamodel.nodes[currentAddingElement].customProperties);
             }
             element.prop('customProperties/Description', '');
+                console.log("goal")
+                //Adding Benefit to goal
+            if(element.attributes.type =="Goal"){
+                element.prop('customProperties/Benefit', '');
+                element.prop('customProperties/Weight_Benefit', '');
+                element.prop('customProperties/Complexity', '');
+                element.prop('customProperties/Weight_Complexity', '');
+            }
+          
+
+
+
+
             ui.selectCell(element);
         }
         else {
