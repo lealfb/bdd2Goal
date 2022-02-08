@@ -10,11 +10,8 @@ var goalColours = {
 
 function proccessTree() {
     //loadNames();
-    console.log("processing");
     readTree();
     isExequivel(goals[0]);
-    console.log("finished");
-
 }
 
 function isExequivel(goal) {
@@ -35,7 +32,7 @@ function isExequivel(goal) {
 	    var value = c.name;
 
 	    result = getTaskResult(c.id);
-            console.log(result);
+            
             ui.changeColorElement(getColour(result), istar.getCellById(c.id));
             
 	    result = getResult(result);

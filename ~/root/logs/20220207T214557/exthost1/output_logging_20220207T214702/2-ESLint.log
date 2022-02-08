@@ -1,0 +1,36 @@
+[Info  - 21:47:02] ESLint server stopped.
+[Info  - 21:47:07] ESLint server running in node v10.11.0
+[Info  - 21:47:07] ESLint server is running.
+[Info  - 21:47:26] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 21:55:18] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/ui/ui.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 21:59:46] 
+Failed to load the ESLint library for the document /var/www/html/pistar/app/ui/pistar_plugin.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 22:38:15] 
+Failed to load the ESLint library for the document /var/www/html/pistar/tool/app/ui/pistar_logica_negocio.js
+
+To use ESLint please install eslint by running npm install eslint in the workspace folder pistar
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn or pnpm instead of npm set the setting `eslint.packageManager` to either `yarn` or `pnpm`
+Alternatively you can disable ESLint for the workspace folder pistar by executing the 'Disable ESLint' command.
+[Info  - 23:07:22] ESLint server stopped.

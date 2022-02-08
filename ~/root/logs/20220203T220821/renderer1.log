@@ -1,0 +1,3 @@
+[2022-02-03 21:08:55.283] [renderer1] [error] ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json': Error: ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json'
+[2022-02-03 21:19:22.694] [renderer1] [error] Error: [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2022-02-03 21:19:22.694] [renderer1] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'

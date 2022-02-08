@@ -373,8 +373,7 @@
                                 },
                                 {
                                     "id": "workbench.action.togglePanel",
-                                    "label": "Show &&Panel",
-                                    "checked": true
+                                    "label": "Show &&Panel"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -825,7 +824,8 @@
                     },
                     {
                         "id": "workbench.action.terminal.split",
-                        "label": "&&Split Terminal"
+                        "label": "&&Split Terminal",
+                        "enabled": false
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1380,11 +1380,11 @@
             "folder": "file:///var/www/html/pistar",
             "backupPath": "/var/www/html/pistar/~/root/Backups/cd4d941d111f951fd70a8ec5ca3afec3",
             "uiState": {
-                "mode": 1,
-                "x": 171,
-                "y": 54,
-                "width": 1024,
-                "height": 714
+                "mode": 0,
+                "x": 55,
+                "y": 24,
+                "width": 1311,
+                "height": 744
             }
         },
         "openedWindows": []

@@ -1,0 +1,4 @@
+[2022-02-07 20:46:48.268] [renderer1] [error] ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json': Error: ENOENT: no such file or directory, unlink '/home/nayara/.local/share/vsliveshare/cascade.json'
+[2022-02-07 20:47:03.287] [renderer1] [error] Error: [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2022-02-07 20:47:03.287] [renderer1] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/var/www/html/pistar/.vscode'
+[2022-02-07 20:47:07.388] [renderer1] [warning] UNRESPONSIVE extension host, 'vscode.typescript-language-features' took 94% of 315.074ms, saved PROFILE here: '/tmp/exthost-9c0109.cpuprofile' [{"id":"gc","total":98,"percentage":0},{"id":"vscode.typescript-language-features","total":296819,"percentage":94}]

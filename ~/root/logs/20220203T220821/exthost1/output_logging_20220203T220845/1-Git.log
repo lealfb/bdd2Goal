@@ -1,0 +1,102 @@
+Looking for git in: git
+Using git 2.7.4 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+> git config --get commit.template
+Open repository: /var/www/html/pistar
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+fatal: no upstream configured for branch 'master'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show :app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+fatal: no upstream configured for branch 'master'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git show :app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+fatal: no upstream configured for branch 'master'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+fatal: no upstream configured for branch 'master'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+fatal: no upstream configured for branch 'master'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+fatal: no upstream configured for branch 'master'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git show :app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse fixColors
+> git rev-parse --symbolic-full-name fixColors@{u}
+fatal: no upstream configured for branch 'fixColors'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -v -z --stdin
+> git ls-tree -l HEAD -- /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+> git show f87a60535ce8ca3fcc33217032e819ced1088006
+> git show HEAD:app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse fixColors
+> git rev-parse --symbolic-full-name fixColors@{u}
+fatal: no upstream configured for branch 'fixColors'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git ls-tree -l HEAD -- /var/www/html/pistar/tool/app/ui/pistar_logica_negocio.js
+> git show a04908e1420d227d2d10d760553d3a6b83e8f8d9
+> git show HEAD:tool/app/ui/pistar_logica_negocio.js
+> git check-ignore -v -z --stdin
+> git ls-tree -l HEAD -- /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+> git show f87a60535ce8ca3fcc33217032e819ced1088006
+> git ls-tree -l HEAD -- /var/www/html/pistar/tool/app/ui/pistar_logica_negocio.js
+> git show a04908e1420d227d2d10d760553d3a6b83e8f8d9
+> git ls-tree -l HEAD -- /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+> git show f87a60535ce8ca3fcc33217032e819ced1088006
+> git show :app/ui/pistar_logica_negocio.js
+git.stage 1
+git.stage.scmResources 1
+> git add -A -- /var/www/html/pistar/app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse fixColors
+> git rev-parse --symbolic-full-name fixColors@{u}
+fatal: no upstream configured for branch 'fixColors'
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -v -z --stdin
+> git show :app/ui/pistar_logica_negocio.js
+> git show :app/ui/pistar_logica_negocio.js
+> git show HEAD:tool/app/ui/pistar_logica_negocio.js
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show :tool/app/ui/pistar_logica_negocio.js

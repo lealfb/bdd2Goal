@@ -14,7 +14,8 @@ function proccessTree() {
     readTree();
     let a;
     a = isExequivel(goals[0]);
-    console.log("termina ae ");
+    console.log("Calculando ");
+    calculateGoalPriority(goals[0])
    // let totalPriorities =  sumPriorities(goals[0]);
     let pending=[];
     let failed=[];
@@ -22,6 +23,88 @@ function proccessTree() {
     //console.log(pending);
     //console.log(failed)
 
+
+}
+
+function getFactorValue(nodeId, factor){
+
+    var node = istar.getCellById(nodeId);
+    var keys = Object.keys(node.attributes.customProperties);
+
+    var value = '';
+
+    value = node.attributes.customProperties[factor];
+    console.log("value ", factor, " -- ", value);
+    return value;
+}
+
+function calculateGoalPriority(goal){
+//benefit
+//weight benefit
+//complexity
+//weight complexity
+
+//get benefit and complexity from Goal
+    //if benefit or complexity not valid = 0 
+
+
+//get weights
+
+    //if one weight not present: Complete with next weight
+    //if two weights not present: 50 50
+
+    //
+    //first node
+    // debugger
+    if(!goal.priority){
+        let benefit = getFactorValue(goal.id, "Benefit");
+        let complexity = getFactorValue(goal.id, "Complexity");
+        let weightBenefit = getFactorValue(goal.id, "Weight_Benefit")
+        let weightComplexity = getFactorValue(goal.id, "Weight_Complexity")
+
+        if(isNaN(benefit)){
+            benefit = 1;
+        }
+        if(isNaN(complexity)){
+            complexity = 1;
+        }
+
+        if(isNaN(weightBenefit)){//se não for um número
+            if(isNaN(weightComplexity)){
+                weightBenefit = 50;
+                weightComplexity = 50;
+            }
+            else{
+                weightComplexity = parseFloat(weightComplexity);
+                weightBenefit = 100 - weightComplexity;
+            }
+
+        }
+        else if(isNaN(weightComplexity)){
+            weightBenefit = parseFloat(weightBenefit);
+            weightComplexity = 100 - weightBenefit;
+        }
+        priority=1;
+        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', priority);
+
+
+    }
+
+    for (let i = 0; i < goal.children.length; i++) {
+	
+        let c = goal.children[i];
+        
+            if (c.type == 'Goal') {
+                if(!c.priority){
+                    let priority = getFactorValue(c.id, "Benefit");
+                    ui.changeCustomPropertyValue(istar.getCellById(c.id), 'priority', priority);
+
+
+                }
+
+                result = calculateGoalPriority(c);
+            } 
+    }
 
 }
 
