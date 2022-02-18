@@ -1,0 +1,115 @@
+Looking for git in: git
+Using git 2.7.4 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+> git config --get commit.template
+Open repository: /var/www/html/pistar
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git show :app/ui/pistar_logica_negocio.js
+> git check-ignore -v -z --stdin
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git show :app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git show :app/ui/pistar_logica_negocio.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse feature/Calculation
+> git rev-parse --symbolic-full-name feature/Calculation@{u}
+> git rev-list --left-right feature/Calculation...refs/remotes/origin/feature/Calculation
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose

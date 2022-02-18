@@ -61,7 +61,7 @@ function calculateGoalPriority(goal){
         let complexity = getFactorValue(goal.id, "Complexity");
         let weightBenefit = getFactorValue(goal.id, "Weight_Benefit")
         let weightComplexity = getFactorValue(goal.id, "Weight_Complexity")
-
+        //Preparing values
         if(isNaN(benefit)){
             benefit = 1;
         }
@@ -84,7 +84,12 @@ function calculateGoalPriority(goal){
             weightBenefit = parseFloat(weightBenefit);
             weightComplexity = 100 - weightBenefit;
         }
-        priority=1;
+
+        //Calculating values
+        let weightBValue = weightBenefit/100;
+        let weightCValue = weightComplexity/100;
+
+        let priority = (benefit*weightBValue) + (complexity*weightCValue);
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', priority);
 
 
@@ -180,7 +185,7 @@ function isOrRefinement(goal, linkarray){
 function isExequivel(goal) {
     var result = false;
     goal.teste = "Ola";
-    goal.result = true;
+    goal.result = null;
     
     for (let i = 0; i < goal.children.length; i++) {
 	
@@ -191,8 +196,7 @@ function isExequivel(goal) {
         } else {
 	    var result = 'PENDING';
         var value = c.name;
-
-
+            debugger
 	    result = getTaskResult(c.id);
             
             ui.changeColorElement(getColour(result), istar.getCellById(c.id));
@@ -200,11 +204,21 @@ function isExequivel(goal) {
 	    result = getResult(result);
     }
     let linkarray=[]
+    debugger
+
     isOrRefinement(goal, linkarray);
     if(linkarray.length>0){
+        if(goal.result==null){
+            //At OR if goal.result = null it needes to receive the first task result
+            goal.result = result
+        }
         goal.result = goal.result || result;
     }
-    else{
+    else{//AND
+        if(goal.result == null){
+            //at AND when it is null it needes to be considered true to apply AND logic
+            goal.result = true;
+        }
         goal.result = goal.result && result;
 
     }
@@ -245,6 +259,7 @@ function getTaskResult(nodeId) {
     
     titulos.forEach(function(t){
         if (normalize(t.name) == normalize(value)) {
+           
             result = t.result;
             return result;
         }

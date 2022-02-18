@@ -1,0 +1,8 @@
+[2022-02-17 21:22:30.445] [sharedprocess] [info] main {"machineId":"4b179a56ce1ae4d07fa16209b7ad19c98b7d8bdd15b3fa1e011a3b997834da3f"}
+[2022-02-17 21:22:52.650] [sharedprocess] [info] Installing extension: christian-kohler.npm-intellisense
+[2022-02-17 21:22:54.399] [sharedprocess] [info] Downloaded extension: christian-kohler.npm-intellisense /tmp/67acea5f-3f6a-4102-a0bf-a92b35f84b3a
+[2022-02-17 21:22:54.544] [sharedprocess] [info] Extracted extension to /home/nayara/.vscode/extensions/.christian-kohler.npm-intellisense-1.4.1: christian-kohler.npm-intellisense
+[2022-02-17 21:22:54.545] [sharedprocess] [info] Renamed to /home/nayara/.vscode/extensions/christian-kohler.npm-intellisense-1.4.1
+[2022-02-17 21:22:54.545] [sharedprocess] [info] Installation completed. christian-kohler.npm-intellisense
+[2022-02-17 21:22:55.008] [sharedprocess] [info] Extensions installed successfully: christian-kohler.npm-intellisense
+[2022-02-17 21:23:10.453] [sharedprocess] [info] Starting to clean up unused language packs.
