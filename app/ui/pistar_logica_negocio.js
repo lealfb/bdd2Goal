@@ -2,6 +2,7 @@ var model = null;
 var links = null;
 
 var goals = [];
+let allGoals=[];
 
 var goalColours = {
     'true' : '#6CFA4B',
@@ -10,12 +11,44 @@ var goalColours = {
 
 function proccessTree() {
     //loadNames();
+
+    let totalPriority;
+    let totalGoals;
     console.log("começa")
     readTree();
+
     let a;
+    // let teste = {
+    //     "primeiro" : [1,2,3],
+    //     "segundo" : [4,5,6]
+    // }
+    // teste["primeiro"].push(8);
+    // if(!teste["terceiro"]){
+    //     teste["terceiro"] = [];
+    // }
+    // teste["terceiro"].push(10)
+    // if(!teste["terceiro"]){
+    //     teste["terceiro"] = [];
+    // }
+    // for (var key in teste){
+    //     console.log(teste[key]);
+    // }
+
+
     a = isExequivel(goals[0]);
     console.log("Calculando ");
     calculateGoalPriority(goals[0])
+    totalPriority = getTotalPriority();
+    totalGoals = allGoals.length();
+    debugger
+    let myParents = getTasksParents();
+    for(var key in myParents){
+        console.log(key, myParents[key]);
+    }
+    //pegar do goal 0 e fazer a somatória até chegar na task, aproveita e já soma
+
+
+   
    // let totalPriorities =  sumPriorities(goals[0]);
     let pending=[];
     let failed=[];
@@ -24,6 +57,30 @@ function proccessTree() {
     //console.log(failed)
 
 
+}
+
+function getTotalPriority(){
+    debugger;
+    let sum = 0;
+
+    _.map(istar.getElements(), function(node) { 
+        if (node.attributes.type == 'Goal') {
+            allGoals.push({
+                id: node.attributes.id,
+                name: node.attributes.name,
+                type: node.attributes.type,
+            });
+        }
+    });
+
+    allGoals.forEach(function(goal){
+        var node = istar.getCellById(goal.id);
+        value = parseFloat(node.attributes.customProperties["priority"])
+        console.log(value);
+        sum = sum + value;
+    })
+
+    return sum;
 }
 
 function getFactorValue(nodeId, factor){
@@ -39,23 +96,7 @@ function getFactorValue(nodeId, factor){
 }
 
 function calculateGoalPriority(goal){
-//benefit
-//weight benefit
-//complexity
-//weight complexity
 
-//get benefit and complexity from Goal
-    //if benefit or complexity not valid = 0 
-
-
-//get weights
-
-    //if one weight not present: Complete with next weight
-    //if two weights not present: 50 50
-
-    //
-    //first node
-    // debugger
     if(!goal.priority){
         let benefit = getFactorValue(goal.id, "Benefit");
         let complexity = getFactorValue(goal.id, "Complexity");
@@ -182,9 +223,38 @@ function isOrRefinement(goal, linkarray){
 
 }
 
+function getTasksParents(){
+    //pegar todas as tasks
+    //pegar os goals
+    //para cada goal verificar o filho
+    debugger
+    
+    goals.forEach(function(g) {
+        g.children = getGoalChildren(g);
+    });
+    let taskHash= {};
+
+    goals.forEach(function(parentGoal){
+        for(let i = 0; i<parentGoal.children.length; i++){
+            let child = parentGoal.children[i];
+            if(child.type == "Task"){
+                if(!taskHash[child.id]){//if this key is null
+                    taskHash[child.id] = []
+                }
+                taskHash[child.id].push(parentGoal);
+            }
+        }      
+
+    })
+
+    console.log(taskHash);
+    debugger
+
+    return taskHash;
+}
+
 function isExequivel(goal) {
     var result = false;
-    goal.teste = "Ola";
     goal.result = null;
     
     for (let i = 0; i < goal.children.length; i++) {
@@ -192,11 +262,12 @@ function isExequivel(goal) {
 	let c = goal.children[i];
 	
         if (c.type == 'Goal') {
+            console.log(c);
             result = isExequivel(c);
         } else {
+            console.log(c)
 	    var result = 'PENDING';
         var value = c.name;
-            debugger
 	    result = getTaskResult(c.id);
             
             ui.changeColorElement(getColour(result), istar.getCellById(c.id));
@@ -204,7 +275,6 @@ function isExequivel(goal) {
 	    result = getResult(result);
     }
     let linkarray=[]
-    debugger
 
     isOrRefinement(goal, linkarray);
     if(linkarray.length>0){
@@ -309,7 +379,9 @@ function readTree() {
     goals.forEach(function(g) {
         g.children = getGoalChildren(g);
     });
-    
+    goals.forEach(function(parentGoal){
+
+    })
     let lastSize = goals.length;
     let allGoals = JSON.parse(JSON.stringify(goals));
     
@@ -494,7 +566,6 @@ function getPriorities(goal, sumarray){
         }else{
             let priority = getPriorityValue(c.id)
             sumarray.push(priority);
-            // debugger;
           
         }
         
