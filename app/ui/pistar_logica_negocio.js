@@ -2,6 +2,8 @@ var model = null;
 var links = null;
 
 var goals = [];
+var tasks = new Array();
+
 let allGoals=[];
 
 var goalColours = {
@@ -15,6 +17,7 @@ function proccessTree() {
     let totalPriority;
     let totalGoals;
     console.log("começa")
+    tasks = [];
     readTree();
 
     let a;
@@ -39,8 +42,8 @@ function proccessTree() {
     console.log("Calculando ");
     calculateGoalPriority(goals[0])
     totalPriority = getTotalPriority();
-    totalGoals = allGoals.length();
-    debugger
+    totalGoals = allGoals.length;
+    //Pegar do goal 0, pra
     let myParents = getTasksParents();
     for(var key in myParents){
         console.log(key, myParents[key]);
@@ -60,7 +63,6 @@ function proccessTree() {
 }
 
 function getTotalPriority(){
-    debugger;
     let sum = 0;
 
     _.map(istar.getElements(), function(node) { 
@@ -188,7 +190,6 @@ function getPendingFailed(goal, pending, failed){
             console.log("aqui ", result);
             if(result==="PENDING") pending.push(c);
             if(result=="FAILURE") failed.push(c);
-            // debugger;
           
         }
         
@@ -227,7 +228,6 @@ function getTasksParents(){
     //pegar todas as tasks
     //pegar os goals
     //para cada goal verificar o filho
-    debugger
     
     goals.forEach(function(g) {
         g.children = getGoalChildren(g);
@@ -247,8 +247,6 @@ function getTasksParents(){
 
     })
 
-    console.log(taskHash);
-    debugger
 
     return taskHash;
 }
@@ -259,21 +257,42 @@ function isExequivel(goal) {
     
     for (let i = 0; i < goal.children.length; i++) {
 	
-	let c = goal.children[i];
+    let c = goal.children[i];
+    debugger
 	
         if (c.type == 'Goal') {
-            console.log(c);
+            console.log("goal",c);
             result = isExequivel(c);
+            debugger
         } else {
-            console.log(c)
+            console.log("task", c)
+            let childTask = false;
+            //if task tiver filhos ela nao tera bdd
+            tasks.forEach(function(t){
+                if(c.id === t.id){
+                    if(t.children.length>0){
+                        c.children = t.children;
+                        childTask = true;
+                        isExequivel(c);
+                    }
+                }
+            })
 	    var result = 'PENDING';
-        var value = c.name;
-	    result = getTaskResult(c.id);
-            
-            ui.changeColorElement(getColour(result), istar.getCellById(c.id));
-            
-	    result = getResult(result);
+            if(childTask){
+                result = c.result;
+            }
+            else{
+                var value = c.name;
+                result = getTaskResult(c.id);
+                    
+                    ui.changeColorElement(getColour(result), istar.getCellById(c.id));
+                    
+                    result = getResult(result);
+
+            }
+
     }
+    debugger
     let linkarray=[]
 
     isOrRefinement(goal, linkarray);
@@ -296,7 +315,7 @@ function isExequivel(goal) {
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     }
     ui.changeColorElement(goalColours[goal.result], istar.getCellById(goal.id));
-    
+    debugger
     return goal.result;
 }
 
@@ -353,6 +372,8 @@ function getTaskValue(nodeId) {
         } catch (e) {
             //console.log(e);
         }
+    }else{
+        console.log("no keys");
     }
         
     return value;
@@ -379,9 +400,23 @@ function readTree() {
     goals.forEach(function(g) {
         g.children = getGoalChildren(g);
     });
-    goals.forEach(function(parentGoal){
+    //tasks
+    debugger
+    _.map(istar.getElements(), function(node) { 
+        if (node.attributes.type == 'Task') {
+            tasks.push({
+                id: node.attributes.id,
+                name: node.attributes.name,
+                type: node.attributes.type,
+            });
+        }
+    });
+    console.log(tasks);
+    debugger
 
-    })
+    tasks.forEach(function(t) {
+        t.children = getGoalChildren(t);
+    });
     let lastSize = goals.length;
     let allGoals = JSON.parse(JSON.stringify(goals));
     
