@@ -18,24 +18,10 @@ function proccessTree() {
     let totalGoals;
     console.log("começa")
     tasks = [];
+    allGoals = [];
     readTree();
 
     let a;
-    // let teste = {
-    //     "primeiro" : [1,2,3],
-    //     "segundo" : [4,5,6]
-    // }
-    // teste["primeiro"].push(8);
-    // if(!teste["terceiro"]){
-    //     teste["terceiro"] = [];
-    // }
-    // teste["terceiro"].push(10)
-    // if(!teste["terceiro"]){
-    //     teste["terceiro"] = [];
-    // }
-    // for (var key in teste){
-    //     console.log(teste[key]);
-    // }
 
 
     a = isExequivel(goals[0]);
@@ -44,14 +30,22 @@ function proccessTree() {
     totalPriority = getTotalPriority();
     totalGoals = allGoals.length;
     //Pegar do goal 0, pra
-    let myParents = getTasksParents();
-    for(var key in myParents){
-        console.log(key, myParents[key]);
-    }
+    // let myParents = getTasksParents();
+    // for(var key in myParents){
+    //     console.log(key, myParents[key]);
+    // 
     //pegar do goal 0 e fazer a somatória até chegar na task, aproveita e já soma
 
 
-   
+    //calculateTaskSumCoverage(goals[0], 0, 0);
+  
+    // getTasksRelatedGoals(goals[0], [])
+    getChildrenGoals(goals[0]);
+    getTaskGoals();
+    getAllTaskNodes();
+    calculateTaskProperties()
+    console.log("Priority:", tasks);
+    debugger;
    // let totalPriorities =  sumPriorities(goals[0]);
     let pending=[];
     let failed=[];
@@ -60,6 +54,295 @@ function proccessTree() {
     //console.log(failed)
 
 
+}
+function doesIncludesId(id, goal){
+    let c = goal.children.find(child => child.id == id)
+    
+    if(!c) return false;
+    return true;
+
+}
+
+function getAllTaskNodes(){
+    tasks.forEach(task => getNodesTaskfromBFS(task));
+}
+function getNodesTaskfromBFS(task){
+    let visited = new Object();
+    let nodes = allGoals.concat(tasks)
+    nodes.forEach(node =>{
+        visited[node.id] = false;
+    })
+
+    let queue = []
+    //populando 
+    nodes.forEach(node =>{
+        if(node.id!= task.id){
+            if(doesIncludesId(task.id, node)){
+                if(!task.relatedNodes){
+                    task.relatedNodes = []
+                }
+                if(!task.relatedNodes.includes(node)){
+                    task.relatedNodes.push(node);
+                }
+                if(!queue.includes(node)){
+                    queue.push(node);
+                }
+            }
+        }
+    })
+
+    while(queue.length>0){
+        let current = queue.shift();
+        nodes.forEach(n =>{
+            if(!visited[n.id]){
+                if(doesIncludesId(current.id, n)){
+                    visited[n.id] = true;
+                    if(!queue.includes(n)){//se não estiver na fila
+                        queue.push(n);//enfia na fila
+    
+                    }
+                    if(!task.relatedNodes.includes(n)){//se não estiver na lista
+                        task.relatedNodes.push(n)
+                    }
+                }
+
+            }
+
+        })
+    }
+
+}
+
+function getRelatedGoalsFromParent(task){
+    task.parent.forEach(p =>{
+        if(!task.relatedGoals){
+            task.relatedGoals = p.relatedGoals;
+        }
+        else{
+            pushDifference(task, p.relatedGoals);
+        }
+    })
+}
+
+
+function getGoalstoTaskfromBFS(task){
+    let visited = new Object();
+    allGoals.forEach(goal =>{
+        visited[goal.id] = false;
+    })
+
+    let queue = []
+    //populando queue
+    if(!task.relatedGoals){
+        getTaskParentT(task);
+        console.log("parent;",task);
+        getRelatedGoalsFromParent(task);
+    }
+    task.relatedGoals.forEach(g => queue.push(g));
+    while(queue.length>0){
+        let current = queue.shift();
+        allGoals.forEach(g =>{
+            if(!visited[g.id]){
+                if(doesIncludesId(current.id, g)){
+                    visited[g.id] = true;
+                    if(!queue.includes(g)){//se não estiver na fila
+                        queue.push(g);//enfia na fila
+    
+                    }
+                    if(!task.relatedGoals.includes(g)){//se não estiver na lista
+                        task.relatedGoals.push(g)
+                    }
+                }
+
+            }
+
+        })
+    }
+
+}
+
+function copyGoalstoChildren(task){
+    
+    if(task.children && task.children.length>0){
+
+        for(let i=0; i<task.children.length;i++){
+            let t = task.children[i];
+            t.relatedGoals = task.relatedGoals
+            copyGoalstoChildren(t);
+        }
+    }
+}
+
+function getTaskNodes(){
+    //get 1st order relationships
+    let nodes = allGoals.concat(tasks)
+    tasks.forEach(function(task){
+        allGoals.forEach(function(goal){
+
+            if(doesIncludesId(task.id, goal)){
+                console.log("Inclui : ", goal.name, task);
+                if(!task.relatedGoals) task.relatedGoals = [];
+                task.relatedGoals.push(goal);
+                
+            }
+        })
+        copyGoalstoChildren(task);
+    })
+    console.log(tasks)
+    tasks.forEach(task => getGoalstoTaskfromBFS(task));
+
+}
+
+function getTaskParentT(task){
+    tasks.forEach(function(t){
+        if(doesIncludesId(task.id, t)){
+            if(!task.parent) task.parent=[];
+            task.parent.push(t);
+        }
+    })
+
+}
+
+function getTaskGoals(){
+    //get 1st order relationships
+    tasks.forEach(function(task){
+        allGoals.forEach(function(goal){
+            if(doesIncludesId(task.id, goal)){
+                console.log("Inclui : ", goal.name, task);
+                if(!task.relatedGoals) task.relatedGoals = [];
+                task.relatedGoals.push(goal);
+                
+            }
+        })
+
+
+    })
+    console.log(tasks)
+    tasks.forEach(task => getGoalstoTaskfromBFS(task));
+
+}
+
+function pushDifference(task, array){
+    missingGoals = array.forEach(arrayGoal =>{
+        if(!task.relatedGoals.includes(arrayGoal)){//se não incluir
+            task.relatedGoals.push(arrayGoal);
+        }
+    })
+}
+
+function getChildrenGoals(goal){
+    if(goal.type == 'Goal'){
+        let actualGoal =  allGoals.find(g =>{
+            if(g.id == goal.id) return g;
+        })
+    
+        actualGoal.children = goal.children;
+    
+        for (let i = 0; i < goal.children.length; i++){
+            let c  = goal.children[i];
+            getChildrenGoals(c);
+        }
+
+    }
+
+}
+
+// function getTasksRelatedGoals(goal, array){
+//     thisarray = array;
+//     if(goal.type == 'Goal'){
+//         thisarray.push(goal);
+//     }
+
+//     for (let i = 0; i < goal.children.length; i++) {
+	
+//         let c = goal.children[i];
+
+//         if (c.type == 'Goal') {
+//             console.log("goal priority",c.name);
+//             result = getTasksRelatedGoals(c, thisarray);
+//         } else {
+
+//             //if task tiver filhos ela nao tera bdd
+//             console.log("tasks", tasks);
+//             tasks.forEach(function(t){
+//                 console.log("compare", c, t);
+//                 if(c.id == t.id){
+//                     if(!t.arrayGoals){
+//                         t.arrayGoals = thisarray;
+//                     }
+//                     else{
+//                         pushDifference(t, thisarray);
+//                     }
+
+//                     if(t.children.length>0){
+//                         c.children = t.children;
+//                         getTasksRelatedGoals(c, thisarray);
+//                     }
+//                     thisarray = [];
+//                 }
+//             })
+//         }
+
+//     }
+    
+
+// }
+
+function calculateTaskProperties(){
+    tasks.forEach(function (t){
+        if(!t.sum) t.sum = 0;
+        t.relatedGoals.forEach(g =>{
+            let gpriority = getFactorValue(g.id, "priority");
+            t.sum = t.sum + parseFloat(gpriority);
+        })
+        let numGoals = t.relatedGoals.length;
+        debugger;
+        t.coverage = numGoals;
+
+    })
+}
+
+function calculateTaskSumCoverage(goal, sum, numLinks){
+    if(goal.type == 'Goal'){
+        let priority = getFactorValue(goal.id, "priority");
+        sum = sum + parseFloat(priority);
+        numLinks = numLinks+1;
+        console.log("goal: ", goal.name, sum, numLinks);
+    }
+        
+    for (let i = 0; i < goal.children.length; i++) {
+	
+        let c = goal.children[i];
+        
+            if (c.type == 'Goal') {
+                console.log("goal priority",c.name);
+                result = calculateTaskSumCoverage(c, sum, numLinks);
+            } else {
+                console.log("task", c)
+
+                //if task tiver filhos ela nao tera bdd
+                console.log("tasks", tasks);
+                tasks.forEach(function(t){
+                    console.log("compare", c, t);
+                    if(c.id == t.id){
+                        if(!t.sum) t.sum = 0;
+                        t.sum = t.sum + sum;
+                        if(!t.coverage) t.coverage = 0;
+                        t.coverage = t.coverage + numLinks;
+
+                        if(t.children.length>0){
+                            c.children = t.children;
+                            sum = sum + task.sum;
+                            calculateTaskSumCoverage(c, sum, numLinks);
+                        }
+                    }
+                })
+    
+        }
+
+        
+    }
+    return;
 }
 
 function getTotalPriority(){
@@ -258,12 +541,10 @@ function isExequivel(goal) {
     for (let i = 0; i < goal.children.length; i++) {
 	
     let c = goal.children[i];
-    debugger
 	
         if (c.type == 'Goal') {
             console.log("goal",c);
             result = isExequivel(c);
-            debugger
         } else {
             console.log("task", c)
             let childTask = false;
@@ -292,7 +573,6 @@ function isExequivel(goal) {
             }
 
     }
-    debugger
     let linkarray=[]
 
     isOrRefinement(goal, linkarray);
@@ -315,7 +595,6 @@ function isExequivel(goal) {
         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'RESULT', goal.result ? 'Positivo' : 'Negativo');
     }
     ui.changeColorElement(goalColours[goal.result], istar.getCellById(goal.id));
-    debugger
     return goal.result;
 }
 
@@ -401,18 +680,18 @@ function readTree() {
         g.children = getGoalChildren(g);
     });
     //tasks
-    debugger
     _.map(istar.getElements(), function(node) { 
         if (node.attributes.type == 'Task') {
             tasks.push({
                 id: node.attributes.id,
                 name: node.attributes.name,
                 type: node.attributes.type,
+                sum: 0.0,
+                coverage: 0.0
             });
         }
     });
     console.log(tasks);
-    debugger
 
     tasks.forEach(function(t) {
         t.children = getGoalChildren(t);
