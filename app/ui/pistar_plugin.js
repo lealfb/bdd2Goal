@@ -196,14 +196,14 @@ ui.components.PropertiesTableView.prototype.renderCustomProperty = function (pro
             case 1:
                 customTemplate = renderCustomPropertyTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
                 break;
-            case 2:
+            // case 2:
 
-                customTemplate = renderPriorityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
-                break;
+            //     customTemplate = renderPriorityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+            //     break;
 
-            case 3:
-                customTemplate = renderComplexityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
-                break;
+            // case 3:
+            //     customTemplate = renderComplexityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+            //     break;
             default:
                 customTemplate = this.template({
                     propertyName: propertyName,

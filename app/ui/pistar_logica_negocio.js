@@ -44,6 +44,7 @@ function proccessTree() {
     getTaskGoals();
     getAllTaskNodes();
     calculateTaskProperties()
+    calculateTaskPriority(totalPriority, totalGoals)
     console.log("Priority:", tasks);
     debugger;
    // let totalPriorities =  sumPriorities(goals[0]);
@@ -288,6 +289,21 @@ function getChildrenGoals(goal){
 
 // }
 
+function calculateTaskPriority(totalPriority, totalGoals){
+    console.log("totalPriority, totalGoals", totalPriority, totalGoals)
+    tasks.forEach(t=>{
+        let averageSum = t.sum/totalPriority;
+        let averageCoverage = t.coverage/totalGoals;
+        let priority = averageSum * averageCoverage;
+        t.priority = priority;
+        debugger
+        createPropertiesTask(t.id, t.priority)
+
+
+    })
+
+}
+
 function calculateTaskProperties(){
     tasks.forEach(function (t){
         if(!t.sum) t.sum = 0;
@@ -296,7 +312,6 @@ function calculateTaskProperties(){
             t.sum = t.sum + parseFloat(gpriority);
         })
         let numGoals = t.relatedGoals.length;
-        debugger;
         t.coverage = numGoals;
 
     })
@@ -366,6 +381,20 @@ function getTotalPriority(){
     })
 
     return sum;
+}
+
+function createPropertiesTask(taskId, priority){
+    var node = istar.getCellById(taskId);
+    var keys = Object.keys(node.attributes.customProperties);
+    if(keys.length==1){
+        ui.changeCustomPropertyValue(istar.getCellById(taskId), 'test', "");
+
+    }
+    ui.changeCustomPropertyValue(istar.getCellById(taskId), 'priority', priority);
+
+    console.log("keys length: ", keys.length)
+    debugger
+
 }
 
 function getFactorValue(nodeId, factor){
