@@ -12,7 +12,6 @@ var goalColours = {
 };
 
 function proccessTree() {
-    //loadNames();
 
     let totalPriority;
     let totalGoals;
@@ -22,45 +21,142 @@ function proccessTree() {
     readTree();
 
     let a;
-
-
     a = isExequivel(goals[0]);
-    console.log("Calculando ");
+
+    //
     calculateGoalPriority(goals[0])
     totalPriority = getTotalPriority();
     totalGoals = allGoals.length;
-    //Pegar do goal 0, pra
-    // let myParents = getTasksParents();
-    // for(var key in myParents){
-    //     console.log(key, myParents[key]);
-    // 
-    //pegar do goal 0 e fazer a somatória até chegar na task, aproveita e já soma
+    portTaskPreparation();
+    portCalculation(totalPriority, totalGoals);
+    let paths = [];
 
+    let i = {number:0}
+    pathDFD2(goals[0], paths, [], [], i)
+    paths.forEach(p => console.log(p))
+    
 
-    //calculateTaskSumCoverage(goals[0], 0, 0);
-  
-    // getTasksRelatedGoals(goals[0], [])
-    getChildrenGoals(goals[0]);
-    getTaskGoals();
-    getAllTaskNodes();
-    calculateTaskProperties()
-    calculateTaskPriority(totalPriority, totalGoals)
-    console.log("Priority:", tasks);
-    debugger;
-   // let totalPriorities =  sumPriorities(goals[0]);
-    let pending=[];
-    let failed=[];
-    //getPendingFailed(goals[0], pending, failed)
-    //console.log(pending);
-    //console.log(failed)
+    
 
 
 }
+
+function portTaskPreparation(){
+    getChildrenGoals(goals[0])
+    getTaskGoals();
+    getAllTaskNodes();
+
+}
+
+function portCalculation(totalPriority, totalGoals){
+    calculateTaskProperties()
+    calculateTaskPriority(totalPriority, totalGoals)
+
+}
+
 function doesIncludesId(id, goal){
     let c = goal.children.find(child => child.id == id)
     
     if(!c) return false;
     return true;
+
+}
+
+function pathDFD2(goal, paths, visited, queue, i){
+    queue.push(goal);
+    visited.push(goal.id)
+
+    if(!goal.children){//se for folha
+
+        if(!paths[i.number]){
+            paths[i]=[]
+        }
+        queue.forEach(q => paths[i].push(q));
+        console.log(paths[i])
+        i.number++
+        queue.pop();
+        return;
+
+    }
+    // let linkarray=[];
+    // isOrRefinement(goal, linkarray);
+    // if(linkarray.length>0){//if is type OR
+    //     let tempPaths = [];
+    //         decideORPath(child, tempPaths, visited, queue, i);
+
+            //Soluções para a parte OR
+            //1-  a mais facil: Usar decideORPath p criar paths temporários, decidir qual é o com mais peso entre eles e usar isso la dentro
+            //2 pegar todos os caminhos independentes e marcar os caminhos que são OR como OR
+            // tendo todos os caminhos em paths eu posso entrar em paths, verificar todos os nodes que tenham ligações OR
+            //ter todos os caminhos
+            ///fazer uma função p comparar os caminhos. se os caminhos possuirem nodes com decomposição or:
+            //Buscar o node com decomposição OR mais proximo da folha, definir o maior caminho
+            //e a partir daí fazer o mesmo para os nodes menos proximos da folha
+
+    // }
+    goal.children.forEach(child => pathDFD2(child, paths, visited, queue, i))
+
+    let c =goal.children.filter(child => !visited.includes(child.id))
+    if(c.length == 0){
+        queue.pop();
+        return;
+
+    }
+}
+
+function pathsDFS(goal, paths){
+    let visited = [];
+    let nodes = allGoals.concat(tasks)
+    nodes.forEach(node =>{
+        visited[node.id] = false;
+    })
+
+    let stack = [];
+
+    stack.push(goal)
+
+    visited.push(goal.id)
+    let copy = [];
+    let i = 0;
+    while(stack.length>0){
+        let n = stack.pop();
+        console.log(n)
+        copy.push(n);
+
+        if(n.children){
+            n.children.filter( child => !visited.includes(child.id))
+            .forEach(child =>{
+                visited.push(child.id);
+                stack.push(child);
+            })
+
+            let tryChild = n.children.filter( child => !visited.includes(child.id))
+            if(tryChild.length==0){
+                copy.pop();
+            }
+
+        }
+        else{
+            copy.forEach(el=>{
+                if(!paths[i]){
+                    paths[i]=[];
+
+                }
+                paths[i].push(el);
+                debugger;
+            })
+            i++
+
+            copy.pop();
+
+        }
+
+
+    }
+
+    paths.forEach(p=> console.log(p));
+    debugger
+
 
 }
 
@@ -209,16 +305,13 @@ function getTaskGoals(){
     tasks.forEach(function(task){
         allGoals.forEach(function(goal){
             if(doesIncludesId(task.id, goal)){
-                console.log("Inclui : ", goal.name, task);
                 if(!task.relatedGoals) task.relatedGoals = [];
-                task.relatedGoals.push(goal);
-                
+                task.relatedGoals.push(goal);                
             }
         })
 
 
     })
-    console.log(tasks)
     tasks.forEach(task => getGoalstoTaskfromBFS(task));
 
 }
@@ -231,7 +324,7 @@ function pushDifference(task, array){
     })
 }
 
-function getChildrenGoals(goal){
+function getChildrenGoals(goal){//guarantees that each goal in allGoals has their children
     if(goal.type == 'Goal'){
         let actualGoal =  allGoals.find(g =>{
             if(g.id == goal.id) return g;
@@ -248,46 +341,6 @@ function getChildrenGoals(goal){
 
 }
 
-// function getTasksRelatedGoals(goal, array){
-//     thisarray = array;
-//     if(goal.type == 'Goal'){
-//         thisarray.push(goal);
-//     }
-
-//     for (let i = 0; i < goal.children.length; i++) {
-	
-//         let c = goal.children[i];
-
-//         if (c.type == 'Goal') {
-//             console.log("goal priority",c.name);
-//             result = getTasksRelatedGoals(c, thisarray);
-//         } else {
-
-//             //if task tiver filhos ela nao tera bdd
-//             console.log("tasks", tasks);
-//             tasks.forEach(function(t){
-//                 console.log("compare", c, t);
-//                 if(c.id == t.id){
-//                     if(!t.arrayGoals){
-//                         t.arrayGoals = thisarray;
-//                     }
-//                     else{
-//                         pushDifference(t, thisarray);
-//                     }
-
-//                     if(t.children.length>0){
-//                         c.children = t.children;
-//                         getTasksRelatedGoals(c, thisarray);
-//                     }
-//                     thisarray = [];
-//                 }
-//             })
-//         }
-
-//     }
-    
-
-// }
 
 function calculateTaskPriority(totalPriority, totalGoals){
     console.log("totalPriority, totalGoals", totalPriority, totalGoals)
@@ -296,7 +349,6 @@ function calculateTaskPriority(totalPriority, totalGoals){
         let averageCoverage = t.coverage/totalGoals;
         let priority = averageSum * averageCoverage;
         t.priority = priority;
-        debugger
         createPropertiesTask(t.id, t.priority)
 
 
@@ -392,8 +444,6 @@ function createPropertiesTask(taskId, priority){
     }
     ui.changeCustomPropertyValue(istar.getCellById(taskId), 'priority', priority);
 
-    console.log("keys length: ", keys.length)
-    debugger
 
 }
 
