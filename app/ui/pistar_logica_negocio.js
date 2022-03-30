@@ -15,6 +15,10 @@ function proccessTree() {
 
     let totalPriority;
     let totalGoals;
+    let penaltyW=1;
+    let benefitW=2;
+    let costW=1;
+    let riskW=0.5;
     console.log("começa")
     tasks = [];
     allGoals = [];
@@ -23,17 +27,19 @@ function proccessTree() {
     let a;
     a = isExequivel(goals[0]);
 
-    //
-    calculateGoalPriority(goals[0])
-    totalPriority = getTotalPriority();
-    totalGoals = allGoals.length;
-    portTaskPreparation();
-    portCalculation(totalPriority, totalGoals);
-    let paths = [];
+    calculateTaskProperties(penaltyW, benefitW, costW, riskW)
 
-    let i = {number:0}
-    pathDFD2(goals[0], paths, [], [], i)
-    paths.forEach(p => console.log(p))
+    //
+    // calculateGoalPriority(goals[0])
+    // totalPriority = getTotalPriority();
+    // totalGoals = allGoals.length;
+    // portTaskPreparation();
+    // portCalculation(totalPriority, totalGoals);
+    // let paths = [];
+
+    // let i = {number:0}
+    // pathDFD2(goals[0], paths, [], [], i)
+    // paths.forEach(p => console.log(p))
     
 
     
@@ -50,7 +56,7 @@ function portTaskPreparation(){
 
 function portCalculation(totalPriority, totalGoals){
     calculateTaskProperties()
-    calculateTaskPriority(totalPriority, totalGoals)
+    // calculateTaskPriority(totalPriority, totalGoals)
 
 }
 
@@ -143,7 +149,6 @@ function pathsDFS(goal, paths){
 
                 }
                 paths[i].push(el);
-                debugger;
             })
             i++
 
@@ -155,7 +160,6 @@ function pathsDFS(goal, paths){
     }
 
     paths.forEach(p=> console.log(p));
-    debugger
 
 
 }
@@ -355,16 +359,72 @@ function calculateTaskPriority(totalPriority, totalGoals){
     })
 
 }
-
-function calculateTaskProperties(){
+function calculateWeighted(costA, riskA, valueA, penaltyW, benefitW, costW, riskW){
     tasks.forEach(function (t){
-        if(!t.sum) t.sum = 0;
-        t.relatedGoals.forEach(g =>{
-            let gpriority = getFactorValue(g.id, "priority");
-            t.sum = t.sum + parseFloat(gpriority);
-        })
-        let numGoals = t.relatedGoals.length;
-        t.coverage = numGoals;
+        if(!t.priority) t.priority = 0;
+        let benefit = getFactorValue(t.id, "benefit");
+        let penalty = getFactorValue(t.id, "penalty");
+        let cost = getFactorValue(t.id, "cost");
+        let risk = getFactorValue(t.id, "risk");
+        debugger
+        
+
+        debugger
+        t.tValue = (benefit*benefitW) + (penalty *penaltyW)
+        t.Wcost = cost * costW;
+        t.Wrisk = risk * riskW;
+        valueA.push(t.tValue);
+        costA.push(t.Wcost)
+        riskA.push(t.Wrisk);
+        createPropertiesTask(t.id, t.tValue, "totalValue")
+        createPropertiesTask(t.id, t.Wcost, "weightedCost")
+        createPropertiesTask(t.id, t.Wrisk, "weightedRisk")        
+
+    })
+    console.log(costA)
+
+}
+
+function sumArray(arrayName){
+    let result  = arrayName.reduce((previous, current)=>{
+        if(Number.isNaN(current)){
+            current = 0;
+        }
+        return previous + current;
+
+    }, 0)
+
+    return result
+}
+
+function calculatePercentage(value, total){
+    return ((value/total)*100)
+}
+
+function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
+    let costArray = [];
+    let riskArray = [];
+    let valueArray = [];
+    calculateWeighted(costArray, riskArray, valueArray, penaltyW, benefitW, costW, riskW);
+    console.log(costArray)
+    let totalCost = sumArray(costArray);
+    let totalRisk = sumArray(riskArray);
+    let totalValue = sumArray(valueArray);
+    
+    tasks.forEach(function (t){
+        t.pValue = calculatePercentage(t.tValue, totalValue);
+        t.pCost = calculatePercentage(t.Wcost,totalCost);
+        t.pRisk = calculatePercentage(t.Wrisk,totalRisk);
+debugger
+       
+        let priority = (t.pValue / ((t.pCost * costW) + (t.pRisk * riskW)));
+        t.priority = priority;
+        createPropertiesTask(t.id, priority, "priority")
+        createPropertiesTask(t.id, t.pValue, "Value%")
+        createPropertiesTask(t.id, t.pCost, "Cost%")
+        createPropertiesTask(t.id, t.pRisk, "Risk%")
+
+
 
     })
 }
@@ -435,17 +495,30 @@ function getTotalPriority(){
     return sum;
 }
 
-function createPropertiesTask(taskId, priority){
+// function createPropertiesTask(taskId, priority){
+//     var node = istar.getCellById(taskId);
+//     var keys = Object.keys(node.attributes.customProperties);
+//     // if(keys.length==1){
+//     //     ui.changeCustomPropertyValue(istar.getCellById(taskId), 'test', "");
+
+//     // }
+//     // ui.changeCustomPropertyValue(istar.getCellById(taskId), 'priority', priority);
+
+
+// }
+
+function createPropertiesTask(taskId, propvalue, propname){
     var node = istar.getCellById(taskId);
     var keys = Object.keys(node.attributes.customProperties);
-    if(keys.length==1){
-        ui.changeCustomPropertyValue(istar.getCellById(taskId), 'test', "");
+    // if(keys.length==1){
+    //     ui.changeCustomPropertyValue(istar.getCellById(taskId), 'test', "");
 
-    }
-    ui.changeCustomPropertyValue(istar.getCellById(taskId), 'priority', priority);
+    // }
+     ui.changeCustomPropertyValue(istar.getCellById(taskId), propname, propvalue);
 
 
 }
+
 
 function getFactorValue(nodeId, factor){
 
