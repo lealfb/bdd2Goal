@@ -227,6 +227,10 @@ function showJsonUploadModal() {
 	$('.modal-json').modal('show');
 }
 
+function showWeightModal() {
+	$('.modal-wieger').modal('show');
+}
+
 function loadJsonData(source) {
 	var list = source.files;
 	

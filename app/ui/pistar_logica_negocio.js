@@ -6,20 +6,59 @@ var tasks = new Array();
 
 let allGoals=[];
 
+let penaltyW=1;
+let benefitW=2;
+let costW=1;
+let riskW=0.5;
+
 var goalColours = {
     'true' : '#6CFA4B',
     'false': '#FA7267'
 };
 
+function getBenefitWeight(weight){
+    benefitW = weight;
+    console.log("benefit", benefitW)
+
+}
+
+function getPenaltyWeight(weight){
+    penaltyW = weight;
+    console.log("penalty ", penaltyW)
+
+}
+
+function getCostWeight(weight){
+    costW = weight;
+    console.log("cost ", costW)
+
+
+}
+function getRiskWeight(weight){
+    riskW = weight;
+    console.log("risk ", riskW)
+
+}
+
+function priorityTree(){
+    let totalPriority;
+    let totalGoals;
+
+    tasks = [];
+    allGoals = [];
+    readTree();
+
+    let a;
+    calculateTaskProperties(penaltyW, benefitW, costW, riskW)
+
+}
+
+
 function proccessTree() {
 
     let totalPriority;
     let totalGoals;
-    let penaltyW=1;
-    let benefitW=2;
-    let costW=1;
-    let riskW=0.5;
-    console.log("começa")
+
     tasks = [];
     allGoals = [];
     readTree();
@@ -27,7 +66,6 @@ function proccessTree() {
     let a;
     a = isExequivel(goals[0]);
 
-    calculateTaskProperties(penaltyW, benefitW, costW, riskW)
 
     //
     // calculateGoalPriority(goals[0])
@@ -39,7 +77,6 @@ function proccessTree() {
 
     // let i = {number:0}
     // pathDFD2(goals[0], paths, [], [], i)
-    // paths.forEach(p => console.log(p))
     
 
     
@@ -78,7 +115,6 @@ function pathDFD2(goal, paths, visited, queue, i){
             paths[i]=[]
         }
         queue.forEach(q => paths[i].push(q));
-        console.log(paths[i])
         i.number++
         queue.pop();
         return;
@@ -126,7 +162,6 @@ function pathsDFS(goal, paths){
     let i = 0;
     while(stack.length>0){
         let n = stack.pop();
-        console.log(n)
         copy.push(n);
 
         if(n.children){
@@ -159,7 +194,6 @@ function pathsDFS(goal, paths){
 
     }
 
-    paths.forEach(p=> console.log(p));
 
 
 }
@@ -236,7 +270,6 @@ function getGoalstoTaskfromBFS(task){
     //populando queue
     if(!task.relatedGoals){
         getTaskParentT(task);
-        console.log("parent;",task);
         getRelatedGoalsFromParent(task);
     }
     task.relatedGoals.forEach(g => queue.push(g));
@@ -281,7 +314,6 @@ function getTaskNodes(){
         allGoals.forEach(function(goal){
 
             if(doesIncludesId(task.id, goal)){
-                console.log("Inclui : ", goal.name, task);
                 if(!task.relatedGoals) task.relatedGoals = [];
                 task.relatedGoals.push(goal);
                 
@@ -289,7 +321,6 @@ function getTaskNodes(){
         })
         copyGoalstoChildren(task);
     })
-    console.log(tasks)
     tasks.forEach(task => getGoalstoTaskfromBFS(task));
 
 }
@@ -347,7 +378,6 @@ function getChildrenGoals(goal){//guarantees that each goal in allGoals has thei
 
 
 function calculateTaskPriority(totalPriority, totalGoals){
-    console.log("totalPriority, totalGoals", totalPriority, totalGoals)
     tasks.forEach(t=>{
         let averageSum = t.sum/totalPriority;
         let averageCoverage = t.coverage/totalGoals;
@@ -366,11 +396,10 @@ function calculateWeighted(costA, riskA, valueA, penaltyW, benefitW, costW, risk
         let penalty = getFactorValue(t.id, "penalty");
         let cost = getFactorValue(t.id, "cost");
         let risk = getFactorValue(t.id, "risk");
-        debugger
         
 
-        debugger
         t.tValue = (benefit*benefitW) + (penalty *penaltyW)
+        console.log(t.tValue);
         t.Wcost = cost * costW;
         t.Wrisk = risk * riskW;
         valueA.push(t.tValue);
@@ -381,7 +410,6 @@ function calculateWeighted(costA, riskA, valueA, penaltyW, benefitW, costW, risk
         createPropertiesTask(t.id, t.Wrisk, "weightedRisk")        
 
     })
-    console.log(costA)
 
 }
 
@@ -402,27 +430,29 @@ function calculatePercentage(value, total){
 }
 
 function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
+    debugger
+    console.log("penalty:", penaltyW)
     let costArray = [];
     let riskArray = [];
     let valueArray = [];
     calculateWeighted(costArray, riskArray, valueArray, penaltyW, benefitW, costW, riskW);
-    console.log(costArray)
     let totalCost = sumArray(costArray);
     let totalRisk = sumArray(riskArray);
     let totalValue = sumArray(valueArray);
-    
     tasks.forEach(function (t){
         t.pValue = calculatePercentage(t.tValue, totalValue);
         t.pCost = calculatePercentage(t.Wcost,totalCost);
         t.pRisk = calculatePercentage(t.Wrisk,totalRisk);
-debugger
        
         let priority = (t.pValue / ((t.pCost * costW) + (t.pRisk * riskW)));
         t.priority = priority;
+        console.log("P:", t.priority)
+    //    debugger
+
         createPropertiesTask(t.id, priority, "priority")
-        createPropertiesTask(t.id, t.pValue, "Value%")
-        createPropertiesTask(t.id, t.pCost, "Cost%")
-        createPropertiesTask(t.id, t.pRisk, "Risk%")
+        createPropertiesTask(t.id, t.pValue, "ValueP")
+        createPropertiesTask(t.id, t.pCost, "CostP")
+        createPropertiesTask(t.id, t.pRisk, "RiskP")
 
 
 
@@ -434,7 +464,6 @@ function calculateTaskSumCoverage(goal, sum, numLinks){
         let priority = getFactorValue(goal.id, "priority");
         sum = sum + parseFloat(priority);
         numLinks = numLinks+1;
-        console.log("goal: ", goal.name, sum, numLinks);
     }
         
     for (let i = 0; i < goal.children.length; i++) {
@@ -442,15 +471,11 @@ function calculateTaskSumCoverage(goal, sum, numLinks){
         let c = goal.children[i];
         
             if (c.type == 'Goal') {
-                console.log("goal priority",c.name);
                 result = calculateTaskSumCoverage(c, sum, numLinks);
             } else {
-                console.log("task", c)
 
                 //if task tiver filhos ela nao tera bdd
-                console.log("tasks", tasks);
                 tasks.forEach(function(t){
-                    console.log("compare", c, t);
                     if(c.id == t.id){
                         if(!t.sum) t.sum = 0;
                         t.sum = t.sum + sum;
@@ -488,7 +513,6 @@ function getTotalPriority(){
     allGoals.forEach(function(goal){
         var node = istar.getCellById(goal.id);
         value = parseFloat(node.attributes.customProperties["priority"])
-        console.log(value);
         sum = sum + value;
     })
 
@@ -528,7 +552,6 @@ function getFactorValue(nodeId, factor){
     var value = '';
 
     value = node.attributes.customProperties[factor];
-    console.log("value ", factor, " -- ", value);
     return value;
 }
 
@@ -605,9 +628,7 @@ function getPendingFailed(goal, pending, failed){
             //so fazer isso se o goal for failed
             //atribuir depois uma cor diferente pros goals que passaram mas cujas tasks estao failed
             // var keys = Object.keys(c.attributes.customProperties);
-            console.log("gOAL");
 
-            console.log(c);
             if(c.result== false){
                 getPendingFailed(c, pending, failed);
 
@@ -615,14 +636,11 @@ function getPendingFailed(goal, pending, failed){
             
 
         }else{
-            console.log("task\n");
-            console.log(c);
 
 
             var result = 'PENDING';
 
 	        result = getTaskResult(c.id);
-            console.log("aqui ", result);
             if(result==="PENDING") pending.push(c);
             if(result=="FAILURE") failed.push(c);
           
@@ -695,10 +713,8 @@ function isExequivel(goal) {
     let c = goal.children[i];
 	
         if (c.type == 'Goal') {
-            console.log("goal",c);
             result = isExequivel(c);
         } else {
-            console.log("task", c)
             let childTask = false;
             //if task tiver filhos ela nao tera bdd
             tasks.forEach(function(t){
@@ -801,10 +817,8 @@ function getTaskValue(nodeId) {
         try {
             value = normalize(node.attributes.customProperties[keys[1]]);
         } catch (e) {
-            //console.log(e);
         }
     }else{
-        console.log("no keys");
     }
         
     return value;
@@ -843,7 +857,6 @@ function readTree() {
             });
         }
     });
-    console.log(tasks);
 
     tasks.forEach(function(t) {
         t.children = getGoalChildren(t);
@@ -1045,4 +1058,7 @@ function getPriorities(goal, sumarray){
 
 $(document).ready(function () {
     $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Verificar Alcançabilidade</a>');
+    $('#menu-button-examples').parent().append('<a id="menu-wieger-weights" class="btn btn-default" onclick="showWeightModal();">Modificar Pesos</a>');
+    $('#menu-button-examples').parent().append('<a id="menu-calculate-priority" class="btn btn-default" onclick="priorityTree();">Calcular Prioridade</a>');
+
 });
