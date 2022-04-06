@@ -50,7 +50,7 @@ function priorityTree(){
 
     let a;
     calculateTaskProperties(penaltyW, benefitW, costW, riskW);
-    //propagatePriority(goals[0])
+    propagatePriority(goals[0])
 
 }
 
@@ -86,6 +86,62 @@ function proccessTree() {
 }
 function propagatePriority(goal){
     //pegar das folhas e subir
+    debugger
+    let result= 0;
+    let goalChildren = goal.children.filter((c) => c.type == 'Goal')
+
+
+    while(goalChildren.length>0){
+        let g = goalChildren.pop();
+        propagatePriority(g);
+    }
+
+    //considering only tasks or that goals have already priority
+
+    for (let i = 0; i < goal.children.length; i++){
+        //first we need to find all children that are goals
+
+        //after all goal children are found we go to task children
+        let c = goal.children[i];
+        if(c.type == 'Goal'){
+            result = parseFloat(c.priority);
+        }
+        else{
+            result = parseFloat(getFactorValue(c.id, "priority"))  
+
+        }
+      
+        let linkarray=[]
+
+        isOrRefinement(goal, linkarray);
+        if(linkarray.length>0){//if relationship is OR
+            if(goal.priority==null){
+                //At OR if goal.result = null it needes to receive the first task result
+                goal.priority = result
+            }
+            else{
+
+                goal.priority = (parseFloat(goal.priority) + result);
+            }
+
+        }
+        else{//if relationship is AND
+            if(goal.priority==null){
+                //At OR if goal.result = null it needes to receive the first task result
+                goal.priority = result;
+            }
+            else{
+                goal.priority = ((goal.priority) * (result));
+
+            }
+
+        }
+
+        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'Priority', String(goal.priority));
+
+
+    }
+    return goal.priority;
 
 }
 /*PORT FUNCTIONS
@@ -440,7 +496,6 @@ function calculatePercentage(value, total){
 }
 
 function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
-    debugger
     console.log("penalty:", penaltyW)
     let costArray = [];
     let riskArray = [];
@@ -457,7 +512,6 @@ function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
         let priority = (t.pValue / ((t.pCost * costW) + (t.pRisk * riskW)));
         t.priority = priority;
         console.log("P:", t.priority)
-    //    debugger
 
         createPropertiesTask(t.id, priority, "priority")
         createPropertiesTask(t.id, t.pValue, "ValueP")
