@@ -137,7 +137,7 @@ function propagatePriority(goal){
 
         }
 
-        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'Priority', String(goal.priority));
+        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', String(goal.priority));
 
 
     }
