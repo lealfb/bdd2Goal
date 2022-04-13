@@ -41,6 +41,12 @@ function getRiskWeight(weight){
 }
 
 function priorityTree(){
+    // m= ["T1.1", "T2.1", "T13.1", "G5"]
+    // m.sort(naturalCompare);
+    // console.log(m)
+    // debugger;
+
+
     let totalPriority;
     let totalGoals;
 
@@ -51,6 +57,12 @@ function priorityTree(){
     let a;
     calculateTaskProperties(penaltyW, benefitW, costW, riskW);
     propagatePriority(goals[0])
+    let paths = [];
+
+    let i = {number:0}
+    pathDFD2(goals[0], paths, [], [], i)
+    console.log("PATHS")
+    paths.forEach(p => console.log(p))
 
 }
 
@@ -167,7 +179,16 @@ function doesIncludesId(id, goal){
 
 }
 
+function naturalCompare(a,b){
+    //reference
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+    return a.name.localeCompare(b.name, 'en', {numeric: true, ignorePunctuation: true})
+
+}
+
+
 function pathDFD2(goal, paths, visited, queue, i){
+    debugger
     queue.push(goal);
     visited.push(goal.id)
 
@@ -176,16 +197,43 @@ function pathDFD2(goal, paths, visited, queue, i){
         if(!paths[i.number]){
             paths[i]=[]
         }
-        queue.forEach(q => paths[i].push(q));
+        let aux = [];
+        queue.forEach(q => aux.push(q));
+        paths.push(aux)
         i.number++
         queue.pop();
         return;
 
     }
-    // let linkarray=[];
-    // isOrRefinement(goal, linkarray);
-    // if(linkarray.length>0){//if is type OR
-    //     let tempPaths = [];
+    //Natural sort pra organizar quem vem primeiro
+    goal.children.sort(naturalCompare)
+
+
+    debugger
+
+     let linkarray=[];
+     isOrRefinement(goal, linkarray);
+     if(linkarray.length>0){//if is type OR
+        let child = getHighestPriorityNode(goal.children);
+        pathDFD2(child, paths, visited, queue, i)
+
+
+     }
+   
+    else{
+        goal.children.forEach(child => pathDFD2(child, paths, visited, queue, i))
+    
+    }
+
+    //verify if visited
+    let c =goal.children.filter(child => !visited.includes(child.id))
+    if(c.length == 0){
+        queue.pop();
+        return;
+
+    }
+
+     //     let tempPaths = [];
     //         decideORPath(child, tempPaths, visited, queue, i);
 
             //Soluções para a parte OR
@@ -198,14 +246,19 @@ function pathDFD2(goal, paths, visited, queue, i){
             //e a partir daí fazer o mesmo para os nodes menos proximos da folha
 
     // }
-    goal.children.forEach(child => pathDFD2(child, paths, visited, queue, i))
+}
 
-    let c =goal.children.filter(child => !visited.includes(child.id))
-    if(c.length == 0){
-        queue.pop();
-        return;
+function getHighestPriorityNode(children){
+    let result = null;
+    let resultPriority = 0;
+    children.forEach(child =>{
+        if(child.priority>resultPriority){
+            resultPriority = child.priority
+            result = child;
+        }
+    })
 
-    }
+    return result;
 }
 
 function pathsDFS(goal, paths){
@@ -324,70 +377,70 @@ function getRelatedGoalsFromParent(task){
 }
 
 
-function getGoalstoTaskfromBFS(task){
-    let visited = new Object();
-    allGoals.forEach(goal =>{
-        visited[goal.id] = false;
-    })
+// function getGoalstoTaskfromBFS(task){
+//     let visited = new Object();
+//     allGoals.forEach(goal =>{
+//         visited[goal.id] = false;
+//     })
 
-    let queue = []
-    //populando queue
-    if(!task.relatedGoals){
-        getTaskParentT(task);
-        getRelatedGoalsFromParent(task);
-    }
-    task.relatedGoals.forEach(g => queue.push(g));
-    while(queue.length>0){
-        let current = queue.shift();
-        allGoals.forEach(g =>{
-            if(!visited[g.id]){
-                if(doesIncludesId(current.id, g)){
-                    visited[g.id] = true;
-                    if(!queue.includes(g)){//se não estiver na fila
-                        queue.push(g);//enfia na fila
+//     let queue = []
+//     //populando queue
+//     if(!task.relatedGoals){
+//         getTaskParentT(task);
+//         getRelatedGoalsFromParent(task);
+//     }
+//     task.relatedGoals.forEach(g => queue.push(g));
+//     while(queue.length>0){
+//         let current = queue.shift();
+//         allGoals.forEach(g =>{
+//             if(!visited[g.id]){
+//                 if(doesIncludesId(current.id, g)){
+//                     visited[g.id] = true;
+//                     if(!queue.includes(g)){//se não estiver na fila
+//                         queue.push(g);//enfia na fila
     
-                    }
-                    if(!task.relatedGoals.includes(g)){//se não estiver na lista
-                        task.relatedGoals.push(g)
-                    }
-                }
+//                     }
+//                     if(!task.relatedGoals.includes(g)){//se não estiver na lista
+//                         task.relatedGoals.push(g)
+//                     }
+//                 }
 
-            }
+//             }
 
-        })
-    }
+//         })
+//     }
 
-}
+// }
 
-function copyGoalstoChildren(task){
+// function copyGoalstoChildren(task){
     
-    if(task.children && task.children.length>0){
+//     if(task.children && task.children.length>0){
 
-        for(let i=0; i<task.children.length;i++){
-            let t = task.children[i];
-            t.relatedGoals = task.relatedGoals
-            copyGoalstoChildren(t);
-        }
-    }
-}
+//         for(let i=0; i<task.children.length;i++){
+//             let t = task.children[i];
+//             t.relatedGoals = task.relatedGoals
+//             copyGoalstoChildren(t);
+//         }
+//     }
+// }
 
-function getTaskNodes(){
-    //get 1st order relationships
-    let nodes = allGoals.concat(tasks)
-    tasks.forEach(function(task){
-        allGoals.forEach(function(goal){
+// function getTaskNodes(){
+//     //get 1st order relationships
+//     let nodes = allGoals.concat(tasks)
+//     tasks.forEach(function(task){
+//         allGoals.forEach(function(goal){
 
-            if(doesIncludesId(task.id, goal)){
-                if(!task.relatedGoals) task.relatedGoals = [];
-                task.relatedGoals.push(goal);
+//             if(doesIncludesId(task.id, goal)){
+//                 if(!task.relatedGoals) task.relatedGoals = [];
+//                 task.relatedGoals.push(goal);
                 
-            }
-        })
-        copyGoalstoChildren(task);
-    })
-    tasks.forEach(task => getGoalstoTaskfromBFS(task));
+//             }
+//         })
+//         copyGoalstoChildren(task);
+//     })
+//     tasks.forEach(task => getGoalstoTaskfromBFS(task));
 
-}
+// }
 
 function getTaskParentT(task){
     tasks.forEach(function(t){
@@ -399,21 +452,21 @@ function getTaskParentT(task){
 
 }
 
-function getTaskGoals(){
-    //get 1st order relationships
-    tasks.forEach(function(task){
-        allGoals.forEach(function(goal){
-            if(doesIncludesId(task.id, goal)){
-                if(!task.relatedGoals) task.relatedGoals = [];
-                task.relatedGoals.push(goal);                
-            }
-        })
+// function getTaskGoals(){
+//     //get 1st order relationships
+//     tasks.forEach(function(task){
+//         allGoals.forEach(function(goal){
+//             if(doesIncludesId(task.id, goal)){
+//                 if(!task.relatedGoals) task.relatedGoals = [];
+//                 task.relatedGoals.push(goal);                
+//             }
+//         })
 
 
-    })
-    tasks.forEach(task => getGoalstoTaskfromBFS(task));
+//     })
+//     tasks.forEach(task => getGoalstoTaskfromBFS(task));
 
-}
+// }
 
 function pushDifference(task, array){
     missingGoals = array.forEach(arrayGoal =>{
@@ -440,19 +493,7 @@ function getChildrenGoals(goal){//guarantees that each goal in allGoals has thei
 
 }
 
-//PORT FUNCTION
-// function calculateTaskPriority(totalPriority, totalGoals){
-//     tasks.forEach(t=>{
-//         let averageSum = t.sum/totalPriority;
-//         let averageCoverage = t.coverage/totalGoals;
-//         let priority = averageSum * averageCoverage;
-//         t.priority = priority;
-//         createPropertiesTask(t.id, t.priority)
 
-
-//     })
-
-// }
 
 function calculateWeighted(costA, riskA, valueA, penaltyW, benefitW, costW, riskW){
     tasks.forEach(function (t){
