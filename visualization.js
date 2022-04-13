@@ -146,7 +146,6 @@ var prioritizationPlugin = function() {
 
     return {
         addSelectedAttributesToInnerElements: function () {
-            debugger
             $('#prioritizationSetupOptions input').each(function(){
                 addPropertyToEveryInnerElement($(this).prop('value'));
                 prioritizationPlugin.customProperties.push($(this).prop('value'));
@@ -154,7 +153,6 @@ var prioritizationPlugin = function() {
             alert('done!');
         },
         changeColorGradientBasedOnCriteria: function (criteria) {
-            debugger
             var t0 = performance.now();
 
             ui.changeColorElements(ui.defaultElementBackgroundColor);
@@ -183,23 +181,47 @@ var prioritizationPlugin = function() {
                 var maxValue = findMaxValue(criteria) || 100;
                 var currentValue = 0;
 
-                _.each(istar.graph.getElements(), function (element) {
+                _.each(istar.graph.getElements(), function (element, isOnlyTask = false) {
                     currentValue = element.prop('customProperties/' + criteria);
-                    if (currentValue && canBeNumerical(currentValue)) {
-                        var originalWidth = element.prop('size/width');
-                        var originalHeight = element.prop('size/height');
-                        var newWidth = originalWidth * element.prop('customProperties/' + criteria) / maxValue;
-                        var newHeight = originalHeight * element.prop('customProperties/' + criteria) / maxValue;
-                        if (newWidth < 20) newWidth = 20;
-                        if (newHeight < 10) newHeight = 10;
-                        element.resize(0 + newWidth, 0 + newHeight);
+                    if(isOnlyTask){
+                        if(element.attributes.type=='Task'){
+                            if (currentValue && canBeNumerical(currentValue)) {
+                                var originalWidth = element.prop('size/width');
+                                var originalHeight = element.prop('size/height');
+                                var newWidth = originalWidth * element.prop('customProperties/' + criteria) / maxValue;
+                                var newHeight = originalHeight * element.prop('customProperties/' + criteria) / maxValue;
+                                if (newWidth < 20) newWidth = 20;
+                                if (newHeight < 10) newHeight = 10;
+                                element.resize(0 + newWidth, 0 + newHeight);
+                            }
+                            else {
+                                //if no value is given, make it as small as possible
+                                var originalWidth = element.prop('size/width');
+                                var originalHeight = element.prop('size/height');
+                                element.resize(20, 10);
+                            }
+
+                        }
+
+                    }else{
+                        if (currentValue && canBeNumerical(currentValue)) {
+                            var originalWidth = element.prop('size/width');
+                            var originalHeight = element.prop('size/height');
+                            var newWidth = originalWidth * element.prop('customProperties/' + criteria) / maxValue;
+                            var newHeight = originalHeight * element.prop('customProperties/' + criteria) / maxValue;
+                            if (newWidth < 20) newWidth = 20;
+                            if (newHeight < 10) newHeight = 10;
+                            element.resize(0 + newWidth, 0 + newHeight);
+                        }
+                        else {
+                            //if no value is given, make it as small as possible
+                            var originalWidth = element.prop('size/width');
+                            var originalHeight = element.prop('size/height');
+                            element.resize(20, 10);
+                        }
+                        
                     }
-                    else {
-                        //if no value is given, make it as small as possible
-                        var originalWidth = element.prop('size/width');
-                        var originalHeight = element.prop('size/height');
-                        element.resize(20, 10);
-                    }
+                  
                 });
             }
             var t1 = performance.now();
@@ -230,29 +252,35 @@ var prioritizationPlugin = function() {
         },
         showAttributeIcon: function (options) {
             var t0 = performance.now();
-            _.each(istar.graph.getElements(), function (element) {
+            _.each(istar.graph.getElements(), function (element, isOnlyTask = false) {
                 if (element.isNode()) {
                     //addAttributeIcon(element, 'Priority', -25, options);
-                    if (options[0]) {
-                        addAttributeIcon(element, options[0].criteria, -50, options[0]);
+                    if(isOnlyTask){
+                        if(element.attributes.type=='Task'){
+                            if (options[0]) {
+                                addAttributeIcon(element, options[0].criteria, -50, options[0]);
+                            }
+                            if (options[1]) {
+                                addAttributeIcon(element, options[1].criteria, -25, options[1]);
+                            }
+                            if (options[2]) {
+                                addAttributeIcon(element, options[2].criteria, 0, options[2]);
+                            }
+                        }
+                        
                     }
-                    if (options[1]) {
-                        addAttributeIcon(element, options[1].criteria, -25, options[1]);
-                    }
-                    if (options[2]) {
-                        addAttributeIcon(element, options[2].criteria, 0, options[2]);
-                    }
-                    // addAttributeIcon(element, 'Benefit', -25, options);
-                    // addAttributeIcon(element, 'Risk', 0, options);
-                    // addAttributeSymbolBlackWhite(element, 'Priority', -25);
-                    // addAttributeSymbolBlackWhite(element, 'Cost', 0);
-                    // addAttributeSymbolBlackWhite(element, 'Benefit', 25);
-                    // addAttributeSymbolBlackSize(element, 'Priority', -25);
-                    // addAttributeSymbolBlackSize(element, 'Cost', 0);
-                    // addAttributeSymbolBlackSize(element, 'Benefit', 25);
-                    // addAttributeSymbolWithoutNumber(element, 'Priority', -25);
-                    // addAttributeSymbolWithoutNumber(element, 'Cost', 0);
-                    // addAttributeSymbolWithoutNumber(element, 'Benefit', 25);
+                    else{
+                        if (options[0]) {
+                            addAttributeIcon(element, options[0].criteria, -50, options[0]);
+                        }
+                        if (options[1]) {
+                            addAttributeIcon(element, options[1].criteria, -25, options[1]);
+                        }
+                        if (options[2]) {
+                            addAttributeIcon(element, options[2].criteria, 0, options[2]);
+                        }
+
+                    }                    
                 }
             });
             var t1 = performance.now();
@@ -349,7 +377,14 @@ $(document).ready(function () {
             options.resize = $('#showAttribute3Checkbox3').prop('checked');
             iconOptions[2] = options;
         }
-        prioritizationPlugin.showAttributeIcon(iconOptions);
+        if($('#onlyTasksCheckbox').prop('checked')){
+            prioritizationPlugin.showAttributeIcon(iconOptions, true);
+    
+        }
+        else{
+            prioritizationPlugin.showAttributeIcon(iconOptions);
+    
+        }
     });
 
     $('#release-action-button').click(function () {

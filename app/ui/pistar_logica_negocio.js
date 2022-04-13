@@ -86,7 +86,6 @@ function proccessTree() {
 }
 function propagatePriority(goal){
     //pegar das folhas e subir
-    debugger
     let result= 0;
     let goalChildren = goal.children.filter((c) => c.type == 'Goal')
 
@@ -97,7 +96,7 @@ function propagatePriority(goal){
     }
 
     //considering only tasks or that goals have already priority
-
+    let isAnd = false;
     for (let i = 0; i < goal.children.length; i++){
         //first we need to find all children that are goals
 
@@ -120,8 +119,9 @@ function propagatePriority(goal){
                 goal.priority = result
             }
             else{
-
-                goal.priority = (parseFloat(goal.priority) + result);
+                if(goal.priority<result){
+                    goal.priority = result;
+                }
             }
 
         }
@@ -131,16 +131,15 @@ function propagatePriority(goal){
                 goal.priority = result;
             }
             else{
-                goal.priority = ((goal.priority) * (result));
+                isAnd = true;
+                goal.priority = ((parseFloat(goal.priority)) + (result));
 
             }
 
-        }
-
-        ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', String(goal.priority));
-
-
+        }      
+        
     }
+    ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', String(goal.priority));
     return goal.priority;
 
 }
@@ -464,10 +463,10 @@ function calculateWeighted(costA, riskA, valueA, penaltyW, benefitW, costW, risk
         let risk = getFactorValue(t.id, "risk");
         
 
-        t.tValue = (benefit*benefitW) + (penalty *penaltyW)
+        t.tValue = ((benefit*benefitW) + (penalty *penaltyW)).toFixed(2)
         console.log(t.tValue);
-        t.Wcost = cost * costW;
-        t.Wrisk = risk * riskW;
+        t.Wcost = (cost * costW).toFixed(2);
+        t.Wrisk = (risk * riskW).toFixed(2);
         valueA.push(t.tValue);
         costA.push(t.Wcost)
         riskA.push(t.Wrisk);
@@ -484,7 +483,7 @@ function sumArray(arrayName){
         if(Number.isNaN(current)){
             current = 0;
         }
-        return previous + current;
+        return parseFloat(previous) + parseFloat(current);
 
     }, 0)
 
@@ -509,7 +508,7 @@ function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
         t.pCost = calculatePercentage(t.Wcost,totalCost);
         t.pRisk = calculatePercentage(t.Wrisk,totalRisk);
        
-        let priority = (t.pValue / ((t.pCost * costW) + (t.pRisk * riskW)));
+        let priority = (t.pValue / ((t.pCost * costW) + (t.pRisk * riskW))).toFixed(2);
         t.priority = priority;
         console.log("P:", t.priority)
 
