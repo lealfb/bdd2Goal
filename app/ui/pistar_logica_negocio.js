@@ -63,6 +63,7 @@ function priorityTree(){
     pathDFD2(goals[0], paths, [], [], i)
     console.log("PATHS")
     paths.forEach(p => console.log(p))
+    debugger
 
 }
 
@@ -151,6 +152,7 @@ function propagatePriority(goal){
         }      
         
     }
+    goal.priority = goal.priority.toFixed(2)
     ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', String(goal.priority));
     return goal.priority;
 
@@ -188,7 +190,6 @@ function naturalCompare(a,b){
 
 
 function pathDFD2(goal, paths, visited, queue, i){
-    debugger
     queue.push(goal);
     visited.push(goal.id)
 
@@ -209,19 +210,52 @@ function pathDFD2(goal, paths, visited, queue, i){
     goal.children.sort(naturalCompare)
 
 
-    debugger
 
      let linkarray=[];
      isOrRefinement(goal, linkarray);
      if(linkarray.length>0){//if is type OR
         let child = getHighestPriorityNode(goal.children);
+     
+
+        debugger
         pathDFD2(child, paths, visited, queue, i)
+
+        queue.pop();//substituir num futuro proximo
+        return;
 
 
      }
    
     else{
-        goal.children.forEach(child => pathDFD2(child, paths, visited, queue, i))
+        goal.children.forEach(child =>{
+            console.log(child)
+            if(child.type == 'Goal'){
+                result= getFactorValue(child.id, "RESULT")
+                if(result=="Negativo"){
+                    result = false;
+                }
+                else{
+                    result=true;
+                }
+                console.log("goal result ", result)
+    
+            }
+            if(child.type=='Task'){
+                result = getTaskResult(child.id);
+                result = getResult(result);
+                console.log("task result ", result)   
+    
+            }
+            debugger
+            if(result){
+                visited.push(child.id)
+            }
+            else{
+                pathDFD2(child, paths, visited, queue, i)
+
+            }
+
+        } )
     
     }
 
@@ -252,8 +286,9 @@ function getHighestPriorityNode(children){
     let result = null;
     let resultPriority = 0;
     children.forEach(child =>{
-        if(child.priority>resultPriority){
-            resultPriority = child.priority
+        childPrio= getFactorValue(child.id, "priority")
+        if(childPrio>resultPriority){
+            resultPriority = childPrio
             result = child;
         }
     })
