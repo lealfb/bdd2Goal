@@ -54,6 +54,10 @@ var prioritizationPlugin = function() {
         changeVisualAttribute(element, 'stroke', newColor);
     }
 
+    function testAlert(){
+        alert("Hello")
+    }
+
     function changeVisualAttribute(element, propertyName, propertValue){
         element.attr('rect/' + propertyName, propertValue);
         element.attr('circle/' + propertyName, propertValue);
@@ -294,7 +298,7 @@ $('#menu-item-plugin').html("Visualization plugin");
 $('#menu-plugin').append(
     '<a class="btn btn-default button-vertical" id="prioritization-attributes-modal-button" title="Add new attributes to multiple elements of the model" data-toggle="modal" data-target="#modal-attributes-setup">  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><br> Manage attributes </a>'
     + '<a class="btn btn-default button-vertical" id="prioritize-modal-button" title="Open visualization options for ranged values" data-toggle="modal" data-target="#modal-prioritization-visualization"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <br> Visualize range </a>'
-    + '<a class="btn btn-default button-vertical" id="release-modal-button" title="Open visualization options for binary classifications" data-toggle="modal" data-target="#modal-release-visualization">  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <span class="glyphicon glyphicon-object-align-left" aria-hidden="true"></span> <br> Visualize classification </a>'
+    
 );
 $('#menu-item-plugin').show();
 $('#logo').html('piStar + visualization');

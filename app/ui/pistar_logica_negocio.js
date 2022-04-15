@@ -1,3 +1,5 @@
+
+
 var model = null;
 var links = null;
 
@@ -44,8 +46,6 @@ function priorityTree(){
     // m= ["T1.1", "T2.1", "T13.1", "G5"]
     // m.sort(naturalCompare);
     // console.log(m)
-    // debugger;
-
 
     let totalPriority;
     let totalGoals;
@@ -59,11 +59,12 @@ function priorityTree(){
     propagatePriority(goals[0])
     let paths = [];
 
+    // prioritizeAutomatically()
+
     let i = {number:0}
     pathDFD2(goals[0], paths, [], [], i)
     console.log("PATHS")
     paths.forEach(p => console.log(p))
-    debugger
 
 }
 
@@ -206,8 +207,18 @@ function pathDFD2(goal, paths, visited, queue, i){
         return;
 
     }
-    //Natural sort pra organizar quem vem primeiro
+    //Natural sort pra organizar os filhos
     goal.children.sort(naturalCompare)
+
+
+    //Verificar se tem notação
+    let reg = /\[DM\(/;
+    let dm = findRegex(reg, goal.name);
+
+    if(dm!=null){
+        decisionAnotation(goal, dm);
+
+    }
 
 
 
@@ -217,7 +228,6 @@ function pathDFD2(goal, paths, visited, queue, i){
         let child = getHighestPriorityNode(goal.children);
      
 
-        debugger
         pathDFD2(child, paths, visited, queue, i)
 
         queue.pop();//substituir num futuro proximo
@@ -246,7 +256,6 @@ function pathDFD2(goal, paths, visited, queue, i){
                 console.log("task result ", result)   
     
             }
-            debugger
             if(result){
                 visited.push(child.id)
             }
@@ -294,6 +303,52 @@ function getHighestPriorityNode(children){
     })
 
     return result;
+}
+
+function decisionAnotation(goal, word){
+
+    let begin = word.search(/\(/)
+    let end = word.search(/\)/)
+   
+    let options = word.substring((begin+1), (end)).replace(/ /g, '')
+    let stringarray = options.split(",")
+
+    goal.children.forEach(child =>{
+        let indexName = child.name.search(/\:/)
+        let namechild = child.name.substring(0, indexName);
+        console.log(namechild);
+        if(stringarray.includes(namechild)){
+            child.unordered = true;
+        }else{
+            child.unordered = false;
+        }
+    })
+
+    goal.children.sort(prioritySort);
+
+    
+
+}
+
+function prioritySort(a, b){
+
+    if(a.unordered && b.unordered){
+        let aPri = getFactorValue(a.id, "priority");
+        let bPri = getFactorValue(b.id, "priority");
+        if(aPri>bPri){
+            return -1
+        }
+        else if(aPri<bPri){
+            return 1
+        }
+        else return 0;
+
+
+
+    }else{
+        return 0;
+    }
+
 }
 
 function pathsDFS(goal, paths){
@@ -511,6 +566,47 @@ function pushDifference(task, array){
     })
 }
 
+function prioritizeAutomatically(){
+    let iconOptions = [null, null, null];
+
+    var options = {
+        criteria: 'priority',
+        value: true,
+        coloring: false,
+        resize: false,
+    };
+    iconOptions[0] = options;
+
+
+    prioritizationPlugin.showAttributeIcon(iconOptions, true);
+
+
+}
+
+function showAttributeIcon(options) {
+    var t0 = performance.now();
+    _.each(istar.graph.getElements(), function (element, onlyTasks = false) {
+        if (element.isNode()) {
+            //addAttributeIcon(element, 'Priority', -25, options);
+            if(onlyTasks){
+                console.log(element);
+            }
+
+            if (options[0]) {
+                addAttributeIcon(element, options[0].criteria, -50, options[0]);
+            }
+            if (options[1]) {
+                addAttributeIcon(element, options[1].criteria, -25, options[1]);
+            }
+            if (options[2]) {
+                addAttributeIcon(element, options[2].criteria, 0, options[2]);
+            }
+        }
+    });
+    var t1 = performance.now();
+    console.log('Execution time: ' + (t1 - t0) + 'ms');
+}
+
 function getChildrenGoals(goal){//guarantees that each goal in allGoals has their children
     if(goal.type == 'Goal'){
         let actualGoal =  allGoals.find(g =>{
@@ -525,6 +621,24 @@ function getChildrenGoals(goal){//guarantees that each goal in allGoals has thei
         }
 
     }
+
+}
+
+function findRegex(reg, name){
+
+    let wordInd = name.search(reg)
+
+    if(wordInd===(-1)){
+        return null
+    }
+    let result = name.substr(wordInd);
+
+    console.log(result)
+    debugger;
+
+    return result
+    //depois de achar a regex, classificar de acordo com a prioridade
+    // se algum dos filhos não participar da regex a posição dele permanece a mesma
 
 }
 
