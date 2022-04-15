@@ -100,6 +100,8 @@ function proccessTree() {
 }
 function propagatePriority(goal){
     //pegar das folhas e subir
+    let isAnd = false;
+
     let result= 0;
     let goalChildren = goal.children.filter((c) => c.type == 'Goal')
 
@@ -110,7 +112,6 @@ function propagatePriority(goal){
     }
 
     //considering only tasks or that goals have already priority
-    let isAnd = false;
     for (let i = 0; i < goal.children.length; i++){
         //first we need to find all children that are goals
 
@@ -140,6 +141,7 @@ function propagatePriority(goal){
 
         }
         else{//if relationship is AND
+            isAnd = true;
             if(goal.priority==null){
                 //At OR if goal.result = null it needes to receive the first task result
                 goal.priority = result;
@@ -152,6 +154,9 @@ function propagatePriority(goal){
 
         }      
         
+    }
+    if(isAnd){
+        goal.priority = (goal.priority/goal.children.length);
     }
     goal.priority = goal.priority.toFixed(2)
     ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', String(goal.priority));
