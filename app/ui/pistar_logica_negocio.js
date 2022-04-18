@@ -20,43 +20,26 @@ var goalColours = {
 
 function getBenefitWeight(weight){
     benefitW = weight;
-    console.log("benefit", benefitW)
 
 }
 
 function getPenaltyWeight(weight){
     penaltyW = weight;
-    console.log("penalty ", penaltyW)
 
 }
 
 function getCostWeight(weight){
     costW = weight;
-    console.log("cost ", costW)
 
 
 }
 function getRiskWeight(weight){
     riskW = weight;
-    console.log("risk ", riskW)
 
 }
 
-function priorityTree(){
-    // m= ["T1.1", "T2.1", "T13.1", "G5"]
-    // m.sort(naturalCompare);
-    // console.log(m)
-
-    let totalPriority;
-    let totalGoals;
-
-    tasks = [];
-    allGoals = [];
-    readTree();
-
-    let a;
-    calculateTaskProperties(penaltyW, benefitW, costW, riskW);
-    propagatePriority(goals[0])
+function calculatePath(){
+    priorityTree(true);
     let paths = [];
 
     // prioritizeAutomatically()
@@ -64,15 +47,34 @@ function priorityTree(){
     let i = {number:0}
     pathDFD2(goals[0], paths, [], [], i)
     console.log("PATHS")
-    paths.forEach(p => console.log(p))
+    console.log(paths)
+    printSequencePaths(paths)
+    
+}
+
+function priorityTree(needBddResult = false){
+
+    if(needBddResult){
+        proccessTree();
+    }
+    else{
+        tasks = [];
+        allGoals = [];
+        readTree();
+
+    }
+
+
+    let a;
+    calculateTaskProperties(penaltyW, benefitW, costW, riskW);
+    propagatePriority(goals[0])
+    
 
 }
 
 
 function proccessTree() {
 
-    let totalPriority;
-    let totalGoals;
 
     tasks = [];
     allGoals = [];
@@ -81,23 +83,8 @@ function proccessTree() {
     let a;
     a = isExequivel(goals[0]);
 
-
-    //
-    // calculateGoalPriority(goals[0])
-    // totalPriority = getTotalPriority();
-    // totalGoals = allGoals.length;
-    // portTaskPreparation();
-    // portCalculation(totalPriority, totalGoals);
-    // let paths = [];
-
-    // let i = {number:0}
-    // pathDFD2(goals[0], paths, [], [], i)
-    
-
-    
-
-
 }
+
 function propagatePriority(goal){
     //pegar das folhas e subir
     let isAnd = false;
@@ -163,21 +150,97 @@ function propagatePriority(goal){
     return goal.priority;
 
 }
-/*PORT FUNCTIONS
 
-function portTaskPreparation(){
-    getChildrenGoals(goals[0])
-    getTaskGoals();
-    getAllTaskNodes();
+function printSequencePaths(paths){
+
+    var printable=new Array();
+
+    paths.forEach(path =>{
+        let goals=[]
+        let tasks =[];
+        path.forEach(p =>{
+            if(p.type =='Goal'){
+                goals.push(p)
+            }
+            else{
+                tasks.push(p)
+            }
+
+        })
+
+        let printnode  = {};
+        printnode.goals= goals
+        printnode.tasks = tasks;
+        if(printable.length==0){
+            printable.push(printnode);
+
+        }
+        else{
+            let lastIndex = printable.length;
+            let auxprint = printable[lastIndex-1];
+            let equal = true;
+            if(auxprint.goals.length!= printnode.goals.length){
+                printable.push(printnode)
+            }
+            else{
+
+
+                let aux = auxprint.goals.filter(stablishedGoal =>{
+                    let aux2 =(printnode.goals.find(newGoal =>{
+                        if(newGoal.name == stablishedGoal.name) return true
+                    }))
+
+                    
+
+                    if(!aux2)return false
+                    return true
+
+
+                })
+
+
+                if(aux.length == printnode.goals.length){
+                    console.log(lastIndex)
+                    debugger
+                    console.log(printable[lastIndex-1])
+                    printnode.tasks.forEach(task =>{
+
+                        printable[lastIndex-1].tasks.push(task)
+                    })
+                }
+                else{
+                    printable.push(printnode)
+                }
+
+            }
+          
+        }
+    })
+
+    console.log("printable", printable)
+    populateModal(printable);
+
 
 }
 
-function portCalculation(totalPriority, totalGoals){
-    calculateTaskProperties()
-    // calculateTaskPriority(totalPriority, totalGoals)
+function populateModal(printable){
+    $('.modal-sequence .modal-body').html("")
 
+    var i = 1;
+    printable.forEach(print=>{
+        let combinedArray = print.goals.concat(print.tasks)
+        let resultstring = "";
+        combinedArray.forEach(element =>{
+            resultstring = resultstring + element.name + "<br>"
+        })
+        $('.modal-sequence .modal-body').append('<p> <b>'+ i + '</b>: '+resultstring+'</p>')
+        i++;
+
+    })
+
+    $('.modal-sequence').modal('show');
 }
-*/
+
 
 function doesIncludesId(id, goal){
     let c = goal.children.find(child => child.id == id)
@@ -226,7 +289,6 @@ function pathDFD2(goal, paths, visited, queue, i){
     }
 
 
-
      let linkarray=[];
      isOrRefinement(goal, linkarray);
      if(linkarray.length>0){//if is type OR
@@ -243,7 +305,6 @@ function pathDFD2(goal, paths, visited, queue, i){
    
     else{
         goal.children.forEach(child =>{
-            console.log(child)
             if(child.type == 'Goal'){
                 result= getFactorValue(child.id, "RESULT")
                 if(result=="Negativo"){
@@ -252,13 +313,11 @@ function pathDFD2(goal, paths, visited, queue, i){
                 else{
                     result=true;
                 }
-                console.log("goal result ", result)
     
             }
             if(child.type=='Task'){
                 result = getTaskResult(child.id);
                 result = getResult(result);
-                console.log("task result ", result)   
     
             }
             if(result){
@@ -280,20 +339,6 @@ function pathDFD2(goal, paths, visited, queue, i){
         return;
 
     }
-
-     //     let tempPaths = [];
-    //         decideORPath(child, tempPaths, visited, queue, i);
-
-            //Soluções para a parte OR
-            //1-  a mais facil: Usar decideORPath p criar paths temporários, decidir qual é o com mais peso entre eles e usar isso la dentro
-            //2 pegar todos os caminhos independentes e marcar os caminhos que são OR como OR
-            // tendo todos os caminhos em paths eu posso entrar em paths, verificar todos os nodes que tenham ligações OR
-            //ter todos os caminhos
-            ///fazer uma função p comparar os caminhos. se os caminhos possuirem nodes com decomposição or:
-            //Buscar o node com decomposição OR mais proximo da folha, definir o maior caminho
-            //e a partir daí fazer o mesmo para os nodes menos proximos da folha
-
-    // }
 }
 
 function getHighestPriorityNode(children){
@@ -321,7 +366,6 @@ function decisionAnotation(goal, word){
     goal.children.forEach(child =>{
         let indexName = child.name.search(/\:/)
         let namechild = child.name.substring(0, indexName);
-        console.log(namechild);
         if(stringarray.includes(namechild)){
             child.unordered = true;
         }else{
@@ -356,220 +400,9 @@ function prioritySort(a, b){
 
 }
 
-function pathsDFS(goal, paths){
-    let visited = [];
-    let nodes = allGoals.concat(tasks)
-    nodes.forEach(node =>{
-        visited[node.id] = false;
-    })
-
-    let stack = [];
-
-    stack.push(goal)
-
-    visited.push(goal.id)
-    let copy = [];
-    let i = 0;
-    while(stack.length>0){
-        let n = stack.pop();
-        copy.push(n);
-
-        if(n.children){
-            n.children.filter( child => !visited.includes(child.id))
-            .forEach(child =>{
-                visited.push(child.id);
-                stack.push(child);
-            })
-
-            let tryChild = n.children.filter( child => !visited.includes(child.id))
-            if(tryChild.length==0){
-                copy.pop();
-            }
-
-        }
-        else{
-            copy.forEach(el=>{
-                if(!paths[i]){
-                    paths[i]=[];
-
-                }
-                paths[i].push(el);
-            })
-            i++
-
-            copy.pop();
-
-        }
-
-
-    }
 
 
 
-}
-
-function getAllTaskNodes(){
-    tasks.forEach(task => getNodesTaskfromBFS(task));
-}
-
-
-function getNodesTaskfromBFS(task){
-    let visited = new Object();
-    let nodes = allGoals.concat(tasks)
-    nodes.forEach(node =>{
-        visited[node.id] = false;
-    })
-
-    let queue = []
-    //populando 
-    nodes.forEach(node =>{
-        if(node.id!= task.id){
-            if(doesIncludesId(task.id, node)){
-                if(!task.relatedNodes){
-                    task.relatedNodes = []
-                }
-                if(!task.relatedNodes.includes(node)){
-                    task.relatedNodes.push(node);
-                }
-                if(!queue.includes(node)){
-                    queue.push(node);
-                }
-            }
-        }
-    })
-
-    while(queue.length>0){
-        let current = queue.shift();
-        nodes.forEach(n =>{
-            if(!visited[n.id]){
-                if(doesIncludesId(current.id, n)){
-                    visited[n.id] = true;
-                    if(!queue.includes(n)){//se não estiver na fila
-                        queue.push(n);//enfia na fila
-    
-                    }
-                    if(!task.relatedNodes.includes(n)){//se não estiver na lista
-                        task.relatedNodes.push(n)
-                    }
-                }
-
-            }
-
-        })
-    }
-
-}
-
-function getRelatedGoalsFromParent(task){
-    task.parent.forEach(p =>{
-        if(!task.relatedGoals){
-            task.relatedGoals = p.relatedGoals;
-        }
-        else{
-            pushDifference(task, p.relatedGoals);
-        }
-    })
-}
-
-
-// function getGoalstoTaskfromBFS(task){
-//     let visited = new Object();
-//     allGoals.forEach(goal =>{
-//         visited[goal.id] = false;
-//     })
-
-//     let queue = []
-//     //populando queue
-//     if(!task.relatedGoals){
-//         getTaskParentT(task);
-//         getRelatedGoalsFromParent(task);
-//     }
-//     task.relatedGoals.forEach(g => queue.push(g));
-//     while(queue.length>0){
-//         let current = queue.shift();
-//         allGoals.forEach(g =>{
-//             if(!visited[g.id]){
-//                 if(doesIncludesId(current.id, g)){
-//                     visited[g.id] = true;
-//                     if(!queue.includes(g)){//se não estiver na fila
-//                         queue.push(g);//enfia na fila
-    
-//                     }
-//                     if(!task.relatedGoals.includes(g)){//se não estiver na lista
-//                         task.relatedGoals.push(g)
-//                     }
-//                 }
-
-//             }
-
-//         })
-//     }
-
-// }
-
-// function copyGoalstoChildren(task){
-    
-//     if(task.children && task.children.length>0){
-
-//         for(let i=0; i<task.children.length;i++){
-//             let t = task.children[i];
-//             t.relatedGoals = task.relatedGoals
-//             copyGoalstoChildren(t);
-//         }
-//     }
-// }
-
-// function getTaskNodes(){
-//     //get 1st order relationships
-//     let nodes = allGoals.concat(tasks)
-//     tasks.forEach(function(task){
-//         allGoals.forEach(function(goal){
-
-//             if(doesIncludesId(task.id, goal)){
-//                 if(!task.relatedGoals) task.relatedGoals = [];
-//                 task.relatedGoals.push(goal);
-                
-//             }
-//         })
-//         copyGoalstoChildren(task);
-//     })
-//     tasks.forEach(task => getGoalstoTaskfromBFS(task));
-
-// }
-
-function getTaskParentT(task){
-    tasks.forEach(function(t){
-        if(doesIncludesId(task.id, t)){
-            if(!task.parent) task.parent=[];
-            task.parent.push(t);
-        }
-    })
-
-}
-
-// function getTaskGoals(){
-//     //get 1st order relationships
-//     tasks.forEach(function(task){
-//         allGoals.forEach(function(goal){
-//             if(doesIncludesId(task.id, goal)){
-//                 if(!task.relatedGoals) task.relatedGoals = [];
-//                 task.relatedGoals.push(goal);                
-//             }
-//         })
-
-
-//     })
-//     tasks.forEach(task => getGoalstoTaskfromBFS(task));
-
-// }
-
-function pushDifference(task, array){
-    missingGoals = array.forEach(arrayGoal =>{
-        if(!task.relatedGoals.includes(arrayGoal)){//se não incluir
-            task.relatedGoals.push(arrayGoal);
-        }
-    })
-}
 
 function prioritizeAutomatically(){
     let iconOptions = [null, null, null];
@@ -594,7 +427,6 @@ function showAttributeIcon(options) {
         if (element.isNode()) {
             //addAttributeIcon(element, 'Priority', -25, options);
             if(onlyTasks){
-                console.log(element);
             }
 
             if (options[0]) {
@@ -638,8 +470,6 @@ function findRegex(reg, name){
     }
     let result = name.substr(wordInd);
 
-    console.log(result)
-    debugger;
 
     return result
     //depois de achar a regex, classificar de acordo com a prioridade
@@ -659,7 +489,6 @@ function calculateWeighted(costA, riskA, valueA, penaltyW, benefitW, costW, risk
         
 
         t.tValue = ((benefit*benefitW) + (penalty *penaltyW)).toFixed(2)
-        console.log(t.tValue);
         t.Wcost = (cost * costW).toFixed(2);
         t.Wrisk = (risk * riskW).toFixed(2);
         valueA.push(t.tValue);
@@ -690,7 +519,6 @@ function calculatePercentage(value, total){
 }
 
 function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
-    console.log("penalty:", penaltyW)
     let costArray = [];
     let riskArray = [];
     let valueArray = [];
@@ -705,12 +533,11 @@ function calculateTaskProperties(penaltyW, benefitW, costW, riskW){
        
         let priority = (t.pValue / ((t.pCost * costW) + (t.pRisk * riskW))).toFixed(2);
         t.priority = priority;
-        console.log("P:", t.priority)
 
         createPropertiesTask(t.id, priority, "priority")
-        createPropertiesTask(t.id, t.pValue, "ValueP")
-        createPropertiesTask(t.id, t.pCost, "CostP")
-        createPropertiesTask(t.id, t.pRisk, "RiskP")
+        // createPropertiesTask(t.id, t.pValue, "ValueP")
+        // createPropertiesTask(t.id, t.pCost, "CostP")
+        // createPropertiesTask(t.id, t.pRisk, "RiskP")
 
 
 
@@ -755,47 +582,12 @@ function calculateTaskSumCoverage(goal, sum, numLinks){
     return;
 }
 
-function getTotalPriority(){
-    let sum = 0;
 
-    _.map(istar.getElements(), function(node) { 
-        if (node.attributes.type == 'Goal') {
-            allGoals.push({
-                id: node.attributes.id,
-                name: node.attributes.name,
-                type: node.attributes.type,
-            });
-        }
-    });
-
-    allGoals.forEach(function(goal){
-        var node = istar.getCellById(goal.id);
-        value = parseFloat(node.attributes.customProperties["priority"])
-        sum = sum + value;
-    })
-
-    return sum;
-}
-
-// function createPropertiesTask(taskId, priority){
-//     var node = istar.getCellById(taskId);
-//     var keys = Object.keys(node.attributes.customProperties);
-//     // if(keys.length==1){
-//     //     ui.changeCustomPropertyValue(istar.getCellById(taskId), 'test', "");
-
-//     // }
-//     // ui.changeCustomPropertyValue(istar.getCellById(taskId), 'priority', priority);
-
-
-// }
 
 function createPropertiesTask(taskId, propvalue, propname){
     var node = istar.getCellById(taskId);
     var keys = Object.keys(node.attributes.customProperties);
-    // if(keys.length==1){
-    //     ui.changeCustomPropertyValue(istar.getCellById(taskId), 'test', "");
-
-    // }
+   
      ui.changeCustomPropertyValue(istar.getCellById(taskId), propname, propvalue);
 
 
@@ -812,70 +604,8 @@ function getFactorValue(nodeId, factor){
     value = node.attributes.customProperties[factor];
     return value;
 }
-//old goal priority calculation
-// function calculateGoalPriority(goal){
-
-//     if(!goal.priority){
-//         let benefit = getFactorValue(goal.id, "Benefit");
-//         let complexity = getFactorValue(goal.id, "Complexity");
-//         let weightBenefit = getFactorValue(goal.id, "Weight_Benefit")
-//         let weightComplexity = getFactorValue(goal.id, "Weight_Complexity")
-//         //Preparing values
-//         if(isNaN(benefit)){
-//             benefit = 1;
-//         }
-//         if(isNaN(complexity)){
-//             complexity = 1;
-//         }
-
-//         if(isNaN(weightBenefit)){//se não for um número
-//             if(isNaN(weightComplexity)){
-//                 weightBenefit = 50;
-//                 weightComplexity = 50;
-//             }
-//             else{
-//                 weightComplexity = parseFloat(weightComplexity);
-//                 weightBenefit = 100 - weightComplexity;
-//             }
-
-//         }
-//         else if(isNaN(weightComplexity)){
-//             weightBenefit = parseFloat(weightBenefit);
-//             weightComplexity = 100 - weightBenefit;
-//         }
-
-//         //Calculating values
-//         let weightBValue = weightBenefit/100;
-//         let weightCValue = weightComplexity/100;
-
-//         let priority = (benefit*weightBValue) + (complexity*weightCValue);
-//         ui.changeCustomPropertyValue(istar.getCellById(goal.id), 'priority', priority);
 
 
-//     }
-
-//     for (let i = 0; i < goal.children.length; i++) {
-	
-//         let c = goal.children[i];
-        
-//             if (c.type == 'Goal') {
-//                 if(!c.priority){
-//                     let priority = getFactorValue(c.id, "Benefit");
-//                     ui.changeCustomPropertyValue(istar.getCellById(c.id), 'priority', priority);
-
-
-//                 }
-
-//                 result = calculateGoalPriority(c);
-//             } 
-//     }
-
-// }
-
-function changeColorByPriority(pending, failed){
-    
-
-}
 
 
 function isOrRefinement(goal, linkarray){
@@ -890,32 +620,6 @@ function isOrRefinement(goal, linkarray){
 
 }
 
-// function getTasksParents(){
-//     //pegar todas as tasks
-//     //pegar os goals
-//     //para cada goal verificar o filho
-    
-//     goals.forEach(function(g) {
-//         g.children = getGoalChildren(g);
-//     });
-//     let taskHash= {};
-
-//     goals.forEach(function(parentGoal){
-//         for(let i = 0; i<parentGoal.children.length; i++){
-//             let child = parentGoal.children[i];
-//             if(child.type == "Task"){
-//                 if(!taskHash[child.id]){//if this key is null
-//                     taskHash[child.id] = []
-//                 }
-//                 taskHash[child.id].push(parentGoal);
-//             }
-//         }      
-
-//     })
-
-
-//     return taskHash;
-// }
 
 function isExequivel(goal) {
     var result = false;
@@ -1239,39 +943,11 @@ function resetGoals() {
     });
 }
 
-function getPriorityValue(goalId){
-    var node = istar.getCellById(goalId); 
-    var keys = Object.keys(node.attributes.customProperties);
-    let priority = parseInt(node.attributes.customProperties[keys[2]])
 
-    return priority;
-
-}
-
-// function getPriorities(goal, sumarray){
-//     for (let i = 0; i < goal.children.length; i++) {
-	
-//         let c = goal.children[i];
-//         if(c.type == 'Goal'){
-//             getPriorities(c, sumarray);
-
-//         }else{
-//             let priority = getPriorityValue(c.id)
-//             sumarray.push(priority);
-          
-//         }
-        
-//     }
-//     return;
-    
-    
-
-
-// }
 
 $(document).ready(function () {
     $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Verificar Alcançabilidade</a>');
     $('#menu-button-examples').parent().append('<a id="menu-wieger-weights" class="btn btn-default" onclick="showWeightModal();">Modificar Pesos</a>');
     $('#menu-button-examples').parent().append('<a id="menu-calculate-priority" class="btn btn-default" onclick="priorityTree();">Calcular Prioridade</a>');
-
+    $('#menu-button-examples').parent().append('<a id="menu-calculate-priority" class="btn btn-default" onclick="calculatePath();">Calcular Sequencia de Desenvolvimento</a>');
 });
