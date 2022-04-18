@@ -4,6 +4,7 @@ var model = null;
 var links = null;
 
 var goals = [];
+var dependencies = new Array();
 var tasks = new Array();
 
 let allGoals=[];
@@ -318,6 +319,17 @@ function pathDFD2(goal, paths, visited, queue, i){
             if(child.type=='Task'){
                 result = getTaskResult(child.id);
                 result = getResult(result);
+
+                let dependency = getFactorValue(child.id, "dependency");
+                console.log(dependency);
+                if(dependency!=undefined){
+                    let linesD = dependency.split('\n');
+                    console.log(linesD)
+                    linesD.forEach(line=>{
+                        if(!checkDependency(line)) result = false;                       
+
+                    })
+                }
     
             }
             if(result){
@@ -340,6 +352,214 @@ function pathDFD2(goal, paths, visited, queue, i){
 
     }
 }
+function findDependencyOnList(reg, word, added=true){
+    let adition = 2;
+    if(!added){
+        adition = 1;
+        
+    }
+    let pos = word.search(reg) 
+            let variable = word.substring(0, pos).trim();
+            let varResult = word.substring(pos+adition).trim();
+            let dependency ={}
+            dependency = dependencies.find(dependency =>{
+                if(dependency.variable == variable) return true;
+                
+            })
+
+            let object = {}
+            object.varResult = varResult;
+            object.variable = variable;
+            object.listDependency = dependency
+
+            return object;
+
+
+}
+function checkDependency(dep){
+    debugger
+    
+
+  
+        if(dep.includes('==')){
+            // let pos = dep.search(/\=\=/) 
+            // let variable = dep.substring(0, pos).trim();
+            // let varResult = dep.substring(pos+2).trim();
+            // let dependency ={}
+            // dependency = dependencies.find(dependency =>{
+            //     if(dependency.variable == variable) return true;
+                
+            // })
+            let dependencyObj = findDependencyOnList(/\=\=/, dep)
+
+            if(!dependencyObj.listDependency){
+                return false
+            }
+            let listDependency = dependencyObj.listDependency
+            let varResult = dependencyObj.varResult;
+            if(listDependency.operator==='='){
+                if(listDependency.result === varResult){
+                    console.log("true")
+                    return true
+                }
+              
+            }
+            return false;
+            
+        }
+
+        else if(dep.includes('!=')){
+
+            let dependencyObj = findDependencyOnList(/\!\=/, dep)
+            if(!dependencyObj.listDependency){
+                return false
+            }
+            let listDependency = dependencyObj.listDependency
+            let varResult = dependencyObj.varResult;
+            if(listDependency.operator==='!='){
+                if(listDependency.result === varResult){
+                    console.log("true")
+                    return true
+                }
+              
+            }
+            else if(listDependency.operator==='='){
+                if(listDependency.result != varResult){
+                    return true
+                }
+              
+            }
+            return false;
+
+
+        }
+        else if(dep.includes('>=')){
+
+            let dependencyObj = findDependencyOnList(/\>\=/, dep)
+            if(!dependencyObj.listDependency){
+                return false
+            }
+            let listDependency = dependencyObj.listDependency
+            let varResult = dependencyObj.varResult;
+            let a = parseFloat(listDependency.result)
+            let b = parseFloat(varResult)
+            if(listDependency.operator==='>'){
+                if(listDependency.result === varResult){
+                    console.log("true")
+                    return true
+                }
+                if(a>b){
+                    return true;
+                }
+              
+            }
+            if(listDependency.operator==='='){
+                if(a >= b){
+                    console.log("true")
+                    return true
+                }
+              
+            }
+            return false;
+
+
+        }
+        else if(dep.includes('<=')){
+            let dependencyObj = findDependencyOnList(/\<\=/, dep)
+            if(!dependencyObj.listDependency){
+                return false
+            }
+            let listDependency = dependencyObj.listDependency
+            let varResult = dependencyObj.varResult;
+            let a = parseFloat(listDependency.result)
+            let b = parseFloat(varResult)
+            if(listDependency.operator==='<'){
+                if(listDependency.result === varResult){
+                    console.log("true")
+                    return true
+                }
+                if(a<b){
+                    return true;
+                }
+              
+            }
+            if(listDependency.operator==='='){
+                if(a <= b){
+                    console.log("true")
+                    return true
+                }
+              
+            }
+            return false;
+
+        }
+        else if(dep.includes('>')){
+
+            let dependencyObj = findDependencyOnList(/\>/, dep, false)
+            if(!dependencyObj.listDependency){
+                return false
+            }
+            let listDependency = dependencyObj.listDependency
+            let varResult = dependencyObj.varResult;
+            let a = parseFloat(listDependency.result)
+            let b = parseFloat(varResult)
+            if(listDependency.operator==='>'){
+                if(listDependency.result === varResult){
+                    console.log("true")
+                    return true
+                }
+                if(a>b){
+                    return true;
+                }
+              
+            }
+            if(listDependency.operator==='='){
+                if(a > b){
+                    console.log("true")
+                    return true
+                }
+              
+            }
+            return false;
+            
+
+        }
+        else if(dep.includes('<')){
+
+            let dependencyObj = findDependencyOnList(/\>/, dep, false)
+            if(!dependencyObj.listDependency){
+                return false
+            }
+            let listDependency = dependencyObj.listDependency
+            let varResult = dependencyObj.varResult;
+            let a = parseFloat(listDependency.result)
+            let b = parseFloat(varResult)
+            if(listDependency.operator==='<'){
+                if(listDependency.result === varResult){
+                    console.log("true")
+                    return true
+                }
+                if(a<b){
+                    return true;
+                }
+              
+            }
+            if(listDependency.operator==='='){
+                if(a < b){
+                    console.log("true")
+                    return true
+                }
+              
+            }
+            return false;
+            
+
+        }
+   
+                    
+}
+
+
 
 function getHighestPriorityNode(children){
     let result = null;
@@ -943,11 +1163,40 @@ function resetGoals() {
     });
 }
 
+function showDependencyModal(){
+    $('.modal-dependency').modal('show')
+}
+
+function getDependencies(text){
+    dependencies = []
+    var lines = text.split('\n')
+    let reg =/\=|\>|\<|\!\=/ ;
+
+    lines.forEach(line=>{
+      let pos = line.search(reg)  
+      let added = 1;
+
+      if(line.includes('!=')){
+        added = 2
+      }
+
+      let variable = line.substring(0, pos).trim();
+      let operator = line.substr(pos, added);
+      let result = line.substring(pos+added).trim();
+      let dependency = {}
+      dependency.variable = variable
+      dependency.operator = operator
+      dependency.result = result;
+      dependencies.push(dependency)
+
+    })
+}
 
 
 $(document).ready(function () {
     $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Verificar Alcançabilidade</a>');
     $('#menu-button-examples').parent().append('<a id="menu-wieger-weights" class="btn btn-default" onclick="showWeightModal();">Modificar Pesos</a>');
+    $('#menu-button-examples').parent().append('<a id="menu-dependency" class="btn btn-default" onclick="showDependencyModal();">Adicionar Dependencia de teste</a>');
     $('#menu-button-examples').parent().append('<a id="menu-calculate-priority" class="btn btn-default" onclick="priorityTree();">Calcular Prioridade</a>');
-    $('#menu-button-examples').parent().append('<a id="menu-calculate-priority" class="btn btn-default" onclick="calculatePath();">Calcular Sequencia de Desenvolvimento</a>');
+    $('#menu-button-examples').parent().append('<a id="menu-calculate-sequence" class="btn btn-default" onclick="calculatePath();">Calcular Sequencia de Desenvolvimento</a>');
 });
