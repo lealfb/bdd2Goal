@@ -69,6 +69,8 @@ function priorityTree(needBddResult = false){
     let a;
     calculateTaskProperties(penaltyW, benefitW, costW, riskW);
     propagatePriority(goals[0])
+
+    prioritizeAutomatically()
     
 
 }
@@ -260,6 +262,7 @@ function naturalCompare(a,b){
 
 
 function pathDFD2(goal, paths, visited, queue, i){
+    debugger
     queue.push(goal);
     visited.push(goal.id)
 

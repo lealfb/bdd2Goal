@@ -54,9 +54,6 @@ var prioritizationPlugin = function() {
         changeVisualAttribute(element, 'stroke', newColor);
     }
 
-    function testAlert(){
-        alert("Hello")
-    }
 
     function changeVisualAttribute(element, propertyName, propertValue){
         element.attr('rect/' + propertyName, propertValue);

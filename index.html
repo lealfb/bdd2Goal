@@ -434,6 +434,8 @@ https://github.com/jhcp/pistar
         </div>
     </div>
 
+  
+
     <div class="modal fade" id="modal-examples" tabindex="-1" role="dialog" aria-labelledby="label-examples-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -744,6 +746,35 @@ https://github.com/jhcp/pistar
 <!--Fim do visualization plugin-->
 <!-- Fim do pistar-plugin -->
 <!-- Inicio priority plugin -->
+<div class="modal modal-dependency" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Dependências</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Adicione as variáveis no campo de texto abaixo:</p>
+                <form id="form-upload">
+                    <div class="form">
+                         <label for="benefit-weight">Dependências</label>
+                         <div class="input-group">
+                             <textarea rows="5" cols="50" style="width:80%;" type="Text" name="benefit-weight" id="benefit-weight" onchange="getDependencies(this.value)"></textarea>
+                         </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal modal-wieger" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -777,6 +808,25 @@ https://github.com/jhcp/pistar
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-sequence" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sequências sugeridas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
