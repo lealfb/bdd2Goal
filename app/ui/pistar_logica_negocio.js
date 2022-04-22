@@ -240,7 +240,7 @@ function populateModal(printable){
         i++;
 
     })
-
+    debugger
     $('.modal-sequence').modal('show');
 }
 
@@ -284,10 +284,12 @@ function pathDFD2(goal, paths, visited, queue, i){
 
 
     //Verificar se tem notação
-    let reg = /\[DM\(/;
+    //let reg = /\[DM\(/;
+    let reg = /\(G|T(1-9)+\#/
     let dm = findRegex(reg, goal.name);
 
     if(dm!=null){
+        console.log("UHUL")
         decisionAnotation(goal, dm);
 
     }
@@ -584,11 +586,14 @@ function decisionAnotation(goal, word){
     let end = word.search(/\)/)
    
     let options = word.substring((begin+1), (end)).replace(/ /g, '')
-    let stringarray = options.split(",")
+    // let stringarray = options.split(",")
+    let stringarray = options.split("#")
+
 
     goal.children.forEach(child =>{
         let indexName = child.name.search(/\:/)
         let namechild = child.name.substring(0, indexName);
+        debugger
         if(stringarray.includes(namechild)){
             child.unordered = true;
         }else{
@@ -598,11 +603,16 @@ function decisionAnotation(goal, word){
 
     goal.children.sort(prioritySort);
 
+    console.log("ME", goal.children)
+
+    debugger
+
     
 
 }
 
 function prioritySort(a, b){
+    debugger
 
     if(a.unordered && b.unordered){
         let aPri = getFactorValue(a.id, "priority");
@@ -1199,7 +1209,7 @@ function getDependencies(text){
 $(document).ready(function () {
     $('#menu-button-examples').parent().append('<a id="menu-button-proccess" class="btn btn-default" onclick="proccessTree();">Verificar Alcançabilidade</a>');
     $('#menu-button-examples').parent().append('<a id="menu-wieger-weights" class="btn btn-default" onclick="showWeightModal();">Modificar Pesos</a>');
-    $('#menu-button-examples').parent().append('<a id="menu-dependency" class="btn btn-default" onclick="showDependencyModal();">Adicionar Dependencia de teste</a>');
+    // $('#menu-button-examples').parent().append('<a id="menu-dependency" class="btn btn-default" onclick="showDependencyModal();">Adicionar Dependencia de teste</a>');
     $('#menu-button-examples').parent().append('<a id="menu-calculate-priority" class="btn btn-default" onclick="priorityTree();">Calcular Prioridade</a>');
     $('#menu-button-examples').parent().append('<a id="menu-calculate-sequence" class="btn btn-default" onclick="calculatePath();">Calcular Sequencia de Desenvolvimento</a>');
 });
