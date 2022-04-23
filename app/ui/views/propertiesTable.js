@@ -198,6 +198,16 @@ ui.components.PropertiesTableView = Backbone.View.extend({
 
                 if (isValidName) {
                     ui.getSelectedCells()[0].prop('customProperties/' + newPropertyName, '');
+                    if(newPropertyName === 'feature'){
+                        ui.getSelectedCells()[0].prop('customProperties/benefit', '');
+                        ui.getSelectedCells()[0].prop('customProperties/penalty', '');
+                        ui.getSelectedCells()[0].prop('customProperties/cost', '');
+                        ui.getSelectedCells()[0].prop('customProperties/risk', '');
+
+
+
+
+                    }
                 }
                 else {
                     ui.alert(validityMessage, 'Invalid property name');

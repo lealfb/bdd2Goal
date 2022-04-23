@@ -965,7 +965,8 @@ function getTaskValue(nodeId) {
 
     if (keys.length > 1) {
         try {
-            value = normalize(node.attributes.customProperties[keys[1]]);
+            // value = normalize(node.attributes.customProperties[keys[1]]);
+            value = normalize(node.attributes.customProperties.feature);
         } catch (e) {
         }
     }else{

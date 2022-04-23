@@ -103,7 +103,6 @@ function renderComplexityTemplate(propertyName, propertyValue) {
 }
 
 function renderCustomPropertyTemplate(propertyName, propertyValue) {
-
     titulos = titulos.sort(sortByName);
 
     var selectbox = "<select class='form-control' name='" + propertyName + "' onchange='customChangeValue(this);'>";
@@ -192,25 +191,38 @@ ui.components.PropertiesTableView.prototype.renderCustomProperty = function (pro
 
         var customTemplate = null;
 
-        switch (keys.indexOf(propertyName)) {
-            case 1:
-                customTemplate = renderCustomPropertyTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
-                break;
-            // case 2:
 
-            //     customTemplate = renderPriorityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
-            //     break;
-
-            // case 3:
-            //     customTemplate = renderComplexityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
-            //     break;
-            default:
-                customTemplate = this.template({
-                    propertyName: propertyName,
-                    propertyValue: this.model.prop('customProperties/' + propertyName),
-                    dataType: 'textarea'
-                });
+        if(propertyName === "feature"){
+            customTemplate = renderCustomPropertyTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
         }
+        else{
+            customTemplate = this.template({
+                propertyName: propertyName,
+                propertyValue: this.model.prop('customProperties/' + propertyName),
+                dataType: 'textarea'
+            });
+            
+        }
+
+        // switch (keys.indexOf(propertyName)) {
+        //     // case 1:
+        //     //     customTemplate = renderCustomPropertyTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+        //     //     break;
+        //     // case 2:
+
+        //     //     customTemplate = renderPriorityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+        //     //     break;
+
+        //     // case 3:
+        //     //     customTemplate = renderComplexityTemplate(propertyName, this.model.prop('customProperties/' + propertyName));
+        //     //     break;
+        //     default:
+        //         customTemplate = this.template({
+        //             propertyName: propertyName,
+        //             propertyValue: this.model.prop('customProperties/' + propertyName),
+        //             dataType: 'textarea'
+        //         });
+        // }
 
     } else {
         this.$table.find('tbody').append(this.template({
@@ -220,7 +232,9 @@ ui.components.PropertiesTableView.prototype.renderCustomProperty = function (pro
         }));
     }
 
+ 
     this.$table.find('tbody').append(customTemplate);
+    
 };
 
 function showJsonUploadModal() {
