@@ -9,23 +9,107 @@ var colours = [
 ];
 
 $.ajax({
-    url: "json/",
+    url: "JsonDiff/",
     success: function (data) {
+        console.log(data)
         //return false;
         $(data).find("a").each(function (a, b) {
             if (/.+\.json/.test(b.href)) {
-                var href = b.href;
-                var base = href.replace(/\/[a-f|A-F|0-9]+.json$/, '');
-                var href = href.replace(base, '');
-                fList.push('json' + href);
+                let leng = b.baseURI.length
+                var href = b.href.substring(leng-1);
+                // var base = href.replace(/\/[a-f|A-F|0-9]+.json$/, '');
+                // var href = href.replace(base, '');
+                //fList.push('json' + href);
+                fList.push('JsonDiff/' + href);
+
             }
         });
     }
 });
+async function loadText(url) {
+    text = await fetch(url);
+    //awaits for text.text() prop 
+    //and then sends it to readText()
+    readText(await text.text());
+}
 
-function loadNames(userStory) {
+function readText(text){
+    let remove = "Coverage report generated"
+    let indexRemove = text.indexOf(remove)
+    let result;
+    if(indexRemove!=(-1)){
+        result = text.substring(1, indexRemove-1)
+        debugger
+
+    }
+    else{
+        let totalLenght = text.length
+        result = text.substring(1, totalLenght-1)
+    }
+
+    console.log("here", result)
+
+    let obj = JSON.parse(text)
     let loaded = [];
+    console.log("objeto", obj)
+    let data = obj[0];
+    let name =  data.name.replace("'", ' ');
+    let elements = data.elements;
+    let scenarios  = elements.filter(element =>{
+        if(element.keyword === "Scenario") return true
+        return false
+    })
+    let failedScenarios = []
+    let skippedScenarios = []
+    scenarios.forEach(scenario =>{
+        let steps  = scenario.steps;
+
+        let skippedStep = steps.filter(step =>{
+            if((step.result.status==="skipped")||(step.result.status==="undefined")||(step.result.status==="pending")) return true;
+
+            return false;
+        })
+
+        let failedStep = steps.filter(step =>{
+            if(step.result.status==="failed") return true;
+        })
+
+        if(failedStep.length>0){
+            failedScenarios.push(scenario)
+        }
+        else if(skippedStep.length>0){
+            skippedScenarios.push(scenario)
+        }
+    })
+    console.log(scenarios)
+        
+    console.log("NAME", name)
+    debugger
+
+
+    
+    
+}
+
+function loadNames(userStory, lang = "rails") {
+    let loaded = [];
+    console.log(fList)
+    debugger
+    if(lang==="rails"){
+        console.log("NEW")
+        
+        fList.forEach(function (jsonFile){
+
+            loadText(jsonFile);
+        debugger
+
+    
+        })
+
+    }
+
     fList.forEach(function (jsonFile) {
+       
         $.getJSON(jsonFile, function (data) {
             
             let name =  data.name.replace("'", ' ');
@@ -41,12 +125,14 @@ function loadNames(userStory) {
             }
             
             if (!skips) {
+                console.log(titulos)
+                debugger
                 titulos.push({
                     //name: data.name.replace("'", ' '),
                     name: name,
                     result: data.result,
                     oldLabel: data.name.replace("'", ' '),
-                    newLabel: data.userStory.storyName.replace("'", ' '),
+                    newLabel: (data.userStory)? data.userStory.storyName.replace("'", ' '): data.name.replace("'", ' '),
                 });
             }
             
@@ -326,4 +412,6 @@ function compareNames(name1, name2) {
 
 $(document).ready(function () {
     setTimeout('loadNames()', 1000);
+    // setTimeout('loadJsonData(/../)', 1000);
+
 });
