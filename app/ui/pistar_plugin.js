@@ -11,7 +11,6 @@ var colours = [
 $.ajax({
     url: "JsonDiff/",
     success: function (data) {
-        console.log(data)
         //return false;
         $(data).find("a").each(function (a, b) {
             if (/.+\.json/.test(b.href)) {
@@ -39,75 +38,96 @@ function readText(text){
     let result;
     if(indexRemove!=(-1)){
         result = text.substring(1, indexRemove-1)
-        debugger
-
+       
     }
     else{
         let totalLenght = text.length
         result = text.substring(1, totalLenght-1)
+        
     }
 
-    console.log("here", result)
 
-    let obj = JSON.parse(text)
+    let obj = JSON.parse(result)
     let loaded = [];
-    console.log("objeto", obj)
-    let data = obj[0];
-    let name =  data.name.replace("'", ' ');
-    let elements = data.elements;
-    let scenarios  = elements.filter(element =>{
-        if(element.keyword === "Scenario") return true
-        return false
-    })
-    let failedScenarios = []
-    let skippedScenarios = []
-    scenarios.forEach(scenario =>{
-        let steps  = scenario.steps;
-
-        let skippedStep = steps.filter(step =>{
-            if((step.result.status==="skipped")||(step.result.status==="undefined")||(step.result.status==="pending")) return true;
-
-            return false;
-        })
-
-        let failedStep = steps.filter(step =>{
-            if(step.result.status==="failed") return true;
-        })
-
-        if(failedStep.length>0){
-            failedScenarios.push(scenario)
+    let name =  obj.name.replace("'", ' ');
+    let skips = false;
+    for (let i = 0; i < loaded.length; i++) {
+        if (name == loaded[i]) {
+            skips = true;
+            break;
         }
-        else if(skippedStep.length>0){
-            skippedScenarios.push(scenario)
-        }
-    })
-    console.log(scenarios)
+    }
+    if(!skips){
+        let elements = obj.elements;
+        let scenarios  = elements.filter(element =>{
+            if((element.keyword === "Scenario")||(element.keyword === "Cenário")) return true
+            return false
+        })
+        let failedScenarios = []
+        let skippedScenarios = []
+        scenarios.forEach(scenario =>{
+            let steps  = scenario.steps;
+
+            let skippedStep = steps.filter(step =>{
+                if((step.result.status==="skipped")||(step.result.status==="undefined")||(step.result.status==="pending")) return true;
+
+                return false;
+            })
+
+            let failedStep = steps.filter(step =>{
+                if(step.result.status==="failed") return true;
+
+                return false
+            })
+
         
-    console.log("NAME", name)
-    debugger
+                if(failedStep.length>0){
+                failedScenarios.push(scenario)
+            }
+            else if(skippedStep.length>0){
+                skippedScenarios.push(scenario)
+            }
+        })
+        let caseResult;
+        if(failedScenarios.length>0){
+            caseResult = "FAILURE"
+        }
+        else if (skippedScenarios.length>0){
+            caseResult = "PENDING"
+        }
+        else{
+            caseResult = "SUCCESS"
+        }
+
+            titulos.push({
+                //name: data.name.replace("'", ' '),
+                name: name,
+                result: caseResult,
+                failScenarios: failedScenarios,
+                skipScenarios: skippedScenarios,
+                oldLabel: obj.name.replace("'", ' '),
+                newLabel: (obj.userStory)? obj.userStory.storyName.replace("'", ' '): obj.name.replace("'", ' '),
+            });
+
+        loaded.push(name);
+    }
 
 
     
     
 }
 
-function loadNames(userStory, lang = "rails") {
+function loadNames(lang = "rails") {
     let loaded = [];
-    console.log(fList)
-    debugger
+    // debugger
     if(lang==="rails"){
-        console.log("NEW")
         
         fList.forEach(function (jsonFile){
-
             loadText(jsonFile);
-        debugger
-
-    
         })
 
     }
-
+    else{
     fList.forEach(function (jsonFile) {
        
         $.getJSON(jsonFile, function (data) {
@@ -125,7 +145,6 @@ function loadNames(userStory, lang = "rails") {
             }
             
             if (!skips) {
-                console.log(titulos)
                 debugger
                 titulos.push({
                     //name: data.name.replace("'", ' '),
@@ -139,6 +158,7 @@ function loadNames(userStory, lang = "rails") {
             loaded.push(name);
         });
     });
+}
 	
     var loadJsonButton = 
             '<a onclick="showJsonUploadModal();" class="btn btn-default button-vertical" id="menu-button-new-model" title="Create a new model in the same window">'
@@ -331,6 +351,63 @@ function showWeightModal() {
 	$('.modal-wieger').modal('show');
 }
 
+function treatArrayData(data){
+    let obj = data[0]
+
+    let elements = obj.elements;
+    let scenarios  = elements.filter(element =>{
+        if((element.keyword === "Scenario")||(element.keyword === "Cenário")) return true
+        return false
+    })
+    let failedScenarios = []
+    let skippedScenarios = []
+    scenarios.forEach(scenario =>{
+        let steps  = scenario.steps;
+
+        let skippedStep = steps.filter(step =>{
+            if((step.result.status==="skipped")||(step.result.status==="undefined")||(step.result.status==="pending")) return true;
+
+            return false;
+        })
+
+        let failedStep = steps.filter(step =>{
+        if(step.result.status==="failed") return true;
+
+        return false
+        })
+
+
+        if(failedStep.length>0){
+            failedScenarios.push(scenario)
+        }
+        else if(skippedStep.length>0){
+            skippedScenarios.push(scenario)
+        }
+    })
+    let caseResult;
+    if(failedScenarios.length>0){
+        caseResult = "FAILURE"
+    }
+    else if (skippedScenarios.length>0){
+        caseResult = "PENDING"
+    }
+    else{
+        caseResult = "SUCCESS"
+    }
+
+    titulos.push({
+        //name: data.name.replace("'", ' '),
+        name: obj.name.replace("'", ' '),
+        result: caseResult,
+        failScenarios: failedScenarios,
+        skipScenarios: skippedScenarios,
+        oldLabel: obj.name.replace("'", ' '),
+        newLabel: (obj.userStory)? obj.userStory.storyName.replace("'", ' '): obj.name.replace("'", ' '),
+    });
+
+
+}
+
 function loadJsonData(source) {
 	var list = source.files;
 	
@@ -340,11 +417,27 @@ function loadJsonData(source) {
 		var reader = new FileReader();
 	
 		reader.onload = function(fileLoadedEvent){
-			var content = fileLoadedEvent.target.result;
+            var content = fileLoadedEvent.target.result;
+            console.log("cansada", content)
+            
+            let remove = "Coverage report generated"
+            let indexRemove = content.indexOf(remove)
+            let result;
+            if(indexRemove!=(-1)){
+            debugger
+
+                content = content.substring(1, indexRemove-1)
+
+            }
 			
-			var data = JSON.parse(content);
-			
-			titulos.push({name: data.name.replace("'", ' '), result: data.result});
+            var data = JSON.parse(content);
+            if(Array.isArray(data)){
+                treatArrayData(data);
+            }
+            else{
+                titulos.push({name: data.name.replace("'", ' '), result: data.result});
+
+            }
 		};
 		
 		reader.readAsText(list[i]);
