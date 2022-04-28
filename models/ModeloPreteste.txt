@@ -1,0 +1,728 @@
+{
+  "actors": [
+    {
+      "id": "d23254bf-d642-4c8c-8098-b6d15438450f",
+      "text": "Sistema",
+      "type": "istar.Agent",
+      "x": 65,
+      "y": 62,
+      "customProperties": {
+        "Description": ""
+      },
+      "nodes": [
+        {
+          "id": "54c2fe9a-c839-43f5-886c-9d7f8bcf4157",
+          "text": "G0: Gerenciar Secretaria (G1#G2#G3#G6)",
+          "type": "istar.Goal",
+          "x": 1002,
+          "y": 77,
+          "customProperties": {
+            "Description": "",
+            "Benefit": "7",
+            "Weight_Benefit": "70",
+            "Complexity": "9",
+            "Weight_Complexity": "30",
+            "RESULT": "Negativo",
+            "priority": "0.89",
+            "benefit": "",
+            "risk": "",
+            "cost": "",
+            "penalty": ""
+          }
+        },
+        {
+          "id": "c9ec7745-92fc-416d-9861-c43741664997",
+          "text": "G1:Gerir Notícias",
+          "type": "istar.Goal",
+          "x": 319,
+          "y": 148.5,
+          "customProperties": {
+            "Description": "",
+            "Benefit": "3",
+            "Weight_Benefit": "70",
+            "Complexity": "4",
+            "Weight_Complexity": "30",
+            "RESULT": "Negativo",
+            "priority": "1.15",
+            "benefit": "",
+            "risk": "",
+            "cost": "",
+            "penalty": ""
+          }
+        },
+        {
+          "id": "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0",
+          "text": "G2: Gerir Wiki de Atendimento (T1#T2#T3#T4)",
+          "type": "istar.Goal",
+          "x": 751,
+          "y": 203,
+          "customProperties": {
+            "Description": "",
+            "Benefit": "5",
+            "Weight_Benefit": "70",
+            "Complexity": "4",
+            "Weight_Complexity": "30",
+            "RESULT": "Negativo",
+            "priority": "1.22",
+            "benefit": "",
+            "risk": "",
+            "cost": "",
+            "penalty": ""
+          }
+        },
+        {
+          "id": "074779a8-8f3e-4c63-95b7-a304c237cda5",
+          "text": "G4:Organizar FAQ",
+          "type": "istar.Goal",
+          "x": 1048,
+          "y": 303,
+          "customProperties": {
+            "Description": "",
+            "Benefit": "6",
+            "Weight_Benefit": "70",
+            "Complexity": "4",
+            "Weight_Complexity": "30",
+            "RESULT": "Negativo",
+            "priority": "0.56",
+            "benefit": "",
+            "risk": "",
+            "cost": "",
+            "penalty": ""
+          }
+        },
+        {
+          "id": "880e7bf5-6ff4-4cfe-8211-6037c5aa076f",
+          "text": "G5:Gerir FAQ",
+          "type": "istar.Goal",
+          "x": 1339,
+          "y": 283,
+          "customProperties": {
+            "Description": "",
+            "Benefit": "6",
+            "Weight_Benefit": "70",
+            "Complexity": "6",
+            "Weight_Complexity": "",
+            "RESULT": "Negativo",
+            "priority": "1.10",
+            "benefit": "",
+            "risk": "",
+            "cost": "",
+            "penalty": ""
+          }
+        },
+        {
+          "id": "ebbaafdb-4283-432f-90ae-a2e47203acf0",
+          "text": "G3: Responder duvidas comuns",
+          "type": "istar.Goal",
+          "x": 1051,
+          "y": 184,
+          "customProperties": {
+            "Description": "",
+            "Benefit": "8",
+            "Weight_Benefit": "70",
+            "Complexity": "8",
+            "Weight_Complexity": "30",
+            "RESULT": "Negativo",
+            "priority": "0.83",
+            "benefit": "",
+            "risk": "",
+            "cost": "",
+            "penalty": ""
+          }
+        },
+        {
+          "id": "bbcb49ad-9b58-4cbe-a812-fa801b6619de",
+          "text": "T1: Notificar usuários interessados sobre informações",
+          "type": "istar.Task",
+          "x": 99,
+          "y": 196,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "5",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "87577c7e-1da6-44e8-b863-d5c87e062dd2",
+          "text": "T2: Visualizar todas as informações publicadas",
+          "type": "istar.Task",
+          "x": 191,
+          "y": 333,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "7",
+            "penalty": "9",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "fccf9a6f-1d06-46c5-91c5-fd96221f0a44",
+          "text": "T3: Visualizar informação pela fonte",
+          "type": "istar.Task",
+          "x": 317,
+          "y": 343,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "7",
+            "penalty": "7",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "e1cc2e9a-922f-4677-a6b2-892aed5e4e8b",
+          "text": "T4: Adicionar Informação",
+          "type": "istar.Task",
+          "x": 454.5,
+          "y": 297,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "9",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "bfe901ef-d709-420b-9f5d-ae70dcd9e5fa",
+          "text": "T5: Adicionar nova Fonte de Informação",
+          "type": "istar.Task",
+          "x": 530.5,
+          "y": 184,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "9",
+            "penalty": "9",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "646e90ac-d449-42f7-b856-a5b67bc60d64",
+          "text": "T1: Adicionar processo na Wiki",
+          "type": "istar.Task",
+          "x": 600,
+          "y": 293,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "9",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "71203c05-6600-4869-8c8b-a0f01c9546a4",
+          "text": "T2: Consultar processo de atendimento",
+          "type": "istar.Task",
+          "x": 657,
+          "y": 368,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "9",
+            "penalty": "9",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "a3e99b98-bf2b-4d85-834b-8d04ee085f4d",
+          "text": "T3: Anexar arquivo a um processo de atendimento",
+          "type": "istar.Task",
+          "x": 841,
+          "y": 367,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "6",
+            "penalty": "8",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "114a78b6-784b-48c5-a361-77fab8aa5eda",
+          "text": "T4: Modificar procedimento através de comentário",
+          "type": "istar.Task",
+          "x": 867,
+          "y": 300,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "7",
+            "penalty": "4",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "fe587c6d-66d6-41c6-9b54-647a72257216",
+          "text": "T1:Criar tópicos de perguntas e respostas",
+          "type": "istar.Task",
+          "x": 832,
+          "y": 471,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "6",
+            "penalty": "8",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "8c9b1358-e8a2-4224-b792-15b84aabba19",
+          "text": "T2: Filtrar perguntas por tópico",
+          "type": "istar.Task",
+          "x": 1072,
+          "y": 480,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "5",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "cfb0a70d-e8b3-4c5f-b643-086daf9bf07d",
+          "text": "T2: Administrador Editar respostas",
+          "type": "istar.Task",
+          "x": 1340,
+          "y": 415,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "7",
+            "penalty": "4",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "4da47ad8-670c-4b7c-980d-1716cb7c93b5",
+          "text": "T3: Visualizar todas as perguntas",
+          "type": "istar.Task",
+          "x": 1490,
+          "y": 404,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "8",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "7e0a892c-a81b-4f91-a1e7-bf1734761d98",
+          "text": "T4: Sistema sugerir de pergunta",
+          "type": "istar.Task",
+          "x": 1512,
+          "y": 325,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "7",
+            "penalty": "3",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "946744fd-e0ef-435f-98f8-86f81dd5b24f",
+          "text": "T1: usuário cadastrar uma pergunta",
+          "type": "istar.Task",
+          "x": 1200,
+          "y": 373,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "6",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0",
+          "text": "G6: Disponibilizar Calendário",
+          "type": "istar.Goal",
+          "x": 1364,
+          "y": 110.5,
+          "customProperties": {
+            "Description": "",
+            "RESULT": "Negativo",
+            "priority": "0.37"
+          }
+        },
+        {
+          "id": "1599d98a-33c7-49e3-a033-d9c86344c6ba",
+          "text": "T1: Adicionar uma atividade ao calendário",
+          "type": "istar.Task",
+          "x": 1280,
+          "y": 199,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "7",
+            "penalty": "8",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "8cd4ca56-0488-4784-97ac-10a1b6961f02",
+          "text": "T2: Adicionar pessoas interessadas em atividades",
+          "type": "istar.Task",
+          "x": 1482,
+          "y": 232,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "5",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "55ec59d1-f0f6-4f6a-8c8a-3f0fdbeaa673",
+          "text": "T3: Declarar interesse em atividade",
+          "type": "istar.Task",
+          "x": 1632,
+          "y": 164,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "5",
+            "penalty": "3",
+            "cost": "",
+            "risk": ""
+          }
+        },
+        {
+          "id": "b86fd5ed-420c-4111-ad8d-a0c33a4bbef0",
+          "text": "T4: Enviar notificação a pessoas interessadas em atividade",
+          "type": "istar.Task",
+          "x": 1663,
+          "y": 113,
+          "customProperties": {
+            "Description": "",
+            "feature": "",
+            "benefit": "8",
+            "penalty": "5",
+            "cost": "",
+            "risk": ""
+          }
+        }
+      ]
+    }
+  ],
+  "orphans": [],
+  "dependencies": [],
+  "links": [
+    {
+      "id": "f0774f7b-fd0d-4962-8144-5a58bea98bc7",
+      "type": "istar.AndRefinementLink",
+      "source": "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0",
+      "target": "54c2fe9a-c839-43f5-886c-9d7f8bcf4157"
+    },
+    {
+      "id": "79e46495-ce96-401c-8124-4fe6ec84333c",
+      "type": "istar.AndRefinementLink",
+      "source": "ebbaafdb-4283-432f-90ae-a2e47203acf0",
+      "target": "54c2fe9a-c839-43f5-886c-9d7f8bcf4157"
+    },
+    {
+      "id": "9a84f53a-17a0-46b3-acb9-7b905ff61475",
+      "type": "istar.AndRefinementLink",
+      "source": "074779a8-8f3e-4c63-95b7-a304c237cda5",
+      "target": "ebbaafdb-4283-432f-90ae-a2e47203acf0"
+    },
+    {
+      "id": "b406f49b-1545-4e6b-8940-f19238b91287",
+      "type": "istar.AndRefinementLink",
+      "source": "880e7bf5-6ff4-4cfe-8211-6037c5aa076f",
+      "target": "ebbaafdb-4283-432f-90ae-a2e47203acf0"
+    },
+    {
+      "id": "bb442cb9-c621-4d34-afe8-6f6bfe3580d2",
+      "type": "istar.AndRefinementLink",
+      "source": "c9ec7745-92fc-416d-9861-c43741664997",
+      "target": "54c2fe9a-c839-43f5-886c-9d7f8bcf4157"
+    },
+    {
+      "id": "f99d73f4-f830-4c3e-be3a-81f0b717861f",
+      "type": "istar.AndRefinementLink",
+      "source": "bbcb49ad-9b58-4cbe-a812-fa801b6619de",
+      "target": "c9ec7745-92fc-416d-9861-c43741664997"
+    },
+    {
+      "id": "4e60a105-1724-40da-828c-b651b814da1e",
+      "type": "istar.AndRefinementLink",
+      "source": "87577c7e-1da6-44e8-b863-d5c87e062dd2",
+      "target": "c9ec7745-92fc-416d-9861-c43741664997"
+    },
+    {
+      "id": "255de6ae-2402-4d6b-bf5d-f77d42663f6e",
+      "type": "istar.AndRefinementLink",
+      "source": "fccf9a6f-1d06-46c5-91c5-fd96221f0a44",
+      "target": "c9ec7745-92fc-416d-9861-c43741664997"
+    },
+    {
+      "id": "387ee5cf-6a45-4ab5-be22-91f246a5df9f",
+      "type": "istar.AndRefinementLink",
+      "source": "e1cc2e9a-922f-4677-a6b2-892aed5e4e8b",
+      "target": "c9ec7745-92fc-416d-9861-c43741664997"
+    },
+    {
+      "id": "71b35f18-7c5e-41a6-b643-79b6af68f430",
+      "type": "istar.AndRefinementLink",
+      "source": "bfe901ef-d709-420b-9f5d-ae70dcd9e5fa",
+      "target": "c9ec7745-92fc-416d-9861-c43741664997"
+    },
+    {
+      "id": "77686425-c70d-4827-9f1a-a75a9e1abecf",
+      "type": "istar.AndRefinementLink",
+      "source": "646e90ac-d449-42f7-b856-a5b67bc60d64",
+      "target": "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0"
+    },
+    {
+      "id": "92638540-efaa-40fe-8114-188cba986884",
+      "type": "istar.AndRefinementLink",
+      "source": "71203c05-6600-4869-8c8b-a0f01c9546a4",
+      "target": "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0"
+    },
+    {
+      "id": "6b379a12-a3cc-4e40-a9be-3422c287c2fd",
+      "type": "istar.AndRefinementLink",
+      "source": "114a78b6-784b-48c5-a361-77fab8aa5eda",
+      "target": "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0"
+    },
+    {
+      "id": "86c19779-e2ff-4a05-ad87-cc72bb6a45f4",
+      "type": "istar.AndRefinementLink",
+      "source": "fe587c6d-66d6-41c6-9b54-647a72257216",
+      "target": "074779a8-8f3e-4c63-95b7-a304c237cda5"
+    },
+    {
+      "id": "6747ab0f-21f4-44f8-94af-2a372777fb95",
+      "type": "istar.AndRefinementLink",
+      "source": "8c9b1358-e8a2-4224-b792-15b84aabba19",
+      "target": "074779a8-8f3e-4c63-95b7-a304c237cda5"
+    },
+    {
+      "id": "d0c4cf32-62ff-4e14-acae-e4026b0d9c5e",
+      "type": "istar.AndRefinementLink",
+      "source": "cfb0a70d-e8b3-4c5f-b643-086daf9bf07d",
+      "target": "880e7bf5-6ff4-4cfe-8211-6037c5aa076f"
+    },
+    {
+      "id": "32afcd9e-5a30-478e-a425-c4c30709bab5",
+      "type": "istar.AndRefinementLink",
+      "source": "4da47ad8-670c-4b7c-980d-1716cb7c93b5",
+      "target": "880e7bf5-6ff4-4cfe-8211-6037c5aa076f"
+    },
+    {
+      "id": "265d1920-25d2-4c70-8c6a-be87e15d4d57",
+      "type": "istar.AndRefinementLink",
+      "source": "7e0a892c-a81b-4f91-a1e7-bf1734761d98",
+      "target": "880e7bf5-6ff4-4cfe-8211-6037c5aa076f"
+    },
+    {
+      "id": "a01ed9a9-34d1-452a-b34a-d79e4fc0cfa0",
+      "type": "istar.AndRefinementLink",
+      "source": "946744fd-e0ef-435f-98f8-86f81dd5b24f",
+      "target": "880e7bf5-6ff4-4cfe-8211-6037c5aa076f"
+    },
+    {
+      "id": "7d7dbebc-f2d5-472c-9516-70bc79f765ed",
+      "type": "istar.AndRefinementLink",
+      "source": "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0",
+      "target": "54c2fe9a-c839-43f5-886c-9d7f8bcf4157"
+    },
+    {
+      "id": "d3ecc2ed-ede3-400d-9938-87dc0d1bae9c",
+      "type": "istar.AndRefinementLink",
+      "source": "1599d98a-33c7-49e3-a033-d9c86344c6ba",
+      "target": "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0"
+    },
+    {
+      "id": "ea5a996a-348a-430f-be66-72bb5e13f5a2",
+      "type": "istar.AndRefinementLink",
+      "source": "8cd4ca56-0488-4784-97ac-10a1b6961f02",
+      "target": "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0"
+    },
+    {
+      "id": "01d1a46d-c763-4932-b952-82f3b9a48b79",
+      "type": "istar.AndRefinementLink",
+      "source": "55ec59d1-f0f6-4f6a-8c8a-3f0fdbeaa673",
+      "target": "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0"
+    },
+    {
+      "id": "7e78abda-4457-4304-9868-eae8cee518f9",
+      "type": "istar.AndRefinementLink",
+      "source": "b86fd5ed-420c-4111-ad8d-a0c33a4bbef0",
+      "target": "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0"
+    },
+    {
+      "id": "ca956a4d-1cf6-47d0-a2b5-858738fd692a",
+      "type": "istar.AndRefinementLink",
+      "source": "a3e99b98-bf2b-4d85-834b-8d04ee085f4d",
+      "target": "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0"
+    }
+  ],
+  "display": {
+    "54c2fe9a-c839-43f5-886c-9d7f8bcf4157": {
+      "backgroundColor": "#FA7267",
+      "width": 205.41668701171875,
+      "height": 48.80000305175781
+    },
+    "c9ec7745-92fc-416d-9861-c43741664997": {
+      "backgroundColor": "#FA7267",
+      "width": 145.41668701171875,
+      "height": 52.30000305175781
+    },
+    "df2019d0-fc5b-434e-89d8-00e6a3d8f7f0": {
+      "backgroundColor": "#FA7267",
+      "width": 167.41668701171875,
+      "height": 55.30000305175781
+    },
+    "074779a8-8f3e-4c63-95b7-a304c237cda5": {
+      "backgroundColor": "#FA7267",
+      "width": 123.41668701171875,
+      "height": 41.80000305175781
+    },
+    "880e7bf5-6ff4-4cfe-8211-6037c5aa076f": {
+      "backgroundColor": "#FA7267"
+    },
+    "ebbaafdb-4283-432f-90ae-a2e47203acf0": {
+      "backgroundColor": "#FA7267",
+      "width": 137.41668701171875,
+      "height": 53.30000305175781
+    },
+    "bbcb49ad-9b58-4cbe-a812-fa801b6619de": {
+      "backgroundColor": "#B4B8FA",
+      "width": 156.63333129882812,
+      "height": 84.80000305175781
+    },
+    "87577c7e-1da6-44e8-b863-d5c87e062dd2": {
+      "backgroundColor": "#B4B8FA",
+      "width": 113.13333129882812,
+      "height": 57.80000305175781
+    },
+    "fccf9a6f-1d06-46c5-91c5-fd96221f0a44": {
+      "backgroundColor": "#B4B8FA",
+      "width": 149.63333129882812,
+      "height": 45.80000305175781
+    },
+    "e1cc2e9a-922f-4677-a6b2-892aed5e4e8b": {
+      "backgroundColor": "#B4B8FA",
+      "width": 127.63333129882812,
+      "height": 44.80000305175781
+    },
+    "bfe901ef-d709-420b-9f5d-ae70dcd9e5fa": {
+      "backgroundColor": "#B4B8FA",
+      "width": 132.63333129882812,
+      "height": 43.80000305175781
+    },
+    "646e90ac-d449-42f7-b856-a5b67bc60d64": {
+      "backgroundColor": "#B4B8FA",
+      "width": 124.13333129882812,
+      "height": 44.80000305175781
+    },
+    "71203c05-6600-4869-8c8b-a0f01c9546a4": {
+      "backgroundColor": "#B4B8FA",
+      "width": 161.63333129882812,
+      "height": 45.80000305175781
+    },
+    "a3e99b98-bf2b-4d85-834b-8d04ee085f4d": {
+      "backgroundColor": "#B4B8FA",
+      "width": 165.13333129882812,
+      "height": 43.80000305175781
+    },
+    "114a78b6-784b-48c5-a361-77fab8aa5eda": {
+      "backgroundColor": "#B4B8FA",
+      "width": 158.63333129882812,
+      "height": 51.80000305175781
+    },
+    "fe587c6d-66d6-41c6-9b54-647a72257216": {
+      "backgroundColor": "#B4B8FA",
+      "width": 210.63333129882812,
+      "height": 49.80000305175781
+    },
+    "8c9b1358-e8a2-4224-b792-15b84aabba19": {
+      "backgroundColor": "#B4B8FA",
+      "width": 214.13333129882812,
+      "height": 35.80000305175781
+    },
+    "cfb0a70d-e8b3-4c5f-b643-086daf9bf07d": {
+      "backgroundColor": "#B4B8FA",
+      "width": 136.13333129882812,
+      "height": 65.80000305175781
+    },
+    "4da47ad8-670c-4b7c-980d-1716cb7c93b5": {
+      "backgroundColor": "#B4B8FA",
+      "width": 136.63333129882812,
+      "height": 46.80000305175781
+    },
+    "7e0a892c-a81b-4f91-a1e7-bf1734761d98": {
+      "backgroundColor": "#B4B8FA",
+      "width": 157.63333129882812,
+      "height": 38.80000305175781
+    },
+    "946744fd-e0ef-435f-98f8-86f81dd5b24f": {
+      "backgroundColor": "#B4B8FA",
+      "width": 138.13333129882812,
+      "height": 55.80000305175781
+    },
+    "037ef3b8-32c7-47c0-b0b3-f4ff6063f0b0": {
+      "backgroundColor": "#FA7267",
+      "width": 156.13333129882812,
+      "height": 52.30000305175781
+    },
+    "1599d98a-33c7-49e3-a033-d9c86344c6ba": {
+      "backgroundColor": "#B4B8FA",
+      "width": 157.63333129882812,
+      "height": 54.80000305175781
+    },
+    "8cd4ca56-0488-4784-97ac-10a1b6961f02": {
+      "backgroundColor": "#B4B8FA",
+      "width": 189.63333129882812,
+      "height": 43.80000305175781
+    },
+    "55ec59d1-f0f6-4f6a-8c8a-3f0fdbeaa673": {
+      "backgroundColor": "#B4B8FA",
+      "width": 159.63333129882812,
+      "height": 43.80000305175781
+    },
+    "b86fd5ed-420c-4111-ad8d-a0c33a4bbef0": {
+      "backgroundColor": "#B4B8FA",
+      "width": 239.13333129882812,
+      "height": 42.80000305175781
+    }
+  },
+  "tool": "pistar.2.0.0",
+  "istar": "2.0",
+  "saveDate": "Thu, 28 Apr 2022 02:37:07 GMT",
+  "diagram": {
+    "width": 4989,
+    "height": 1817,
+    "customProperties": {
+      "Description": "",
+      "Tarefa": ""
+    }
+  }
+}
